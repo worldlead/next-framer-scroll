@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import ForceGraph3D from 'react-force-graph-3d';
+import dynamic from 'next/dynamic';
+
+const ForceGraph3D = dynamic(
+	() => import('react-force-graph-3d'),
+	{ ssr: false }
+  );
 
 interface ForceGraphProps {
 	className?: string;
