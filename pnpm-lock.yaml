@@ -18,7 +18,7 @@ dependencies:
     specifier: 20.2.1
     version: 20.2.1
   '@types/react':
-    specifier: 18.2.6
+    specifier: ^18.2.6
     version: 18.2.6
   '@types/react-dom':
     specifier: 18.2.4

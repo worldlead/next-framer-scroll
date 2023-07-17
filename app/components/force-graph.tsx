@@ -9,7 +9,7 @@ interface ForceGraphProps {
 
 export default function ForceGraph({ className }: ForceGraphProps) {
 	const [graphData, setGraphData] = useState(null);
-	const fgRef = useRef(null);
+	const fgRef = useRef<any>(null);
 
 	useEffect(() => {
 		fetch('/blocks.json')
@@ -36,18 +36,26 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 		};
 
 		// update the camera position
-		fgRef.current.cameraPosition(newCameraPosition);
+		if (fgRef.current) {
+			// @ts-ignore
+			fgRef.current.cameraPosition(newCameraPosition.x, newCameraPosition.y, newCameraPosition.z);
+		}
+
+		setCameraPosition(newCameraPosition);
+
 	}
 
+	const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
+
+
 	return graphData && (
-		<div className={className}>
+		<div className={className} onMouseMove={handleMouseMove}>
 			<ForceGraph3D
 				ref={fgRef}
 				graphData={graphData}
-				// nodeLabel={node => `${node.user}: ${node.description}`}
 				nodeAutoColorBy={() => 'white'}
 				linkDirectionalParticles={1}
-				onMouseMove={handleMouseMove}
+				cameraPosition={cameraPosition}
 			/>
 		</div>
 	);
