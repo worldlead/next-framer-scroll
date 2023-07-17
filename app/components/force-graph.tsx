@@ -55,7 +55,6 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 				graphData={graphData}
 				nodeAutoColorBy={() => 'white'}
 				linkDirectionalParticles={1}
-				cameraPosition={cameraPosition}
 			/>
 		</div>
 	);
