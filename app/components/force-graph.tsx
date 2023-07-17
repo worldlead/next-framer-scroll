@@ -56,14 +56,14 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 	const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
 
 
-	return hasMounted && graphData && (
+	return hasMounted && graphData ? (
 		<div className={className} onMouseMove={handleMouseMove}>
-			<ForceGraph3D
-				ref={fgRef}
-				graphData={graphData}
-				nodeAutoColorBy={() => 'white'}
-				linkDirectionalParticles={1}
-			/>
+		  <ForceGraph3D
+			ref={fgRef}
+			graphData={graphData}
+			nodeAutoColorBy={() => 'white'}
+			linkDirectionalParticles={1}
+		  />
 		</div>
-	);
+	  ) : null;
 }
