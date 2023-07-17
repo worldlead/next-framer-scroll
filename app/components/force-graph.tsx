@@ -17,7 +17,7 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 			.then(data => setGraphData(data));
 	}, []);
 
-	const handleMouseMove = (event) => {
+	const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
 		const x = event.clientX;
 		const y = event.clientY;
 
