@@ -87,7 +87,7 @@ All metrics are stored in Redis `Hash` data types and sharded into buckets based
 ```
 @upstash/analytics:{TABLE}:{TIMESTAMP}
 ```
-- `TABLE` is a namespace to group events together. ie for managing multiple projects int a single database
+- `TABLE` is a namespace to group events together. ie for managing multiple features int a single database
 - `TIMESTAMP` is the starting timestamp of each window
 
 The field of each hash is a serialized JSON object with the user's event data and the value is the number of times this event has been recorded.
