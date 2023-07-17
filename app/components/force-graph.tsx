@@ -21,8 +21,8 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 		const x = event.clientX;
 		const y = event.clientY;
 
-		const windowWidth = window.innerWidth;
-		const windowHeight = window.innerHeight;
+		const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+		const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
 
 		// normalize the mouse coordinates to range [-1, 1] and invert y-axis
 		const nx = 2*(x / windowWidth - 0.5);
