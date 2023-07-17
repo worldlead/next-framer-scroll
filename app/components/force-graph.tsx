@@ -7,9 +7,17 @@ interface ForceGraphProps {
 	className?: string;
 }
 
+
+
 export default function ForceGraph({ className }: ForceGraphProps) {
 	const [graphData, setGraphData] = useState(null);
 	const fgRef = useRef<any>(null);
+
+	const [hasMounted, setHasMounted] = useState(false);
+
+	useEffect(() => {
+		setHasMounted(true);
+	}, []);
 
 	useEffect(() => {
 		fetch('/blocks.json')
@@ -25,13 +33,13 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 		const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
 
 		// normalize the mouse coordinates to range [-1, 1] and invert y-axis
-		const nx = 2*(x / windowWidth - 0.5);
-		const ny = -2*(y / windowHeight - 0.5);
+		const nx = 2 * (x / windowWidth - 0.5);
+		const ny = -2 * (y / windowHeight - 0.5);
 
 		// compute the new camera position, adjust the 10 to control orbit radius
 		const newCameraPosition = {
-			x: 10*nx,
-			y: 10*ny,
+			x: 10 * nx,
+			y: 10 * ny,
 			z: 3  // keep z constant to maintain a horizontal orbit
 		};
 
@@ -48,7 +56,7 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 	const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
 
 
-	return graphData && (
+	return hasMounted && graphData && (
 		<div className={className} onMouseMove={handleMouseMove}>
 			<ForceGraph3D
 				ref={fgRef}
