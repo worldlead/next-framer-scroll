@@ -20,9 +20,9 @@ export default async function FeaturesPage() {
 		return acc;
 	}, {} as Record<string, number>);
 
-	const featured = allFeatures.find((feature) => feature.slug === "unkey")!;
-	const top2 = allFeatures.find((feature) => feature.slug === "planetfall")!;
-	const top3 = allFeatures.find((feature) => feature.slug === "highstorm")!;
+	const featured = allFeatures.find((feature) => feature.slug === "nonlinear")!;
+	const top2 = allFeatures.find((feature) => feature.slug === "questioning")!;
+	const top3 = allFeatures.find((feature) => feature.slug === "decision_making")!;
 	const sorted = allFeatures
 		.filter((p) => p.published)
 		.filter(
