@@ -27,7 +27,7 @@ export default function Home() {
 			<div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 			<ForceGraph className="absolute inset-0 z-0 animate-fade-in"
 			/>
-			<h1 className="z-10 text-4xl text-transparent duration-2000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text pt-5 pb-5">
+			<h1 className="z-10 text-4xl text-transparent duration-3000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text pt-5 pb-5">
 				fylo
 			</h1>
 

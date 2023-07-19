@@ -12,8 +12,6 @@ interface ForceGraphProps {
 	className?: string;
 }
 
-
-
 export default function ForceGraph({ className }: ForceGraphProps) {
 	const [graphData, setGraphData] = useState(null);
 	const fgRef = useRef<any>(null);
