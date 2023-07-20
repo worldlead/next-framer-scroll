@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 		default: "fylo.io",
 		template: "%s | fylo.io",
 	},
-	description: "Software engineer at upstash.com and founder of planetfall.io",
+	description: "Ideation, evolved.",
 	openGraph: {
 		title: "fylo.io",
 		description:
-			"Software engineer at upstash.com and founder of planetfall.io",
+			"Ideation, evolved.",
 		url: "https://fylo.io",
 		siteName: "fylo.io",
 		images: [
