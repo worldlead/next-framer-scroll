@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import Particles from "./components/particles";
 import ForceGraph from "./components/force-graph"
 
 const navigation = [
