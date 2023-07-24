@@ -5,6 +5,7 @@ import ForceGraph from "./components/force-graph"
 const navigation = [
 	{ name: "features", href: "/features" },
 	{ name: "contact", href: "/contact" },
+	{ name: "login", href: "/login" },
 ];
 
 export default function Home() {

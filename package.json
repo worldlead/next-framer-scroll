@@ -9,13 +9,17 @@
     "fmt": "pnpm rome check . --apply-suggested && pnpm rome format . --write"
   },
   "dependencies": {
+    "3d-force-graph": "^1.71.5",
     "@next/font": "^13.4.3",
     "@next/mdx": "^13.4.3",
+    "@supabase/auth-helpers-nextjs": "^0.7.3",
+    "@supabase/auth-helpers-react": "^0.4.1",
+    "@supabase/supabase-js": "^2.27.0",
+    "@supabase/ui": "^0.36.5",
     "@types/node": "20.2.1",
     "@types/react": "^18.2.6",
     "@types/react-dom": "18.2.4",
     "@upstash/redis": "^1.20.6",
-    "3d-force-graph": "^1.71.5",
     "contentlayer": "^0.3.0",
     "d3": "^7.8.5",
     "framer-motion": "^10.12.12",
