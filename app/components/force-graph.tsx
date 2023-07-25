@@ -64,8 +64,11 @@ export default function ForceGraph({ className }: ForceGraphProps) {
 		  <ForceGraph3D
 			ref={fgRef}
 			graphData={graphData}
-			nodeAutoColorBy={() => 'white'}
+			linkColor={link => 'grey'}
+			nodeColor={node => 'black'}
+			nodeRelSize={2} // All nodes radius 10px
 			linkDirectionalParticles={1}
+			backgroundColor="white"
 		  />
 		</div>
 	  ) : null;
