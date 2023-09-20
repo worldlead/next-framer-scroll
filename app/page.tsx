@@ -1,62 +1,55 @@
 import Link from "next/link";
 import React from "react";
-import ForceGraph from "./components/force-graph"
+import ForceGraph from "./components/force-graph";
+import Expander from "./components/expander";
 
 const navigation = [
-	{ name: "features", href: "/features" },
-	{ name: "contact", href: "/contact" },
-	{ name: "login", href: "/login" },
+  // { name: "features", href: "/features" },
+  { name: "contact", href: "/contact" },
+  { name: "login", href: "/login" },
 ];
 
-
 export default function Home() {
-	return (
-		<div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden from-black via-zinc-600/20 to-black">
-			<nav className="my-16 animate-fade-in z-20">
-				<ul className="flex items-center justify-center gap-6">
-					{navigation.map((item) => (
-						<Link
-							key={item.href}
-							href={item.href}
-							className="text-xl duration-500 text-zinc-500 hover:text-zinc-300"
-						>
-							{item.name}
-						</Link>
-					))}
-				</ul>
-			</nav>
-			<div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-			<ForceGraph className="absolute inset-0 z-0 animate-fade-in"
-			/>
-			<h1 className="z-10 text-4xl text-transparent duration-3000 bg-black cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text pt-5 pb-5">
-				fylo
-			</h1>
-
-			<div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-			<div className="my-16 text-center animate-fade-in">
-				<h1 className="text-2xl text-zinc-300 ">
-					ideation, evolved
-					{/* solutions at{" "}
-					<Link
-						target="_blank"
-						href="https://upstash.com"
-						className="underline duration-500 hover:text-zinc-300"
-					>
-						Upstash
-					</Link> */}
-					{/* 
-					<br />
-					and working on{" "}
-					<Link
-						target="_blank"
-						href="https://unkey.dev"
-						className="underline duration-500 hover:text-zinc-300"
-					>
-						unkey.dev
-					</Link>{" "}
-					at night. */}
-				</h1>
-			</div>
-		</div>
-	);
+  return (
+    <>
+      <div className="wrapper-scene">
+        <ForceGraph className="absolute z-0 inset-0 animate-fade-in" />
+      </div>
+      <div className="page-wrapper">
+        <div className="menu-wrapper flex justify-between items-center mx-8">
+          <nav className="my-10 animate-fade-in z-20">
+            <ul className="flex items-center justify-center gap-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </ul>
+          </nav>
+          <h6 className="z-10 text-xl text-transparent duration-3000 bg-black cursor-default text-edge-outline animate-title font-display whitespace-nowrap bg-clip-text pt-5 pb-5">
+            fylo
+          </h6>
+          <nav className="my-10 animate-fade-in z-20">
+            <ul className="flex items-center justify-center gap-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </ul>
+          </nav>
+        </div>
+        <div className="buffer-page-wrapper fixed inset-0 pointer-events-none bg-opacity-0 z-7"></div>
+        <Expander />
+      </div>
+    </>
+  );
 }

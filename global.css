@@ -4,7 +4,42 @@
 
 @layer base {
   .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
-} 
+}
 
+:root {
+  --100vh: "100%";
+}
+
+.circle-mask {
+  background-color: #000;
+  -webkit-clip-path: circle(0);
+  clip-path: circle(0);
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: -webkit-clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+    -webkit-clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  width: 100%;
+}
+.circle-mask .opacity__wrapper {
+  opacity: 0;
+}
+.circle-mask.on {
+  -webkit-clip-path: circle(100%);
+  clip-path: circle(100%);
+  transition-delay: 50ms;
+  transition-duration: 1.2s;
+  overflow: hidden;
+}
+.circle-mask.on .opacity__wrapper {
+  opacity: 1;
+}
+.circle-mask.on .card-wrapper {
+  position: absolute;
+  transform: translate(0);
+}
