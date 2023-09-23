@@ -43,6 +43,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@contentlayer/core": "^0.3.4",
     "@opentelemetry/api": "^1.4.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
