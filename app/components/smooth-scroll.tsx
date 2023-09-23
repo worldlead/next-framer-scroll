@@ -21,6 +21,7 @@ export default function SmoothScroll() {
   //   wrapper: document.documentElement,
   // };
   // const lenis = new Lenis(lenisConfig);
+  // lenis
 
   // Function to handle intersection
   const handleIntersection: IntersectionObserverCallback = (entries) => {
