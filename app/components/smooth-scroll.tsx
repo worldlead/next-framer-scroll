@@ -293,7 +293,7 @@ export default function SmoothScroll() {
                           {contentItem.text}
                         </p>
                       )}
-                      {contentItem.type === "image" && (
+                      {contentItem.type === "image" && contentItem.src && (
                         <Image
                           src={contentItem.src}
                           alt={contentItem.alt}
