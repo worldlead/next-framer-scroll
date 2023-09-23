@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
+import Footer from "./footer";
 
 interface CardData {
   profilePic: string;
@@ -140,38 +141,67 @@ export default function Expander(): JSX.Element {
   }, []);
 
   return (
-    <div ref={circleRef} className="circle-mask">
-      <div className="opacity-wrapper">
-        <div className="card-container-wrapper bg-black h-screen absolute top-0 left-0 w-full px-[7.5rem] py-[12rem]">
-          <div className="card-stack-wrapper relative">
-            {cardData.map((card, index) => (
-              <div
-                key={index}
-                ref={cardRefs.current[index]}
-                className="card-wrapper bg-[rgba(35,35,35,.418)] rounded-[1.3rem] shadow-[1px 3px 20px 12px #0000002e] flex flex-col h-[20rem] justify-between p-[2rem] space-y-[2.5rem] transform origin-center-top transition-transform transition-opacity transition-scale duration-4000 w-[33.25rem] z-20"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? "rgb(32, 32, 32)" : "rgb(24, 23, 23)",
-                }}
-              >
-                <div className="profile-wrapper flex items-center gap-6">
-                  <img
-                    className="bg-gray-700 rounded-full h-14 w-14 object-cover"
-                    src={card.profilePic}
-                    alt={card.name}
-                  ></img>
-                  <div className="profile-container">
-                    <a href="#">
-                      <div className="name text-white text-sm">{card.name}</div>
-                      <div className="tag text-[#fff6] text-sm">{card.tag}</div>
-                    </a>
+    <>
+      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between w-full pl-[56px] pr-[56px] items-center">
+        <h1 className="text-spectrum-space leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6">
+          ideation, evolved.
+        </h1>
+        <a
+          className="rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px]"
+          href="#"
+        >
+          Join the waitlist
+        </a>
+      </div>
+      <div ref={circleRef} className="circle-mask z-20">
+        <div className="opacity-wrapper">
+          <div className="card-container-wrapper bg-blue-gradient h-screen absolute top-0 left-0 w-full px-[7.5rem] py-[12rem]">
+            <div className="card-stack-wrapper relative top-1/2">
+              {cardData.map((card, index) => (
+                <div
+                  key={index}
+                  ref={cardRefs.current[index]}
+                  className="card-wrapper bg-[rgba(35,35,35,.418)] rounded-[1.3rem] shadow-[1px 3px 20px 12px #0000002e] flex flex-col h-[20rem] justify-between p-[2rem] space-y-[2.5rem] transform origin-center-top transition-transform transition-opacity transition-scale duration-4000 w-[33.25rem] z-20"
+                  style={{
+                    backgroundColor:
+                      index % 2 === 0 ? "rgb(32, 32, 32)" : "rgb(24, 23, 23)",
+                  }}
+                >
+                  <div className="profile-wrapper flex items-center gap-6">
+                    <img
+                      className="bg-gray-700 rounded-full h-14 w-14 object-cover"
+                      src={card.profilePic}
+                      alt={card.name}
+                    ></img>
+                    <div className="profile-container">
+                      <a href="#">
+                        <div className="name text-white text-sm">
+                          {card.name}
+                        </div>
+                        <div className="tag text-[#fff6] text-sm">
+                          {card.tag}
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="absolute left-1/2 top-1/2 flex-col w-1/2 pl-[56px] pr-[56px] items-center">
+              <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[48px] font-light leading-24 tracking-1.6">
+                ideation, evolved.
+              </h1>
+              <a
+                className="rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto"
+                href="#"
+              >
+                Join the waitlist
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

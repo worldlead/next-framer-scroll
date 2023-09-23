@@ -33,6 +33,7 @@
     "react-dom": "18.2.0",
     "react-force-graph": "^1.43.0",
     "react-force-graph-3d": "^1.23.0",
+    "react-scroll": "^1.8.9",
     "react-wrap-balancer": "^0.5.0",
     "reactflow": "^11.7.4",
     "rehype-autolink-headings": "^6.1.1",

@@ -8,12 +8,54 @@
   }
 }
 
-:root {
-  --100vh: "100%";
+@font-face {
+  font-family: "PPSupplySans-Variable";
+  src: url("/fonts/PPSupplySans-Variable.ttf") format("truetype");
+}
+
+body {
+  font-family: "PPSupplySans-Variable", sans-serif;
+}
+
+.bg-grey-gradient {
+  background: linear-gradient(
+    113deg,
+    rgba(16, 25, 66, 0.05),
+    rgba(210, 216, 232, 0.2)
+  );
+}
+
+.bg-blue-gradient {
+  background: linear-gradient(
+    114deg,
+    #d2d8e8 -5.21%,
+    #bbeef2 28.46%,
+    #6cdfef 63.27%,
+    #45a4b0 104.36%
+  );
+}
+
+.about h1 {
+  word-spacing: 2px;
+}
+
+.about .content-with-gap {
+  word-spacing: 4px;
+}
+
+.about-page .toc.selected {
+  color: #2d2d2d;
+  filter: blur(0);
 }
 
 .circle-mask {
-  background-color: #000;
+  background-color: linear-gradient(
+    114deg,
+    #d2d8e8 -5.21%,
+    #bbeef2 28.46%,
+    #6cdfef 63.27%,
+    #45a4b0 104.36%
+  );
   -webkit-clip-path: circle(0);
   clip-path: circle(0);
   height: 100vh;
