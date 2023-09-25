@@ -7,16 +7,31 @@ import { allFeatures } from "contentlayer/generated";
 // Define the createSections function
 function createSections(title: string, rawContent: string) {
   // Log the raw content before processing
+  console.log("Raw Content:", rawContent);
 
   const contentLines = rawContent.split("\n");
 
   const sections: {
     title: string;
-    content: { type: string; text: string }[];
+    content: {
+      type: string;
+      text?: string;
+      src?: string;
+      alt?: string;
+      width?: number;
+      height?: number;
+    }[];
   }[] = [];
   let currentSection: {
     title: string;
-    content: { type: string; text: string }[];
+    content: {
+      type: string;
+      text?: string;
+      src?: string;
+      alt?: string;
+      width?: number;
+      height?: number;
+    }[];
   } = {
     title: title,
     content: [],
@@ -25,13 +40,32 @@ function createSections(title: string, rawContent: string) {
   for (let i = 0; i < contentLines.length; i++) {
     const line = contentLines[i].trim();
 
-    console.log("Line:", line); // Log the current line
+    if (line.startsWith("![")) {
+      // If the line starts with an image tag
+      const regex = /!\[(.*?)\]\((.*?)\)/;
+      const matches = line.match(regex);
 
-    // Remove lines starting with "###"
-    currentSection.content.push({
-      type: "text",
-      text: line,
-    });
+      if (matches && matches.length === 3) {
+        // Extract the image source and alt text
+        const alt = matches[1];
+        const src = matches[2];
+
+        // Push the image object to the current section's content
+        currentSection.content.push({
+          type: "image",
+          src: src,
+          alt: alt,
+          width: 500, // Set your desired width
+          height: 300, // Set your desired height
+        });
+      }
+    } else {
+      // Otherwise, treat it as text
+      currentSection.content.push({
+        type: "text",
+        text: line,
+      });
+    }
 
     if (i === contentLines.length - 1) {
       sections.push(currentSection);
@@ -39,6 +73,7 @@ function createSections(title: string, rawContent: string) {
   }
 
   // Log the final sections for debugging
+  console.log("Sections:", sections);
 
   return sections;
 }
@@ -86,7 +121,6 @@ export default function Features() {
       const index = sectionRefs.current.indexOf(entry.target as HTMLDivElement);
       if (entry.isIntersecting && index !== -1) {
         setActiveSection(index); // Update the active section index
-        console.log(`Section ${index} is in view.`);
       }
     });
   };
