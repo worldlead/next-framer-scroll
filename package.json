@@ -40,6 +40,7 @@
     "rehype-pretty-code": "^0.9.4",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
+    "typed.js": "^2.0.16",
     "typescript": "5.0.4"
   },
   "devDependencies": {

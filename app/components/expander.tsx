@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Footer from "./footer";
 
@@ -58,11 +58,29 @@ const cardData: CardData[] = [
 ];
 
 export default function Expander({ className }: expander): JSX.Element {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const circleRef = useRef<HTMLDivElement>(null);
   const bannerText = useRef<any>(null);
+  const footerRef = useRef<any>(null);
   const cardRefs = useRef<React.RefObject<HTMLDivElement>[]>(
     Array.from({ length: cardData.length }, () => useRef(null))
   );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (bannerText.current) {
+        bannerText.current.classList.add("z-50");
+        bannerText.current.classList.remove("hidden");
+      }
+
+      if (footerRef.current) {
+        footerRef.current.classList.remove("hidden");
+      }
+    }, 2000); // 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -150,8 +168,11 @@ export default function Expander({ className }: expander): JSX.Element {
 
   return (
     <>
-      <div ref={bannerText} className={`${className} animate-fade-in`}>
-        <h1 className="text-spectrum-space leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6">
+      <div
+        ref={bannerText}
+        className={`${className} animate-fade-in transition duration-500 hidden z-50`}
+      >
+        <h1 className="text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6">
           ideation, evolved.
         </h1>
         <a
@@ -161,7 +182,7 @@ export default function Expander({ className }: expander): JSX.Element {
           Join the waitlist
         </a>
       </div>
-      <div ref={circleRef} className="circle-mask z-20">
+      <div ref={circleRef} className="circle-mask z-50">
         <div className="opacity-wrapper">
           <div className="card-container-wrapper bg-blue-gradient h-screen absolute top-0 left-0 w-full px-[7.5rem] py-[12rem]">
             <div className="card-stack-wrapper relative top-1/2">
@@ -209,7 +230,12 @@ export default function Expander({ className }: expander): JSX.Element {
           </div>
         </div>
       </div>
-      <Footer />
+      <div
+        ref={footerRef}
+        className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
+      >
+        <Footer className="z-60" />
+      </div>
     </>
   );
 }

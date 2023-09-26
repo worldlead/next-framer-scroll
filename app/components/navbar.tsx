@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Navbar() {
+interface navbarProps {
+  className?: string;
+}
+
+export default function Navbar({ className }: navbarProps) {
   const pathName = usePathname();
   console.log(pathName);
 
@@ -14,7 +18,9 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex justify-between items-center px-14 text-black h-16 fixed top-8 w-full transition-colors duration-500 z-40 ">
+      <div
+        className={`${className} flex justify-between items-center px-14 text-black h-16 top-8 w-full transition-colors absolute duration-500 z-20`}
+      >
         <nav>
           <ul className="flex items-center space-x-4">
             {navLinks.map((link, index) => (

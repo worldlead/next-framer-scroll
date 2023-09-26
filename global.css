@@ -15,7 +15,7 @@
 
 @keyframes scale-out {
   from {
-    transform: scale(0.2);
+    transform: scale(0.5);
   }
   to {
     transform: scale(1);
@@ -24,7 +24,7 @@
 
 @keyframes scale-in {
   from {
-    transform: scale(0.2);
+    transform: scale(0.5);
   }
   to {
     transform: scale(1);

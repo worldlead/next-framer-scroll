@@ -30,7 +30,7 @@ export default function Preloader({
   return (
     <div
       ref={preloaderRef}
-      className={`${className || ""} ${isLoading ? "block" : "hidden"}`} // Display the preloader if isLoading is true
+      className={className} // Display the preloader if isLoading is true
     >
       <div className="text-[48px] gap-[16px] text-white flex items-center justify-center">
         <svg
