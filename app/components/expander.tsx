@@ -58,6 +58,7 @@ const cardData: CardData[] = [
 ];
 
 export default function Expander({ className }: expander): JSX.Element {
+  const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const circleRef = useRef<HTMLDivElement>(null);
@@ -88,10 +89,10 @@ export default function Expander({ className }: expander): JSX.Element {
     lenis.on("scroll", (e) => {
       // Handle the "circle" animation based on e.animatedScroll
       if (e.animatedScroll !== 0) {
-        circleRef.current?.classList.add("on");
+        setIsCircleMaskOn(true);
         bannerText.current?.classList.add("hidden");
       } else {
-        circleRef.current?.classList.remove("on");
+        setIsCircleMaskOn(false);
 
         bannerText.current?.classList.remove("hidden");
       }
@@ -166,6 +167,10 @@ export default function Expander({ className }: expander): JSX.Element {
     requestAnimationFrame(raf);
   }, []);
 
+  const handleToggleCircleMask = () => {
+    setIsCircleMaskOn((prev) => !prev); // Toggle the class by updating the state
+  };
+
   return (
     <>
       <div
@@ -182,7 +187,10 @@ export default function Expander({ className }: expander): JSX.Element {
           Join the waitlist
         </a>
       </div>
-      <div ref={circleRef} className="circle-mask z-50">
+      <div
+        ref={circleRef}
+        className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
+      >
         <div className="opacity-wrapper">
           <div className="card-container-wrapper bg-blue-gradient h-screen absolute top-0 left-0 w-full px-[7.5rem] py-[12rem]">
             <div className="card-stack-wrapper relative top-1/2">
@@ -234,7 +242,10 @@ export default function Expander({ className }: expander): JSX.Element {
         ref={footerRef}
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
       >
-        <Footer className="z-60" />
+        <Footer
+          className={`z-60 ${isCircleMaskOn ? "mask-is-on" : ""}`}
+          onToggleCircleMask={handleToggleCircleMask}
+        />
       </div>
     </>
   );

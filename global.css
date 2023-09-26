@@ -54,10 +54,10 @@ body {
 .bg-blue-gradient {
   background: linear-gradient(
     114deg,
-    rgba(210, 216, 232, 0.2) -5.21%,
-    rgba(187, 238, 242, 0.2) 28.46%,
-    rgba(108, 223, 239, 0.2) 63.27%,
-    rgba(69, 164, 176, 0.2) 104.36%
+    rgba(210, 216, 232, 0.5) -5.21%,
+    rgba(187, 238, 242, 0.5) 28.46%,
+    rgba(108, 223, 239, 0.5) 63.27%,
+    rgba(69, 164, 176, 0.5) 104.36%
   );
 }
 
@@ -74,13 +74,47 @@ body {
   filter: blur(0);
 }
 
+.scroll-wrapper svg {
+  animation: scrollAnimation 4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  height: 0.7rem;
+  margin: auto;
+  width: 2rem;
+}
+.scroll-wrapper svg:last-of-type {
+  animation: scrollAnimation 4s cubic-bezier(0.215, 0.61, 0.355, 1) 2s infinite;
+  position: absolute;
+}
+
+.mask-is-on .scroll-wrapper {
+  display: none;
+}
+
+@keyframes scrollAnimation {
+  2% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  60% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .circle-mask {
   background: linear-gradient(
     114deg,
-    rgba(210, 216, 232, 0.2) -5.21%,
-    rgba(187, 238, 242, 0.2) 28.46%,
-    rgba(108, 223, 239, 0.2) 63.27%,
-    rgba(69, 164, 176, 0.2) 104.36%
+    rgba(210, 216, 232, 0.5) -5.21%,
+    rgba(187, 238, 242, 0.5) 28.46%,
+    rgba(108, 223, 239, 0.5) 63.27%,
+    rgba(69, 164, 176, 0.5) 104.36%
   );
   -webkit-clip-path: circle(0);
   clip-path: circle(0);

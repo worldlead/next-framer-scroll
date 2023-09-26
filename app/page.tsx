@@ -29,11 +29,11 @@ export default function Home() {
     <>
       <div className={`main-wrapper w-full h-full absolute `}>
         <div
-          className={`navbar-wrapper w-full absolute ${
+          className={`navbar-wrapper w-full absolute z-70 ${
             isLoaded ? "" : "hidden"
           }`}
         >
-          <Navbar className={`animate-fade-in ${isLoaded ? "z-50" : ""}`} />
+          <Navbar className={`animate-fade-in ${isLoaded ? "z-70" : ""}`} />
         </div>
         <div className="wrapper-scene">
           <ForceGraph
