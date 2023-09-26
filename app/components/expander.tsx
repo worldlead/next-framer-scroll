@@ -90,11 +90,8 @@ export default function Expander({ className }: expander): JSX.Element {
       // Handle the "circle" animation based on e.animatedScroll
       if (e.animatedScroll !== 0) {
         setIsCircleMaskOn(true);
-        bannerText.current?.classList.add("hidden");
       } else {
         setIsCircleMaskOn(false);
-
-        bannerText.current?.classList.remove("hidden");
       }
 
       const maxZIndex = 8; // Define the maximum zIndex
@@ -175,15 +172,15 @@ export default function Expander({ className }: expander): JSX.Element {
     <>
       <div
         ref={bannerText}
-        className={`${className} animate-fade-in transition duration-500  z-50 ${
-          isCircleMaskOn ? "hidden" : ""
-        }`}
+        className={`${className} animate-fade-in transition duration-500 z-50 hidden`}
       >
-        <h1 className="text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6">
+        <h1
+          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6`}
+        >
           ideation, evolved.
         </h1>
         <a
-          className="rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg"
+          className={`rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg`}
           href="#"
         >
           Join the waitlist
