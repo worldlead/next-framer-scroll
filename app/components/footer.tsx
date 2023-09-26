@@ -25,7 +25,7 @@ export default function Footer({ className, onToggleCircleMask }: FooterProps) {
           <h5 className="text-[20px] font-[300]">highlighted features</h5>
         </div>
         <div
-          className={`scroll-wrapper w-[40px] h-[40px] bg-[rgba(0,0,0,0.1)] rounded-[10px] flex items-center justify-center overflow-hidden cursor-pointer relative ${circleMaskClass}`}
+          className={`scroll-wrapper w-[40px] h-[40px] bg-[rgba(0,0,0,0.1)] rounded-[10px] flex items-center justify-center overflow-hidden cursor-pointer relative transition duration-500 ${circleMaskClass}`}
           onClick={handleScrollWrapperClick}
         >
           <svg

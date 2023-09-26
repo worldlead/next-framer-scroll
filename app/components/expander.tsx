@@ -175,7 +175,9 @@ export default function Expander({ className }: expander): JSX.Element {
     <>
       <div
         ref={bannerText}
-        className={`${className} animate-fade-in transition duration-500 hidden z-50`}
+        className={`${className} animate-fade-in transition duration-500  z-50 ${
+          isCircleMaskOn ? "hidden" : ""
+        }`}
       >
         <h1 className="text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6">
           ideation, evolved.
