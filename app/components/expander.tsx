@@ -10,6 +10,10 @@ interface CardData {
   tag: string;
 }
 
+interface expander {
+  className?: string;
+}
+
 const cardData: CardData[] = [
   {
     profilePic: "https://delphiai.vercel.app/Partners/Tiago_Forte.avif",
@@ -53,8 +57,9 @@ const cardData: CardData[] = [
   },
 ];
 
-export default function Expander(): JSX.Element {
+export default function Expander({ className }: expander): JSX.Element {
   const circleRef = useRef<HTMLDivElement>(null);
+  const bannerText = useRef<any>(null);
   const cardRefs = useRef<React.RefObject<HTMLDivElement>[]>(
     Array.from({ length: cardData.length }, () => useRef(null))
   );
@@ -66,8 +71,11 @@ export default function Expander(): JSX.Element {
       // Handle the "circle" animation based on e.animatedScroll
       if (e.animatedScroll !== 0) {
         circleRef.current?.classList.add("on");
+        bannerText.current?.classList.add("hidden");
       } else {
         circleRef.current?.classList.remove("on");
+
+        bannerText.current?.classList.remove("hidden");
       }
 
       const maxZIndex = 8; // Define the maximum zIndex
@@ -142,12 +150,12 @@ export default function Expander(): JSX.Element {
 
   return (
     <>
-      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between w-full pl-[56px] pr-[56px] items-center">
+      <div ref={bannerText} className={`${className} animate-fade-in`}>
         <h1 className="text-spectrum-space leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6">
           ideation, evolved.
         </h1>
         <a
-          className="rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px]"
+          className="rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg"
           href="#"
         >
           Join the waitlist
@@ -192,7 +200,7 @@ export default function Expander(): JSX.Element {
                 ideation, evolved.
               </h1>
               <a
-                className="rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto"
+                className="rounded-lg bg-[rgba(255,255,255,1)] flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg"
                 href="#"
               >
                 Join the waitlist

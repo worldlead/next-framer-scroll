@@ -13,6 +13,32 @@
   src: url("/fonts/PPSupplySans-Variable.ttf") format("truetype");
 }
 
+@keyframes scale-out {
+  from {
+    transform: scale(0.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-out {
+  animation: scale-out 1s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 1s ease-out;
+}
+
 body {
   font-family: "PPSupplySans-Variable", sans-serif;
 }
@@ -28,10 +54,10 @@ body {
 .bg-blue-gradient {
   background: linear-gradient(
     114deg,
-    #d2d8e8 -5.21%,
-    #bbeef2 28.46%,
-    #6cdfef 63.27%,
-    #45a4b0 104.36%
+    rgba(210, 216, 232, 0.2) -5.21%,
+    rgba(187, 238, 242, 0.2) 28.46%,
+    rgba(108, 223, 239, 0.2) 63.27%,
+    rgba(69, 164, 176, 0.2) 104.36%
   );
 }
 
@@ -49,12 +75,12 @@ body {
 }
 
 .circle-mask {
-  background-color: linear-gradient(
+  background: linear-gradient(
     114deg,
-    #d2d8e8 -5.21%,
-    #bbeef2 28.46%,
-    #6cdfef 63.27%,
-    #45a4b0 104.36%
+    rgba(210, 216, 232, 0.2) -5.21%,
+    rgba(187, 238, 242, 0.2) 28.46%,
+    rgba(108, 223, 239, 0.2) 63.27%,
+    rgba(69, 164, 176, 0.2) 104.36%
   );
   -webkit-clip-path: circle(0);
   clip-path: circle(0);

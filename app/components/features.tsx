@@ -84,6 +84,8 @@ export default function Features() {
     Array.from({ length: numSections }, () => null)
   );
 
+  console.log(allFeatures);
+
   const nonlinear = allFeatures.find(
     (feature) => feature.slug === "nonlinear"
   )!;
