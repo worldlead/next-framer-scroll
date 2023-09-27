@@ -6,7 +6,6 @@ import { allFeatures } from "contentlayer/generated";
 
 // Define the createSections function
 function createSections(title: string, rawContent: string) {
-  // Log the raw content before processing
   console.log("Raw Content:", rawContent);
 
   const contentLines = rawContent.split("\n");
@@ -79,6 +78,12 @@ function createSections(title: string, rawContent: string) {
 }
 
 export default function Features() {
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsPageLoaded(true);
+  }, []);
+
   const numSections = 3;
   const sectionRefs = useRef<(HTMLDivElement | null)[]>(
     Array.from({ length: numSections }, () => null)
@@ -188,17 +193,21 @@ export default function Features() {
   return (
     <>
       <div className="about">
-        <div className="about-page flex flex-col gap-16 mx-auto max-w-screen-xl px-24 pt-[216px] relative">
+        <div
+          className={`about-page flex flex-col gap-16 mx-auto max-w-screen-xl px-24 relative ${
+            isPageLoaded ? "pt-[216px]" : "pt-[100px]"
+          }`}
+        >
           <div className="banner">
             <h1 className="text-7xl font-light tracking-tighter leading-11 text-center space-2 max-w-[90%] m-auto">
-              Fylo{" "}
+              Lorem Ipsum{" "}
               <span className="text-[#d3d3d3]">
-                allows the brightest minds to scale their time, infinitely.
+                is simply dummy text of the printing.
               </span>
             </h1>
             <div className="relative overflow-hidden max-h-[340px] min-h-[auto] h-[564px] md:h-[846px] mt-20 mb-0 rounded-3xl">
               <Image
-                src="/assets/about-banner.avif"
+                src="/assets/2.avif"
                 alt="Description"
                 width="100"
                 height="846"

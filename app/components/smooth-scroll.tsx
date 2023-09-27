@@ -17,6 +17,12 @@ export default function SmoothScroll() {
     Array.from({ length: numSections }, () => null)
   );
 
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsPageLoaded(true);
+  }, []);
+
   // const lenisConfig = {
   //   wrapper: document.documentElement,
   // };
@@ -255,7 +261,11 @@ export default function SmoothScroll() {
   return (
     <>
       <div className="about">
-        <div className="about-page flex flex-col gap-16 mx-auto max-w-screen-xl px-24 pt-[216px] relative">
+        <div
+          className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-24 relative  ${
+            isPageLoaded ? "pt-[216px]" : "pt-[100px]"
+          }`}
+        >
           <div className="banner">
             <h1 className="text-7xl font-light tracking-tighter leading-11 text-center space-2 max-w-[90%] m-auto">
               Fylo{" "}
