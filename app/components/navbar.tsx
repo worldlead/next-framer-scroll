@@ -19,7 +19,9 @@ export default function Navbar({ className }: navbarProps) {
   return (
     <>
       <div
-        className={`${className} flex justify-between items-center px-14 text-black h-16 top-8 w-full transition-colors absolute duration-500 z-[999]`}
+        className={`${className} flex justify-between items-center px-14 text-black h-16 top-8 w-full transition-colors duration-500 z-[999] ${
+          pathName !== "/" ? "sticky" : "absolute"
+        }`}
       >
         <nav>
           <ul className="flex items-center space-x-4">

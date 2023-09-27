@@ -5,9 +5,9 @@ import PageTransition from "../components/page-transition";
 export default function About() {
   return (
     <>
+      <Navbar />
       <PageTransition />
       <SmoothScroll />
-      <Navbar />
     </>
   );
 }

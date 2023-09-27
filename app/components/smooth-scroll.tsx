@@ -263,7 +263,7 @@ export default function SmoothScroll() {
       <div className="about">
         <div
           className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-24 relative  ${
-            isPageLoaded ? "pt-[216px]" : "pt-[100px]"
+            isPageLoaded ? "pt-[180px]" : "pt-[50px]"
           }`}
         >
           <div className="banner">
