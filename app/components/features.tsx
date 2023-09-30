@@ -211,7 +211,7 @@ export default function Features() {
                 alt="Description"
                 width="100"
                 height="846"
-                className="ukiyo-header object-cover max-h-[340px] md:h-auto mt-[10rem] mb-0 w-full transform -translate-y-[148.431px]"
+                className="ukiyo-header object-cover mb-0 w-full transform -translate-y-[148.431px]"
               />
             </div>
           </div>
@@ -223,7 +223,7 @@ export default function Features() {
                 <div
                   key={index}
                   ref={(el) => (sectionRefs.current[index] = el)}
-                  className={`group mb-24 content-with-gap`}
+                  className={`group mb-[30px] content-with-gap`}
                 >
                   <h1 className="text-3xl text-gray-700 font-medium leading-137 tracking-wide">
                     {section.title}
