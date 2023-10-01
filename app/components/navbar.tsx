@@ -331,12 +331,12 @@ export default function Navbar({ className }: navbarProps) {
           fylo
         </Link>
 
-        <nav className="invisible w-[22px] sm:visible sm:block sm:w-[unset]">
+        <nav className="sm:block sm:w-[unset]">
           <ul className="flex items-center">
             <li>
               <Link
                 href="/login"
-                className="text-sm px-10 py-2 rounded-[10px] shadow-lg bg-[rgba(255,255,255,1)] flex items-center cursor-pointer gap-2 hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500"
+                className="text-sm px-2 sm:px-10 py-2 rounded-[10px] sm:shadow-lg sm:bg-[rgba(255,255,255,1)] flex items-center cursor-pointer gap-2 hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +354,7 @@ export default function Navbar({ className }: navbarProps) {
                   <polyline points="10 17 15 12 10 7"></polyline>
                   <line x1="15" y1="12" x2="3" y2="12"></line>
                 </svg>
-                Login
+                <span className="hidden sm:block">Login</span>
               </Link>
             </li>
           </ul>

@@ -316,12 +316,10 @@ Transition for hamburger menu
 /*============================================== 
 Force Graph Responsive
 ================================================*/
-@media (max-width: 768px) {
-  .force-graph canvas,
-  .force-graph .scene-container {
-    width: auto !important;
-    height: 100vh !important;
-  }
+.force-graph canvas,
+.force-graph .scene-container {
+  width: auto !important;
+  height: 100vh !important;
 }
 
 /*============================================== 
