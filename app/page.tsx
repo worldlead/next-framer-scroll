@@ -37,14 +37,14 @@ export default function Home() {
         </div>
         <div className="wrapper-scene">
           <ForceGraph
-            className={`force-graph transition duration-2000 absolute z-40 inset-0 animate-fade-in ease-in-out ${
+            className={`w-screen force-graph transition duration-2000 absolute z-40 inset-0 animate-fade-in ease-in-out ${
               isLoaded ? "animate-scale-in" : "animate-scale-out"
             }`}
           />
         </div>
         <div className="page-wrapper">
           <div className="buffer-page-wrapper fixed inset-0 pointer-events-none bg-opacity-0 z-7 bg-grey-gradient"></div>
-          <Expander className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between w-full pl-[56px] pr-[56px] items-center" />
+          <Expander className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:flex justify-between w-full text-center sm:text-left float-unset sm:float-left px-8 sm:px-[56px] items-center" />
         </div>
         <Preloader
           className={`w-full h-full absolute bg-[#101942] flex items-center justify-center ${

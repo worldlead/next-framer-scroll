@@ -218,7 +218,7 @@ export default function SmoothScroll() {
       <p
         key={index}
         ref={(el) => (navigationRefs.current[index] = el)}
-        className={`toc text-[#d3d3d3] backdrop-blur-0.5 cursor-pointer pb-8 transition-color duration-200 ease-in-out ${
+        className={`toc text-[#d3d3d3] backdrop-blur-0.5 cursor-pointer pb-4 sm:pb-8 transition-color duration-200 ease-in-out ${
           isLinkSelected ? "selected" : "" // Add "selected" class if the link is selected
         }`}
         onClick={() => {
@@ -262,29 +262,29 @@ export default function SmoothScroll() {
     <>
       <div className="about">
         <div
-          className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-24 relative  ${
-            isPageLoaded ? "pt-[180px]" : "pt-[50px]"
+          className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-4 sm:px-24 relative  ${
+            isPageLoaded ? "pt-[90px] sm:pt-[180px]" : "pt-[25px] sm:pt-[50px]"
           }`}
         >
           <div className="banner">
-            <h1 className="text-7xl font-light tracking-tighter leading-11 text-center space-2 max-w-[90%] m-auto">
+            <h1 className="text-3xl sm:text-7xl font-light tracking-tighter leading-11 text-center space-2 max-w-[90%] m-auto">
               Fylo{" "}
               <span className="text-[#d3d3d3]">
                 allows the brightest minds to scale their time, infinitely.
               </span>
             </h1>
-            <div className="relative overflow-hidden max-h-[340px] min-h-[auto] h-[564px] md:h-[846px] mt-20 mb-0 rounded-3xl">
+            <div className="relative sm:overflow-hidden max-h-[340px] min-h-[auto] md:h-[846px] mt-10 sm:mt-20 mb-0 rounded-3xl">
               <Image
                 src="/assets/about-banner.avif"
                 alt="Description"
                 width="100"
                 height="846"
-                className="ukiyo-header object-cover mb-0 w-full transform -translate-y-[148.431px]"
+                className="ukiyo-header rounded-3xl object-cover mb-0 w-full transform"
               />
             </div>
           </div>
-          <div className="about-grid about-grid grid grid-cols-4 gap-6 mt-40">
-            <div className="sticky top-32 h-fit">{navigationLinks}</div>
+          <div className="about-grid about-grid grid sm:grid-cols-4 gap-6 sm:mt-40">
+            <div className="sm:sticky top-32 h-fit">{navigationLinks}</div>
 
             <div className="content flex flex-col gap-4 col-span-2">
               {sections.map((section, index) => (
@@ -317,15 +317,6 @@ export default function SmoothScroll() {
                   ))}
                 </div>
               ))}
-
-              <div className="footer flex flex-col gap-4 col-span-2 mt-30">
-                <p className="text-sm leading-6">
-                  Explore our{" "}
-                  <a href="/careers" className="button underline">
-                    Open Roles
-                  </a>
-                </p>
-              </div>
             </div>
           </div>
         </div>

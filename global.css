@@ -151,6 +151,180 @@ body {
 }
 
 /*============================================== 
+Transition for hamburger menu
+================================================*/
+.burger-wrapper.modal-open .burger-line:first-child {
+  transform: translateY(0) rotate(45deg);
+}
+.burger-wrapper.modal-open .burger-line:nth-child(2) {
+  transform: translateY(0) rotate(135deg);
+}
+.burger-wrapper.modal-open .burger-line:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}
+.modal {
+  background-color: #fff;
+  -webkit-clip-path: inset(0 0 100vh 0);
+  clip-path: inset(0 0 100vh 0);
+  color: #8a8a8a;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: -webkit-clip-path 0ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 0ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 0ms cubic-bezier(0.77, 0, 0.175, 1),
+    -webkit-clip-path 0ms cubic-bezier(0.77, 0, 0.175, 1);
+  width: 100vw;
+  z-index: 20;
+}
+
+.modal.close {
+  -webkit-clip-path: inset(100vh 0 0 0);
+  clip-path: inset(100vh 0 0 0);
+}
+
+.modal.close,
+.modal.modal-open {
+  transition: -webkit-clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1),
+    -webkit-clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.modal.modal-open {
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.modal.modal-open .menu-item__wrapper .menu-item {
+  filter: blur(0);
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.modal.modal-open .menu-item__wrapper .menu-item:nth-child(2) {
+  transition-delay: 0.75s;
+}
+
+.modal.modal-open .footer .socials .socials-logo,
+.modal.modal-open .footer .socials span,
+.modal.modal-open .footer .socials > svg {
+  filter: blur(0);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal.modal-open .footer .socials > svg {
+  transition-delay: 0.9s;
+}
+
+.modal.modal-open .footer .socials span {
+  transition-delay: 1.05s;
+}
+
+.modal.modal-open .socials-logo {
+  transition-delay: 1.2s;
+}
+
+.modal.modal-open .footer .legals {
+  filter: blur(0);
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.35s;
+}
+
+.modal .menu-item__wrapper {
+  display: flex;
+  flex-direction: column;
+  left: 1.5rem;
+  position: relative;
+  row-gap: 3rem;
+  top: 10rem;
+  width: calc(100% - 7rem);
+}
+
+.modal .menu-item__wrapper .menu-item {
+  filter: blur(4px);
+  font-size: 3rem;
+  font-weight: 250;
+  letter-spacing: 0.25px;
+  line-height: 1.5rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition-delay: 0.5s;
+  transition-duration: 0.5s;
+  transition-property: opacity, transform, filter;
+}
+
+.modal .footer {
+  bottom: 2rem;
+  left: 1.5rem;
+  position: absolute;
+  width: calc(100% - 4rem);
+}
+
+.modal .footer .socials {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 450;
+  line-height: 1.5rem;
+  row-gap: 2rem;
+}
+
+.modal .footer .socials > svg {
+  height: 1.29rem;
+  width: 2rem;
+}
+
+.modal .footer .socials .socials-logo,
+.modal .footer .socials span,
+.modal .footer .socials > svg {
+  filter: blur(4px);
+  opacity: 0;
+  transform: translateY(2rem);
+  transition-duration: 0.5s;
+  transition-property: opacity, transform, filter;
+}
+
+.modal .footer .socials .socials-logo {
+  -moz-column-gap: 2.4rem;
+  column-gap: 1.5rem;
+  display: flex;
+}
+
+.modal .footer .socials .socials-logo svg {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.modal .footer .legals {
+  filter: blur(4px);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-weight: 300;
+  line-height: 2rem;
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition-duration: 0.5s;
+  transition-property: opacity, transform, filter;
+}
+
+/*============================================== 
+Force Graph Responsive
+================================================*/
+@media (max-width: 768px) {
+  .force-graph canvas,
+  .force-graph .scene-container {
+    width: auto !important;
+    height: 100vh !important;
+  }
+}
+
+/*============================================== 
 Transition between pages
 ================================================*/
 .about-page {

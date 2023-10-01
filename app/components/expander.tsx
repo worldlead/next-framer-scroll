@@ -175,12 +175,12 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`${className} animate-fade-in transition duration-500 z-50 hidden`}
       >
         <h1
-          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[64px] font-light leading-24 tracking-1.6`}
+          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[39px] sm:text-[64px] font-light leading-24 tracking-1.6`}
         >
           ideation, evolved.
         </h1>
         <a
-          className={`rounded-lg bg-white flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg`}
+          className={`rounded-lg bg-white flex sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg`}
           href="#"
         >
           Join the waitlist
@@ -191,13 +191,13 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
       >
         <div className="opacity-wrapper">
-          <div className="card-container-wrapper bg-blue-gradient h-screen absolute top-0 left-0 w-full px-[7.5rem] py-[12rem]">
-            <div className="card-stack-wrapper relative top-1/2">
+          <div className="card-container-wrapper bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
+            <div className="card-stack-wrapper relative sm:top-1/2">
               {cardData.map((card, index) => (
                 <div
                   key={index}
                   ref={cardRefs.current[index]}
-                  className="card-wrapper bg-[rgba(35,35,35,.418)] rounded-[1.3rem] shadow-[1px 3px 20px 12px #0000002e] flex flex-col h-[20rem] justify-between p-[2rem] space-y-[2.5rem] transform origin-center-top transition-transform transition-opacity transition-scale duration-4000 w-[33.25rem] z-20"
+                  className="card-wrapper bg-[rgba(35,35,35,.418)] rounded-[1.3rem] shadow-[1px 3px 20px 12px #0000002e] flex flex-col h-[20rem] justify-between p-[2rem] space-y-[2.5rem] transform origin-center-top transition-transform transition-opacity transition-scale duration-4000 sm:w-[33.25rem] z-20"
                   style={{
                     backgroundColor:
                       index % 2 === 0 ? "rgb(32, 32, 32)" : "rgb(24, 23, 23)",
@@ -223,12 +223,12 @@ export default function Expander({ className }: expander): JSX.Element {
                 </div>
               ))}
             </div>
-            <div className="absolute left-1/2 top-1/2 flex-col w-1/2 pl-[56px] pr-[56px] items-center">
-              <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[48px] font-light leading-24 tracking-1.6">
+            <div className="w-full sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
+              <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
                 ideation, evolved.
               </h1>
               <a
-                className="rounded-lg bg-[rgba(255,255,255,1)] flex w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg"
+                className="rounded-lg bg-[rgba(255,255,255,1)] flex w-full sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg"
                 href="#"
               >
                 Join the waitlist
@@ -242,7 +242,9 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
       >
         <Footer
-          className={`z-60 ${isCircleMaskOn ? "mask-is-on" : ""}`}
+          className={`sm:flex hidden z-60 ${
+            isCircleMaskOn ? "mask-is-on" : ""
+          }`}
           onToggleCircleMask={handleToggleCircleMask}
         />
       </div>
