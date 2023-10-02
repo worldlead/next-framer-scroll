@@ -172,7 +172,7 @@ export default function Expander({ className }: expander): JSX.Element {
     <>
       <div
         ref={bannerText}
-        className={`${className} animate-fade-in transition duration-500 z-50 hidden`}
+        className={`${className} transition duration-500 z-50 opacity-0 animated-fade-in`}
       >
         <h1
           className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[39px] sm:text-[64px] font-light leading-24 tracking-1.6`}
