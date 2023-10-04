@@ -3,6 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Footer from "./footer";
+import FramerEmbed from "./framerembed"
+
+import fylo from './framer/fylo'
+
+import { FramerStyles } from 'installable-framer/dist/react'
 
 interface CardData {
   profilePic: string;
@@ -168,6 +173,28 @@ export default function Expander({ className }: expander): JSX.Element {
     setIsCircleMaskOn((prev) => !prev); // Toggle the class by updating the state
   };
 
+
+  const [variant, setVariant] = useState('seed')
+
+  useEffect(() => {
+    function handleScroll() {
+      const scrollTop = window.pageYOffset
+
+      if (scrollTop < 500) {
+        setVariant('search')
+      } else if (scrollTop < 1000) {
+        setVariant('seed')
+      } else if (scrollTop < 1500) {
+        setVariant('expanded')
+      } else {
+        setVariant('type')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       <div
@@ -191,39 +218,21 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
       >
         <div className="opacity-wrapper">
-          <div className="card-container-wrapper bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
-            <div className="card-stack-wrapper relative sm:top-1/2">
-              {cardData.map((card, index) => (
-                <div
-                  key={index}
-                  ref={cardRefs.current[index]}
-                  className="card-wrapper bg-[rgba(35,35,35,.418)] rounded-[1.3rem] shadow-[1px 3px 20px 12px #0000002e] flex flex-col h-[20rem] justify-between p-[2rem] space-y-[2.5rem] transform origin-center-top transition-transform transition-opacity transition-scale duration-4000 sm:w-[33.25rem] z-20"
-                  style={{
-                    backgroundColor:
-                      index % 2 === 0 ? "rgb(32, 32, 32)" : "rgb(24, 23, 23)",
+          <div className="bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
+            <div className="card-stack-wrapper sm:top-1/2">
+              <div>
+                {/* Injects fonts and other framer utility styles */}
+                <FramerStyles Components={[fylo]} />
+                <fylo.Responsive
+                  variants={{
+                    Desktop: variant,
+                    Tablet: 'expanded',
+                    Mobile: 'type'
                   }}
-                >
-                  <div className="profile-wrapper flex items-center gap-6">
-                    <img
-                      className="bg-gray-700 rounded-full h-14 w-14 object-cover"
-                      src={card.profilePic}
-                      alt={card.name}
-                    ></img>
-                    <div className="profile-container">
-                      <a href="#">
-                        <div className="name text-white text-sm">
-                          {card.name}
-                        </div>
-                        <div className="tag text-[#fff6] text-sm">
-                          {card.tag}
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                />
+              </div>
             </div>
-            <div className="w-full sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
+            <div className="sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
               <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
                 ideation, evolved.
               </h1>
@@ -242,9 +251,8 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
       >
         <Footer
-          className={`sm:flex hidden z-60 ${
-            isCircleMaskOn ? "mask-is-on" : ""
-          }`}
+          className={`sm:flex hidden z-60 ${isCircleMaskOn ? "mask-is-on" : ""
+            }`}
           onToggleCircleMask={handleToggleCircleMask}
         />
       </div>
