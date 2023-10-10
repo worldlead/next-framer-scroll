@@ -1,6 +1,11 @@
 {
     "outDir": "src/framer",
     "components": {
-        "fylo": "https://framer.com/m/Seed-aLgb.js@LKLHUZuyFSKjCe09viSw"
+        "toggle": "https://framer.com/m/Toggle-qPdP.js@pm5Nwf7R4L4y4V92NhuS",
+        "radio": "https://framer.com/m/Radio-BcDa.js@UCSXqWITtmuGmi2ZERWH",
+        "node_type": "https://framer.com/m/node-type-IpAV.js@dBQfRNTkpNoLwYmhAT4y",
+        "node": "https://framer.com/m/node-tPzc.js@qkveW7SAAKvEXBiUiufl",
+        "seed": "https://framer.com/m/Seed-aLgb.js@iyYRGD4DpZrrjfEv0XTS",
+        "composition": "https://framer.com/m/FYLO-COMPOSITION-5nyv.js@DAcrimz6V4BZdK2dLvuy"
     }
 }
