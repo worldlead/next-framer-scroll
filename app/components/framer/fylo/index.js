@@ -1,2 +1,3 @@
-'use client'
-import Component from './fylo.js'; export default Component
+"use client";
+import Component from "./fylo.js";
+export default Component;

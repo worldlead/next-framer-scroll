@@ -3,11 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Footer from "./footer";
-import FramerEmbed from "./framerembed"
+import FramerEmbed from "./framerembed";
 
-import fylo from './framer/fylo'
+import fylo from "./framer/fylo";
 
-import { FramerStyles } from 'installable-framer/dist/react'
+import { FramerStyles } from "installable-framer/dist/react";
 
 interface CardData {
   profilePic: string;
@@ -65,6 +65,33 @@ const cardData: CardData[] = [
 export default function Expander({ className }: expander): JSX.Element {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [variant, setVariant] = useState<
+    | "Variant 1"
+    | "Variant 2"
+    | "Variant 3"
+    | "Variant 4"
+    | "Variant 5"
+    | "Variant 6"
+    | "Variant 7"
+    | "Variant 8"
+    | "Variant 9"
+    | "Variant 10"
+    | "Variant 11"
+    | "Variant 12"
+    | "Variant 13"
+    | "Variant 14"
+    | "Variant 15"
+    | "Variant 16"
+    | "Variant 17"
+    | "Variant 18"
+    | "Variant 19"
+    | "Variant 20"
+    | "Variant 21"
+    | "Variant 22"
+    | "Variant 23"
+    | "Variant 24"
+    | "Variant 25"
+  >("Variant 1");
 
   const circleRef = useRef<HTMLDivElement>(null);
   const bannerText = useRef<any>(null);
@@ -91,13 +118,70 @@ export default function Expander({ className }: expander): JSX.Element {
   useEffect(() => {
     const lenis = new Lenis();
 
+    const breakpoints = [
+      300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900,
+      4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900, 7200, 7500,
+    ];
+    const variants = [
+      "Variant 1",
+      "Variant 2",
+      "Variant 3",
+      "Variant 4",
+      "Variant 5",
+      "Variant 6",
+      "Variant 7",
+      "Variant 8",
+      "Variant 9",
+      "Variant 10",
+      "Variant 11",
+      "Variant 12",
+      "Variant 13",
+      "Variant 14",
+      "Variant 15",
+      "Variant 16",
+      "Variant 17",
+      "Variant 18",
+      "Variant 19",
+      "Variant 20",
+      "Variant 21",
+      "Variant 22",
+      "Variant 23",
+      "Variant 24",
+      "Variant 25",
+    ];
+
     lenis.on("scroll", (e) => {
+      const { animatedScroll } = e;
+
       // Handle the "circle" animation based on e.animatedScroll
       if (e.animatedScroll !== 0) {
         setIsCircleMaskOn(true);
       } else {
         setIsCircleMaskOn(false);
       }
+
+      console.log(e.animatedScroll);
+
+      let currentVariantIndex = 0;
+      for (let i = 0; i < breakpoints.length; i++) {
+        if (animatedScroll >= breakpoints[i]) {
+          currentVariantIndex = i;
+        }
+      }
+
+      // Calculate the progress within the current breakpoint
+      const progress =
+        (animatedScroll - breakpoints[currentVariantIndex]) /
+        (breakpoints[currentVariantIndex + 1] -
+          breakpoints[currentVariantIndex]);
+
+      // Interpolate between the current and next variant
+      const currentVariant = variants[currentVariantIndex];
+      const nextVariant =
+        variants[currentVariantIndex + 1] || variants[currentVariantIndex];
+      const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
+
+      setVariant(interpolatedVariant);
 
       const maxZIndex = 8; // Define the maximum zIndex
 
@@ -173,27 +257,7 @@ export default function Expander({ className }: expander): JSX.Element {
     setIsCircleMaskOn((prev) => !prev); // Toggle the class by updating the state
   };
 
-
-  const [variant, setVariant] = useState('seed')
-
-  useEffect(() => {
-    function handleScroll() {
-      const scrollTop = window.pageYOffset
-
-      if (scrollTop < 500) {
-        setVariant('search')
-      } else if (scrollTop < 1000) {
-        setVariant('seed')
-      } else if (scrollTop < 1500) {
-        setVariant('expanded')
-      } else {
-        setVariant('type')
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  console.log("Current Variant:", variant);
 
   return (
     <>
@@ -219,17 +283,20 @@ export default function Expander({ className }: expander): JSX.Element {
       >
         <div className="opacity-wrapper">
           <div className="bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
-            <div className="card-stack-wrapper sm:top-1/2">
-              <div>
-                {/* Injects fonts and other framer utility styles */}
-                <FramerStyles Components={[fylo]} />
-                <fylo.Responsive
-                  variants={{
-                    Desktop: variant,
-                    Tablet: 'expanded',
-                    Mobile: 'type'
-                  }}
-                />
+            <div className="absolute h-[10000px] card-stack-wrapper">
+              <div className="flex items-center sm:top-1/2 w-1/2">
+                <div>
+                  {/* Injects fonts and other framer utility styles */}
+                  <FramerStyles Components={[fylo]} />
+
+                  <fylo.Responsive
+                    variants={{
+                      Desktop: variant,
+                      Tablet: "expanded",
+                      Mobile: "type",
+                    }}
+                  />
+                </div>
               </div>
             </div>
             <div className="sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
@@ -251,8 +318,9 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
       >
         <Footer
-          className={`sm:flex hidden z-60 ${isCircleMaskOn ? "mask-is-on" : ""
-            }`}
+          className={`sm:flex hidden z-60 ${
+            isCircleMaskOn ? "mask-is-on" : ""
+          }`}
           onToggleCircleMask={handleToggleCircleMask}
         />
       </div>
