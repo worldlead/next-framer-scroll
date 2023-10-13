@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Footer from "./footer";
 import FramerEmbed from "./framerembed";
+import { motion } from "framer-motion";
 
 import fylo from "./framer/fylo";
 
@@ -119,9 +120,10 @@ export default function Expander({ className }: expander): JSX.Element {
     const lenis = new Lenis();
 
     const breakpoints = [
-      300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900,
+      500, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900,
       4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900, 7200, 7500,
     ];
+
     const variants = [
       "Variant 1",
       "Variant 2",
@@ -181,7 +183,34 @@ export default function Expander({ className }: expander): JSX.Element {
         variants[currentVariantIndex + 1] || variants[currentVariantIndex];
       const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
 
-      setVariant(interpolatedVariant);
+      setVariant(
+        interpolatedVariant as
+          | "Variant 1"
+          | "Variant 2"
+          | "Variant 3"
+          | "Variant 4"
+          | "Variant 5"
+          | "Variant 6"
+          | "Variant 7"
+          | "Variant 8"
+          | "Variant 9"
+          | "Variant 10"
+          | "Variant 11"
+          | "Variant 12"
+          | "Variant 13"
+          | "Variant 14"
+          | "Variant 15"
+          | "Variant 16"
+          | "Variant 17"
+          | "Variant 18"
+          | "Variant 19"
+          | "Variant 20"
+          | "Variant 21"
+          | "Variant 22"
+          | "Variant 23"
+          | "Variant 24"
+          | "Variant 25"
+      );
 
       const maxZIndex = 8; // Define the maximum zIndex
 
@@ -261,6 +290,29 @@ export default function Expander({ className }: expander): JSX.Element {
 
   return (
     <>
+      <div className={`absolute top-1/3 ${isCircleMaskOn ? "z-[999]" : ""}`}>
+        {isCircleMaskOn && (
+          <motion.div
+            initial={{ opacity: 0, y: -50, zIndex: 0 }}
+            animate={{ opacity: 1, y: 0, zIndex: 1 }}
+            transition={{
+              type: "spring",
+              duration: 1,
+              ease: "ease-in-out",
+              delay: 0.5,
+            }}
+          >
+            <FramerStyles Components={[fylo]} />
+            <fylo.Responsive
+              variants={{
+                Desktop: variant,
+                Tablet: "expanded",
+                Mobile: "type",
+              }}
+            />
+          </motion.div>
+        )}
+      </div>
       <div
         ref={bannerText}
         className={`${className} transition duration-500 z-50 opacity-0 animated-fade-in`}
@@ -283,22 +335,7 @@ export default function Expander({ className }: expander): JSX.Element {
       >
         <div className="opacity-wrapper">
           <div className="bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
-            <div className="absolute h-[10000px] card-stack-wrapper">
-              <div className="flex items-center sm:top-1/2 w-1/2">
-                <div>
-                  {/* Injects fonts and other framer utility styles */}
-                  <FramerStyles Components={[fylo]} />
-
-                  <fylo.Responsive
-                    variants={{
-                      Desktop: variant,
-                      Tablet: "expanded",
-                      Mobile: "type",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
+            <div className="absolute h-[10000px] w-full card-stack-wrapper"></div>
             <div className="sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
               <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
                 ideation, evolved.
