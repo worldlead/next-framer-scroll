@@ -120,8 +120,9 @@ export default function Expander({ className }: expander): JSX.Element {
     const lenis = new Lenis();
 
     const breakpoints = [
-      500, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900,
-      4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900, 7200, 7500,
+      300, 900, 1500, 2100, 2150, 2200, 2250, 2550, 2850, 3150, 3450, 3500,
+      3550, 3600, 3650, 3950, 4250, 4550, 4850, 5150, 5450, 5500, 5550, 5600,
+      5650,
     ];
 
     const variants = [
@@ -265,6 +266,7 @@ export default function Expander({ className }: expander): JSX.Element {
         const backgroundColor = `rgb(${intermediateColor.join(", ")})`;
 
         // Find the corresponding card element and apply the updated styles
+
         const cardElement = cardRefs.current[index].current;
         if (cardElement) {
           cardElement.style.transform = `translateY(${intermediateTranslateY}rem) scale(${intermediateScale})`;
@@ -290,7 +292,11 @@ export default function Expander({ className }: expander): JSX.Element {
 
   return (
     <>
-      <div className={`absolute top-1/3 ${isCircleMaskOn ? "z-[999]" : ""}`}>
+      <div
+        className={`absolute top-1/4 w-full flex justify-center ${
+          isCircleMaskOn ? "z-[999]" : ""
+        }`}
+      >
         {isCircleMaskOn && (
           <motion.div
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
@@ -336,7 +342,7 @@ export default function Expander({ className }: expander): JSX.Element {
         <div className="opacity-wrapper">
           <div className="bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
             <div className="absolute h-[10000px] w-full card-stack-wrapper"></div>
-            <div className="sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
+            <div className="hidden sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
               <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
                 ideation, evolved.
               </h1>
@@ -359,6 +365,7 @@ export default function Expander({ className }: expander): JSX.Element {
             isCircleMaskOn ? "mask-is-on" : ""
           }`}
           onToggleCircleMask={handleToggleCircleMask}
+          currentVariant={variant}
         />
       </div>
     </>

@@ -371,3 +371,10 @@ Transition between pages
     transform: translate3d(0px, 100%, 0px) scaleY(0);
   }
 }
+
+/*============================================== 
+Transition between pages
+================================================*/
+.swiper-slide.swiper-slide-active {
+  color: #000;
+}
