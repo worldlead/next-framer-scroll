@@ -19,8 +19,7 @@ export default function Navbar({ className }: navbarProps) {
       // If it's not the home page, remove the "circle-mask-is-on" class from the body element
       document.body.classList.remove("circle-mask-is-on");
     } else {
-      // If it is the home page, add the "circle-mask-is-on" class to the body element
-      document.body.classList.add("circle-mask-is-on");
+      document.body.classList.remove("circle-mask-is-on");
     }
   }, [pathName]);
 
