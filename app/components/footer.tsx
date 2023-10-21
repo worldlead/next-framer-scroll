@@ -58,6 +58,8 @@ export default function Footer({
 
       // Slide to the determined index
       swiperRef.current.slideTo(slideIndex);
+
+      console.log(slideIndex);
     }
   }, [currentVariant]);
 
@@ -70,7 +72,7 @@ export default function Footer({
 
   let swiperSlides = [
     "ideation agent",
-    "creative decision-making",
+    "decision making",
     "dynamic synthesis",
     "dependency mapping",
   ];
@@ -84,26 +86,27 @@ export default function Footer({
           <h5 className="text-[20px] font-[300]">highlighted features</h5>
           <div>
             <Swiper
-              spaceBetween={0}
-              slidesPerView={3} // Default slides per view
+              spaceBetween={50}
+              slidesPerView={2} // Default slides per view
               draggable={false}
               onSlideChange={() => console.log("slide change")}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               breakpoints={{
-                // Define breakpoints for different screen sizes
-                1024: {
-                  slidesPerView: 2, // 4 slides per view for screens width >= 1024px
+                1439: {
+                  slidesPerView: 3,
                 },
               }}
             >
               {swiperSlides.map((entries) => (
                 <SwiperSlide
-                  className="text-[14px] font-[300] text-[#727272]"
+                  className="text-[14px] font-[300] text-[#727272] swiper-slide-custom"
                   key={entries}
                 >
                   {entries}
                 </SwiperSlide>
               ))}
+              <SwiperSlide className="hidden"></SwiperSlide>
+              <SwiperSlide className="hidden"></SwiperSlide>
             </Swiper>
           </div>
         </div>

@@ -52,11 +52,7 @@ body {
 }
 
 .bg-blue-gradient {
-  background: linear-gradient(
-    114deg,
-    rgba(#101942),
-    rgba(#101942),
-  );
+  background: linear-gradient(114deg, rgba(#101942), rgba(#101942));
 }
 
 .about h1 {
@@ -111,11 +107,7 @@ body {
 }
 
 .circle-mask {
-  background: linear-gradient(
-    114deg,
-    rgba(16, 25, 66, 1),
-    rgb(17, 29, 81)
-  );
+  background: linear-gradient(114deg, rgba(16, 25, 66, 1), rgb(17, 29, 81));
   -webkit-clip-path: circle(0);
   clip-path: circle(0);
   height: 100vh;
@@ -369,8 +361,32 @@ Transition between pages
 }
 
 /*============================================== 
-Transition between pages
+Transitions
 ================================================*/
 .swiper-slide.swiper-slide-active {
   color: #000;
+}
+
+.circle-mask-is-on .logo svg,
+.circle-mask-is-on .logo svg path {
+  fill: #fff;
+  stroke: #fff;
+  transition: all 0.3s ease;
+  transition-delay: 1s;
+}
+.circle-mask-is-on .logo {
+  color: #fff;
+  transition: all 0.3s ease;
+  transition-delay: 0.5s;
+}
+.circle-mask-is-on .nav-items {
+  color: #fff;
+}
+.circle-mask-is-on .footer-wrapper h5,
+.circle-mask-is-on .footer-wrapper div:not(.swiper-slide),
+.circle-mask-is-on .footer-wrapper div.swiper-slide-active {
+  color: #fff;
+}
+.circle-mask-is-on p {
+  opacity: 0.5;
 }

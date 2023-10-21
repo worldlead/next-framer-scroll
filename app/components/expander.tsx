@@ -116,6 +116,8 @@ export default function Expander({ className }: expander): JSX.Element {
     return () => clearTimeout(timer);
   }, []);
 
+  const prevScrollY = useRef(0);
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -154,16 +156,24 @@ export default function Expander({ className }: expander): JSX.Element {
     ];
 
     lenis.on("scroll", (e) => {
+      //console.log(e);
       const { animatedScroll } = e;
+      const currentURL = window.location.pathname;
 
       // Handle the "circle" animation based on e.animatedScroll
-      if (e.animatedScroll !== 0) {
-        setIsCircleMaskOn(true);
-      } else {
+      if (animatedScroll < prevScrollY.current && currentURL === "/") {
+        // Scrolling up on the homepage, scroll to the top of the page instantly
+        window.scrollTo({ top: 0, behavior: "auto" });
         setIsCircleMaskOn(false);
+        document.body.classList.remove("circle-mask-is-on");
+      } else if (animatedScroll !== 0 && currentURL === "/") {
+        setIsCircleMaskOn(true);
+        document.body.classList.add("circle-mask-is-on");
       }
 
-      console.log(e.animatedScroll);
+      prevScrollY.current = animatedScroll;
+
+      //console.log(e.animatedScroll);
 
       let currentVariantIndex = 0;
       for (let i = 0; i < breakpoints.length; i++) {

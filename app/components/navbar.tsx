@@ -32,7 +32,7 @@ export default function Navbar({ className }: navbarProps) {
           pathName !== "/" ? "sticky" : "absolute"
         }`}
       >
-        <nav className="hidden md:block">
+        <nav className="nav-items hidden md:block">
           <ul className="flex items-center space-x-4">
             {navLinks.map((link, index) => (
               <li key={index}>
@@ -260,7 +260,7 @@ export default function Navbar({ className }: navbarProps) {
         </div>
 
         {/* Logo */}
-        <Link href="/" className="flex items-start text-[24px] ">
+        <Link href="/" className="logo flex items-start text-[24px] ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -331,7 +331,7 @@ export default function Navbar({ className }: navbarProps) {
           fylo
         </Link>
 
-        <nav className="sm:block sm:w-[unset]">
+        <nav className="btn-login sm:block sm:w-[unset]">
           <ul className="flex items-center">
             <li>
               <Link
