@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
 interface navbarProps {
   className?: string;
@@ -11,6 +12,17 @@ interface navbarProps {
 export default function Navbar({ className }: navbarProps) {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // Check if the current pathname is not the home page ("/")
+    if (pathName !== "/") {
+      // If it's not the home page, remove the "circle-mask-is-on" class from the body element
+      document.body.classList.remove("circle-mask-is-on");
+    } else {
+      // If it is the home page, add the "circle-mask-is-on" class to the body element
+      document.body.classList.add("circle-mask-is-on");
+    }
+  }, [pathName]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
