@@ -322,8 +322,8 @@ export default function Expander({ className }: expander): JSX.Element {
             <fylo.Responsive
               variants={{
                 Desktop: variant,
-                Tablet: "expanded",
-                Mobile: "type",
+                Tablet: variant,
+                Mobile: variant,
               }}
             />
           </motion.div>
@@ -339,7 +339,7 @@ export default function Expander({ className }: expander): JSX.Element {
           ideation, evolved.
         </h1>
         <a
-          className={`rounded-lg bg-white flex sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg`}
+          className={`rounded-lg bg-white flex sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg whitespace-nowrap`}
           href="#"
         >
           Join the waitlist
