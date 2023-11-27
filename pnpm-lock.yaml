@@ -6,25 +6,25 @@ settings:
 
 dependencies:
   3d-force-graph:
-    specifier: ^1.72.3
+    specifier: ^1.71.5
     version: 1.72.3
   '@next/font':
-    specifier: ^13.5.4
+    specifier: ^13.4.3
     version: 13.5.4
   '@next/mdx':
-    specifier: ^13.5.4
+    specifier: ^13.4.3
     version: 13.5.4
   '@studio-freight/lenis':
-    specifier: ^1.0.26
+    specifier: ^1.0.23
     version: 1.0.26
   '@supabase/auth-helpers-nextjs':
-    specifier: ^0.7.4
+    specifier: ^0.7.3
     version: 0.7.4(@supabase/supabase-js@2.38.0)
   '@supabase/auth-helpers-react':
-    specifier: ^0.4.2
+    specifier: ^0.4.1
     version: 0.4.2(@supabase/supabase-js@2.38.0)
   '@supabase/supabase-js':
-    specifier: ^2.38.0
+    specifier: ^2.27.0
     version: 2.38.0
   '@supabase/ui':
     specifier: ^0.36.5
@@ -33,13 +33,13 @@ dependencies:
     specifier: 20.2.1
     version: 20.2.1
   '@types/react':
-    specifier: ^18.2.25
+    specifier: ^18.2.6
     version: 18.2.25
   '@types/react-dom':
     specifier: 18.2.4
     version: 18.2.4
   '@upstash/redis':
-    specifier: ^1.22.1
+    specifier: ^1.20.6
     version: 1.22.1
   contentlayer:
     specifier: ^0.3.4
@@ -48,7 +48,7 @@ dependencies:
     specifier: ^7.8.5
     version: 7.8.5
   framer-motion:
-    specifier: ^10.16.4
+    specifier: ^10.12.12
     version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
   installable-framer:
     specifier: ^0.3.7
@@ -69,7 +69,7 @@ dependencies:
     specifier: ^0.3.4
     version: 0.3.4(contentlayer@0.3.4)(esbuild@0.19.4)(markdown-wasm@1.2.0)(next@13.4.3)(react-dom@18.2.0)(react@18.2.0)
   pnpm:
-    specifier: ^8.8.0
+    specifier: ^8.6.7
     version: 8.8.0
   react:
     specifier: 18.2.0
@@ -78,25 +78,25 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-force-graph:
-    specifier: ^1.43.2
+    specifier: ^1.43.0
     version: 1.43.2(react@18.2.0)(three@0.157.0)
   react-force-graph-3d:
-    specifier: ^1.23.1
+    specifier: ^1.23.0
     version: 1.23.1(react@18.2.0)
   react-scroll:
-    specifier: ^1.9.0
+    specifier: ^1.8.9
     version: 1.9.0(react-dom@18.2.0)(react@18.2.0)
   react-wrap-balancer:
     specifier: ^0.5.0
     version: 0.5.0(react@18.2.0)
   reactflow:
-    specifier: ^11.9.2
+    specifier: ^11.7.4
     version: 11.9.2(@types/react@18.2.25)(react-dom@18.2.0)(react@18.2.0)
   rehype-autolink-headings:
     specifier: ^6.1.1
     version: 6.1.1
   rehype-pretty-code:
-    specifier: ^0.9.11
+    specifier: ^0.9.4
     version: 0.9.11(shiki@0.14.4)
   rehype-slug:
     specifier: ^5.1.0
@@ -104,6 +104,9 @@ dependencies:
   remark-gfm:
     specifier: ^3.0.1
     version: 3.0.1
+  swiper:
+    specifier: ^10.3.1
+    version: 10.3.1
   typed.js:
     specifier: ^2.0.16
     version: 2.0.16
@@ -116,31 +119,31 @@ devDependencies:
     specifier: ^0.3.4
     version: 0.3.4(esbuild@0.19.4)(markdown-wasm@1.2.0)
   '@opentelemetry/api':
-    specifier: ^1.6.0
+    specifier: ^1.4.1
     version: 1.6.0
   '@tailwindcss/line-clamp':
-    specifier: ^0.4.4
+    specifier: ^0.4.2
     version: 0.4.4(tailwindcss@3.3.3)
   '@tailwindcss/typography':
-    specifier: ^0.5.10
+    specifier: ^0.5.9
     version: 0.5.10(tailwindcss@3.3.3)
   '@types/three':
     specifier: ^0.154.0
     version: 0.154.0
   autoprefixer:
-    specifier: ^10.4.16
+    specifier: ^10.4.13
     version: 10.4.16(postcss@8.4.31)
   postcss:
-    specifier: ^8.4.31
+    specifier: ^8.4.21
     version: 8.4.31
   postcss-nesting:
-    specifier: ^11.3.0
+    specifier: ^11.2.2
     version: 11.3.0(postcss@8.4.31)
   rome:
     specifier: ^11.0.0
     version: 11.0.0
   tailwindcss:
-    specifier: ^3.3.3
+    specifier: ^3.2.7
     version: 3.3.3
   tailwindcss-debug-screens:
     specifier: ^2.2.1
@@ -4832,6 +4835,11 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /swiper@10.3.1:
+    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /tailwindcss-debug-screens@2.2.1(tailwindcss@3.3.3):
     resolution: {integrity: sha512-EMyA0CYBzqcZJHtVDvBfmYzfx3NxuK4qDyVO5wnzcGOrmJsv25D9xPpWefVTORTvhE6pCh90Z1WYnLUKsg3yMw==}
