@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import fylo from "./framer/fylo";
 
 import { FramerStyles } from "installable-framer/dist/react";
+import { ArrowBigRight, ArrowRight } from "lucide-react";
 
 interface CardData {
   profilePic: string;
@@ -97,9 +98,7 @@ export default function Expander({ className }: expander): JSX.Element {
   const circleRef = useRef<HTMLDivElement>(null);
   const bannerText = useRef<any>(null);
   const footerRef = useRef<any>(null);
-  const cardRefs = useRef<React.RefObject<HTMLDivElement>[]>(
-    Array.from({ length: cardData.length }, () => useRef(null))
-  );
+  const cardRefs = useRef<React.RefObject<HTMLDivElement>[]>(Array.from({ length: cardData.length }, () => useRef(null)));
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -121,11 +120,7 @@ export default function Expander({ className }: expander): JSX.Element {
   useEffect(() => {
     const lenis = new Lenis();
 
-    const breakpoints = [
-      300, 900, 1500, 2100, 2150, 2200, 2250, 2550, 2850, 3150, 3450, 3500,
-      3550, 3600, 3650, 3950, 4250, 4550, 4850, 5150, 5450, 5500, 5550, 5600,
-      5650,
-    ];
+    const breakpoints = [300, 900, 1500, 2100, 2150, 2200, 2250, 2550, 2850, 3150, 3450, 3500, 3550, 3600, 3650, 3950, 4250, 4550, 4850, 5150, 5450, 5500, 5550, 5600, 5650];
 
     const variants = [
       "Variant 1",
@@ -155,7 +150,7 @@ export default function Expander({ className }: expander): JSX.Element {
       "Variant 25",
     ];
 
-    lenis.on("scroll", (e) => {
+    lenis.on("scroll", (e: any) => {
       //console.log(e);
       const { animatedScroll } = e;
       const currentURL = window.location.pathname;
@@ -183,15 +178,11 @@ export default function Expander({ className }: expander): JSX.Element {
       }
 
       // Calculate the progress within the current breakpoint
-      const progress =
-        (animatedScroll - breakpoints[currentVariantIndex]) /
-        (breakpoints[currentVariantIndex + 1] -
-          breakpoints[currentVariantIndex]);
+      const progress = (animatedScroll - breakpoints[currentVariantIndex]) / (breakpoints[currentVariantIndex + 1] - breakpoints[currentVariantIndex]);
 
       // Interpolate between the current and next variant
       const currentVariant = variants[currentVariantIndex];
-      const nextVariant =
-        variants[currentVariantIndex + 1] || variants[currentVariantIndex];
+      const nextVariant = variants[currentVariantIndex + 1] || variants[currentVariantIndex];
       const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
 
       setVariant(
@@ -239,11 +230,8 @@ export default function Expander({ className }: expander): JSX.Element {
 
         // Calculate intermediate values based on scroll position
         const scrollPosition = e.animatedScroll;
-        let intermediateTranslateY =
-          startTranslateY +
-          translateYRange * (index / cardData.length) * scrollPosition;
-        let intermediateScale =
-          startScale + scaleRange * (index / cardData.length) * scrollPosition;
+        let intermediateTranslateY = startTranslateY + translateYRange * (index / cardData.length) * scrollPosition;
+        let intermediateScale = startScale + scaleRange * (index / cardData.length) * scrollPosition;
 
         // Loop translateY values if they exceed the range
         while (intermediateTranslateY > endTranslateY) {
@@ -262,17 +250,12 @@ export default function Expander({ className }: expander): JSX.Element {
         }
 
         // Calculate zIndex based on translateY
-        const zIndex =
-          (Math.floor(Math.abs(intermediateTranslateY) / 18) * 2) %
-          (maxZIndex + 2);
+        const zIndex = (Math.floor(Math.abs(intermediateTranslateY) / 18) * 2) % (maxZIndex + 2);
 
         // Calculate intermediate background color based on zIndex
         const startColor = [10, 10, 10];
         const endColor = [31, 30, 30];
-        const intermediateColor = startColor.map(
-          (channel, i) =>
-            channel + ((endColor[i] - channel) / maxZIndex) * zIndex
-        );
+        const intermediateColor = startColor.map((channel, i) => channel + ((endColor[i] - channel) / maxZIndex) * zIndex);
         const backgroundColor = `rgb(${intermediateColor.join(", ")})`;
 
         // Find the corresponding card element and apply the updated styles
@@ -299,14 +282,10 @@ export default function Expander({ className }: expander): JSX.Element {
   };
 
   console.log("Current Variant:", variant);
-
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <>
-      <div
-        className={`absolute top-1/4 w-full flex justify-center ${
-          isCircleMaskOn ? "z-[999]" : ""
-        }`}
-      >
+      <div className={`absolute top-1/4 w-full flex justify-center ${isCircleMaskOn ? "z-[999]" : ""}`}>
         {isCircleMaskOn && (
           <motion.div
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
@@ -329,54 +308,44 @@ export default function Expander({ className }: expander): JSX.Element {
           </motion.div>
         )}
       </div>
-      <div
-        ref={bannerText}
-        className={`${className} transition duration-500 z-50 opacity-0 animated-fade-in`}
-      >
-        <h1
-          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[39px] sm:text-[64px] font-light leading-24 tracking-1.6`}
-        >
-          ideation, evolved.
-        </h1>
-        <a
+      <div ref={bannerText} className={`${className} transition duration-500 z-50 opacity-0 animated-fade-in`}>
+        <h1 className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[39px] sm:text-[64px] font-light leading-24 tracking-1.6`}>ideation, evolved.</h1>
+        {/* <a
           className={`rounded-lg bg-white flex sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg whitespace-nowrap`}
           href="#"
         >
           Join the waitlist
-        </a>
+        </a> */}
+        <div className="group relative">
+          <input
+            onFocus={() => {
+              setIsVisible(true);
+            }}
+            onBlur={() => {
+              setIsVisible(false);
+            }}
+            type="text"
+            placeholder={isVisible ? "Enter your email" : "Join the waitlist"}
+            className={`text-xl border outline-none rounded-3xl bg-white flex sm:w-[470px] p-[19px]  justify-center items-center  hover:opacity-[0.9] hover:bg-[rgba(255,255,255,0.6)]  cursor-pointer shadow-lg whitespace-nowrap ${isVisible ? "text-left" : "text-center"}`}
+          />
+          {isVisible && <ArrowRight size={30} className="text-black/20 absolute right-4 top-5" />}
+        </div>
       </div>
-      <div
-        ref={circleRef}
-        className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
-      >
+      <div ref={circleRef} className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}>
         <div className="opacity-wrapper">
           <div className="bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
             <div className="absolute h-[10000px] w-full card-stack-wrapper"></div>
             <div className="hidden sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
-              <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
-                ideation, evolved.
-              </h1>
-              <a
-                className="rounded-lg bg-[rgba(255,255,255,1)] flex w-full sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg"
-                href="#"
-              >
+              <h1 className="text-spectrum-space text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">ideation, evolved.</h1>
+              <a className="rounded-lg bg-[rgba(255,255,255,1)] flex w-full sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] m-auto hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg" href="#">
                 Join the waitlist
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div
-        ref={footerRef}
-        className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
-      >
-        <Footer
-          className={`sm:flex hidden z-60 ${
-            isCircleMaskOn ? "mask-is-on" : ""
-          }`}
-          onToggleCircleMask={handleToggleCircleMask}
-          currentVariant={variant}
-        />
+      <div ref={footerRef} className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}>
+        <Footer className={`sm:flex hidden z-60 ${isCircleMaskOn ? "mask-is-on" : ""}`} onToggleCircleMask={handleToggleCircleMask} currentVariant={variant} />
       </div>
     </>
   );
