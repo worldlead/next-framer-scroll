@@ -33,7 +33,7 @@ export default function Home() {
             isLoaded ? "" : "hidden"
           }`}
         >
-          <Navbar className={`animate-fade-in ${isLoaded ? "z-70" : ""}`} />
+          <Navbar isLoaded={isLoaded} className={`animate-fade-in ${isLoaded ? "z-70" : ""}`} />
         </div>
         <div className="wrapper-scene">
           <ForceGraph

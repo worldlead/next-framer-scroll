@@ -7,9 +7,10 @@ import { useRouter } from "next/router";
 
 interface navbarProps {
   className?: string;
+  isLoaded?:boolean;
 }
 
-export default function Navbar({ className }: navbarProps) {
+export default function Navbar({ className ,isLoaded}: navbarProps) {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -68,9 +69,9 @@ export default function Navbar({ className }: navbarProps) {
               isMenuOpen ? "modal-open" : ""
             }`}
           >
-            <div className="burger-line bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[-7px] transition-transform duration-300 w-[22px]"></div>
-            <div className="burger-line bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform transition-transform duration-300 w-[22px]"></div>
-            <div className="burger-line bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[7px] transition-transform duration-300 w-[22px]"></div>
+            <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black  border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[-7px] transition-transform duration-300 w-[22px]`}></div>
+            <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform transition-transform duration-300 w-[22px]`}></div>
+            <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[7px] transition-transform duration-300 w-[22px]`}></div>
           </div>
           <div className={`modal ${isMenuOpen ? "modal-open" : "close"}`}>
             <div className="menu-item__wrapper">
