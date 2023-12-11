@@ -8,7 +8,7 @@ import { allFeatures } from "contentlayer/generated";
 function createSections(title: string, rawContent: string) {
   console.log("Raw Content:", rawContent);
 
-  const contentLines = rawContent.split("\n");
+  const contentLines = rawContent?.split("\n");
 
   const sections: {
     title: string;
@@ -36,7 +36,7 @@ function createSections(title: string, rawContent: string) {
     content: [],
   };
 
-  for (let i = 0; i < contentLines.length; i++) {
+  for (let i = 0; i < contentLines?.length; i++) {
     const line = contentLines[i].trim();
 
     if (line.startsWith("![")) {
@@ -102,12 +102,12 @@ export default function Features() {
   )!;
 
   // Create sections for each source with unique section titles
-  const nonlinearSections = createSections(nonlinear.title, nonlinear.body.raw);
+  const nonlinearSections = createSections(nonlinear?.title, nonlinear?.body.raw);
   const questioningSections = createSections(
-    questioning.title,
-    questioning.body.raw
+    questioning?.title,
+    questioning?.body.raw
   );
-  const newContent = createSections(newcontent.title, newcontent.body.raw);
+  const newContent = createSections(newcontent?.title, newcontent?.body.raw);
 
   // Combine sections into a single array
   const sections: {
@@ -192,7 +192,7 @@ export default function Features() {
 
   return (
     <>
-      <div className="about">
+      <div className="about shadow-[0_100px_100px_-15px_rgba(0,0,0,1)]">
         <div
           className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-4 sm:px-24 relative ${
             isPageLoaded ? "pt-[90px] sm:pt-[180px]" : "pt-[25px] sm:pt-[50px]"
@@ -236,10 +236,10 @@ export default function Features() {
                           {contentItem.text}
                         </p>
                       )}
-                      {contentItem.type === "image" && contentItem.src && (
+                      {contentItem.type === "image" && contentItem?.src && (
                         <Image
-                          src={contentItem.src}
-                          alt={contentItem.alt}
+                          src={contentItem?.src ?? ""}
+                          alt={contentItem?.alt ?? ""}
                           className="rounded-lg my-4"
                           width={contentItem.width}
                           height={contentItem.height}

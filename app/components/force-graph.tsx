@@ -28,7 +28,9 @@ export default function ForceGraph({ className }: ForceGraphProps) {
       .then((data) => setGraphData(data));
   }, []);
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseMove = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     const x = event.clientX;
     const y = event.clientY;
 
@@ -60,9 +62,12 @@ export default function ForceGraph({ className }: ForceGraphProps) {
   };
 
   const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
-
+  
+  if (!hasMounted) {
+    return;
+  }
   return hasMounted && graphData ? (
-    <div className={className} onMouseMove={handleMouseMove}>
+    <div className={`${className} overflow-hidden`} onMouseMove={handleMouseMove}>
       <ForceGraph3D
         ref={fgRef}
         graphData={graphData}

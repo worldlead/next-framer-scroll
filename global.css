@@ -39,9 +39,15 @@
   animation: scale-in 1s ease-out;
 }
 
+html{
+  overflow-x: hidden;
+}
 body {
   font-family: "PPSupplySans-Variable", sans-serif;
+  overflow-x: hidden;
+
 }
+
 
 .bg-grey-gradient {
   background: linear-gradient(113deg, rgba(16, 25, 66, 0.05), rgba(210, 216, 232, 0.2));

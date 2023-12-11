@@ -260,7 +260,7 @@ export default function SmoothScroll() {
 
   return (
     <>
-      <div className="about">
+      <div className="about shadow-[0_100px_100px_-15px_rgba(0,0,0,1)]">
         <div
           className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-4 sm:px-24 relative  ${
             isPageLoaded ? "pt-[90px] sm:pt-[180px]" : "pt-[25px] sm:pt-[50px]"

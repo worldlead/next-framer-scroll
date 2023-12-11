@@ -1,0 +1,33 @@
+export const breakpoints = [
+    300, 900, 1500, 2100, 2150, 2200, 2250, 2550, 2850, 3150, 3450, 3500,
+    3550, 3600, 3650, 3950, 4250, 4550, 4850, 5150, 5450, 5500, 5550, 5600,
+    5650,
+  ];
+
+  export const variants = [
+  "Variant 1",
+    "Variant 2",
+    "Variant 3",
+    "Variant 4",
+    "Variant 5",
+    "Variant 6",
+    "Variant 7",
+    "Variant 8",
+    "Variant 9",
+    "Variant 10",
+    "Variant 11",
+    "Variant 12",
+    "Variant 13",
+    "Variant 14",
+    "Variant 15",
+    "Variant 16",
+    "Variant 17",
+    "Variant 18",
+    "Variant 19",
+    "Variant 20",
+    "Variant 21",
+    "Variant 22",
+    "Variant 23",
+    "Variant 24",
+    "Variant 25",
+  ];
