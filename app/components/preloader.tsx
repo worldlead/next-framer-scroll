@@ -41,7 +41,7 @@ export default function Preloader({
           fill="none"
         >
           <g
-            clip-path="url(#clip0_164_11667)"
+            clipPath="url(#clip0_164_11667)"
             filter="url(#filter0_bd_164_11667)"
           >
             <path
@@ -61,9 +61,9 @@ export default function Preloader({
               width="50"
               height="51"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="2" />
               <feComposite
                 in2="SourceAlpha"

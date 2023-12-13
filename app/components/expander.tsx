@@ -403,7 +403,7 @@ export default function Expander({ className }: expander): JSX.Element {
   };
 
   console.log("Current Variant:", variant);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [emailEnter, setEmailEnter] = useState(false);
   const [val, setVal] = useState("");
   const inputRef = useRef<HTMLInputElement>(null)
@@ -420,10 +420,10 @@ export default function Expander({ className }: expander): JSX.Element {
     }
   };
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>){
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
-
+    
     if (val.trim().includes("@")) {
       setEmailEnter(true);
     } else {
@@ -431,7 +431,7 @@ export default function Expander({ className }: expander): JSX.Element {
     }
 
     setVal("");
-    setIsVisible(false);
+    setIsFocused(false);
   };
   return (
     <>
@@ -482,42 +482,46 @@ export default function Expander({ className }: expander): JSX.Element {
         onSubmit={handleSubmit}
           className="group relative mt-60 sm:mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
         >
-          <input
-          ref={inputRef}
-            onFocus={() => setIsVisible(true)}
-            onBlur={() => setIsVisible(false)}
-            onChange={handleChange}
-            value={isVisible ? val : ""}
-            type="text"
-            placeholder={""}
-            className={`${
-              emailEnter
-                ? "backdrop-blur-sm bg-black/30 placeholder-white"
-                : "placeholder-black hover:bg-[rgba(255,255,255,0.6)] bg-white "
-            } text-xl  border outline-none  rounded-3xl flex w-[90%] p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap ${
-              isVisible ? "text-left" : "text-center"
-            }`}
-          />
-          <label
-          onClick={()=>inputRef?.current?.focus()}
-            className={`absolute top-5  ${emailEnter ? 'text-white left-[83px] sm:left-[89px] md:left-[98px] lg:left-[100px] xl:left-[95px] 2xl:left-[180px]':'text-black left-[95px] sm:left-[110px] md:left-[130px] lg:left-[105px] xl:left-[110px] 2xl:left-[200px]'}  transition-all duration-1000 text-center cursor-pointer ${
-              isVisible ? `-translate-x-[60px] sm:-translate-x-[75px] 2xl:-translate-x-[105px] ${val !== ''? 'opacity-0':'opacity-25'}  ` : ``
-            }`}
-          >
-            {isVisible
-              ? "enter your email"
-              : emailEnter
-              ? "You're on the waitlist"
-              : "Join the waitlist"}
-          </label>
-          {isVisible && (
-            <button type="submit" id="submit">
-              <ArrowRight
-                size={30}
-                className="text-black absolute right-10 top-5"
-              />
+          <div className="w-full relative">
+            <input
+            ref={inputRef}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onChange={handleChange}
+              value={isFocused ? val : ""}
+              type="email"
+              placeholder={""}
+              className={`${
+                emailEnter
+                  ? "backdrop-blur-sm bg-black/30 placeholder-white"
+                  : `${isFocused? '': 'placeholder-black'} hover:bg-[rgba(255,255,255,0.6)] bg-white`
+              } text-xl  border outline-none  rounded-3xl flex w-full p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
+              ${
+                isFocused ? "text-left" : "text-center"
+              }
+              `}
+            />
+            {/* <label
+            onClick={()=>inputRef?.current?.focus()}
+              className={`absolute top-5  ${emailEnter ? 'text-white left-[83px] sm:left-[89px] md:left-[98px] lg:left-[100px] xl:left-[95px] 2xl:left-[180px]':'text-black left-[95px] sm:left-[110px] md:left-[130px] lg:left-[105px] xl:left-[110px] 2xl:left-[200px]'}  transition-all duration-1000 text-center cursor-pointer ${
+                isFocused ? `-translate-x-[60px] sm:-translate-x-[75px] 2xl:-translate-x-[105px] ${val !== ''? 'opacity-0':'opacity-25'}  ` : ``
+              }`}
+            > */}
+            <label
+            onClick={()=>inputRef?.current?.focus()}
+              className={`absolute top-[24px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-liner duration-200 cursor-pointer ${
+                isFocused ? `left-[20px] ${val !== '' ? 'opacity-0' : 'opacity-25'}  ` : '-translate-x-1/2 left-1/2 '
+              }`}
+            >
+              {isFocused ? 'Enter your email' : emailEnter ? "You're on the waitlist" : 'Join the waitlist'}
+            </label>
+            <button type="submit" id="submit" disabled={!emailEnter}>
+              {isFocused? <ArrowRight
+                size={20}
+                className="text-black absolute opacity-25 right-5 top-[24px]"
+              />: ''}
             </button>
-          )}
+          </div>
         </form>
       </div>
       <div

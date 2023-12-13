@@ -6460,7 +6460,7 @@ var Component4 = /* @__PURE__ */ React6.forwardRef(function (props, ref,) {
                     layoutDependency,
                     layoutId: 'gW_5SwpSl',
                     svg:
-                      '<svg width="260" height="4" viewBox="-1 -1 260 4" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M1 1L257 1.00002" stroke="#BEC8CA" stroke-linecap="round" stroke-dasharray="2 5"/>\n</svg>\n',
+                      '<svg width="260" height="4" viewBox="-1 -1 260 4" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M1 1L257 1.00002" stroke="#BEC8CA" strokeLinecap="round" stroke-dasharray="2 5"/>\n</svg>\n',
                     withExternalLayout: true,
                   },),
                   /* @__PURE__ */ _jsx6(motion5.div, {
@@ -6515,7 +6515,7 @@ var Component4 = /* @__PURE__ */ React6.forwardRef(function (props, ref,) {
                         tVxl2ewSx: { opacity: 0.22, svgContentId: 2946061060, },
                         z1ffbxAcs: {
                           svg:
-                            '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49 100"><path d="M 46.379 99.908 C 46.38 35.086 15.277 6.725 15.277 6.725" fill="transparent" stroke-width="2" stroke="rgb(0,105,115)" stroke-miterlimit="10" stroke-dasharray=""></path></svg>',
+                            '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49 100"><path d="M 46.379 99.908 C 46.38 35.086 15.277 6.725 15.277 6.725" fill="transparent" strokeWidth="2" stroke="rgb(0,105,115)" stroke-miterlimit="10" stroke-dasharray=""></path></svg>',
                           svgContentId: 4285060552,
                         },
                       },
@@ -7905,7 +7905,7 @@ var Component4 = /* @__PURE__ */ React6.forwardRef(function (props, ref,) {
                                       layoutDependency,
                                       layoutId: 'nYgYJQYoH',
                                       svg:
-                                        '<svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM0 14C0 12.9 0.9 12 2 12C3.1 12 4 12.9 4 14C4 15.1 3.1 16 2 16C0.9 16 0 15.1 0 14Z" fill="#3F484A"/>\n</svg>\n',
+                                        '<svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fillRule="evenodd" clipRule="evenodd" d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM0 14C0 12.9 0.9 12 2 12C3.1 12 4 12.9 4 14C4 15.1 3.1 16 2 16C0.9 16 0 15.1 0 14Z" fill="#3F484A"/>\n</svg>\n',
                                       withExternalLayout: true,
                                     },),
                                   },),
