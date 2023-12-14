@@ -11,7 +11,7 @@ interface ForceGraphProps {
   className?: string;
 }
 
-const ForceGraph: React.FC<ForceGraphProps> = ({ className }) => {
+const ForceGraph = ({ className }: ForceGraphProps) => {
   const [graphData, setGraphData] = useState(null);
   const fgRef = useRef<any>(null);
   const circleRef = useRef(null);

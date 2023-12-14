@@ -63,7 +63,7 @@ const cardData: CardData[] = [
   },
 ];
 
-const Expander: React.FC<ExpanderProps> = ({ className }) => {
+const Expander = ({ className }: ExpanderProps) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -135,11 +135,14 @@ const Expander: React.FC<ExpanderProps> = ({ className }) => {
 
       // Handle the "circle" animation based on e.animatedScroll
       if (animatedScroll < prevScrollY.current && currentURL === "/") {
+        console.log("animated-1");
         // Scrolling up on the homepage, scroll to the top of the page instantly
         window.scrollTo({ top: 0, behavior: "auto" });
-        setIsCircleMaskOn(false);
-        document.body.classList.remove("circle-mask-is-on");
+        setIsCircleMaskOn(true);
+        // document.body.classList.remove("circle-mask-is-on");
+        document.body.classList.add("circle-mask-is-on");
       } else if (animatedScroll !== 0 && currentURL === "/") {
+        console.log("animated-2");
         setIsCircleMaskOn(true);
         document.body.classList.add("circle-mask-is-on");
       }
@@ -293,11 +296,13 @@ const Expander: React.FC<ExpanderProps> = ({ className }) => {
         className={`absolute top-[20%] sm:top-[25%] 2xl:top-[30%] w-full flex justify-center ${isCircleMaskOn ? "z-[99]" : ""
           }`}
       >
-        {isCircleMaskOn && (
+        {/* {isCircleMaskOn && (
+          
           <motion.div
+            
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
             animate={{ opacity: 1, y: 0, zIndex: 1 }}
-            className=""
+            className="bg-white"
             transition={{
               type: "spring",
               duration: 1,
@@ -314,14 +319,15 @@ const Expander: React.FC<ExpanderProps> = ({ className }) => {
               }}
             />
           </motion.div>
-        )}
+          
+        )} */}
       </div>
       <div
         ref={bannerText}
         className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
       >
         <h1
-          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6`}
+          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[180px] sm:mb-0`}
         >
           ideation, evolved.
         </h1>
@@ -347,20 +353,15 @@ const Expander: React.FC<ExpanderProps> = ({ className }) => {
               className={`${emailEnter
                 ? "backdrop-blur-sm bg-black/30 placeholder-white"
                 : `${isFocused ? '' : 'placeholder-black'} hover:bg-[rgba(255,255,255,0.6)] bg-white`
-                } text-xl  border outline-none  rounded-3xl flex w-full p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
+                } text-xl  border outline-none  rounded-2xl flex w-full px-[19px] py-[8px] sm:p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
               ${isFocused ? "text-left" : "text-center"}
               `}
             />
-            {/* <label
-            onClick={()=>inputRef?.current?.focus()}
-              className={`absolute top-5  ${emailEnter ? 'text-white left-[83px] sm:left-[89px] md:left-[98px] lg:left-[100px] xl:left-[95px] 2xl:left-[180px]':'text-black left-[95px] sm:left-[110px] md:left-[130px] lg:left-[105px] xl:left-[110px] 2xl:left-[200px]'}  transition-all duration-1000 text-center cursor-pointer ${
-                isFocused ? `-translate-x-[60px] sm:-translate-x-[75px] 2xl:-translate-x-[105px] ${val !== ''? 'opacity-0':'opacity-25'}  ` : ``
-              }`}
-            > */}
+            
             <label
               onClick={() => inputRef?.current?.focus()}
-              className={`absolute top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-liner duration-200 cursor-pointer ${isFocused ? `left-[23px] ${val !== '' ? 'opacity-0' : 'opacity-25'}  ` : '-translate-x-1/2 left-1/2 '
-                }`}
+              className={`absolute top-[13px] sm:top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-out duration-500 cursor-pointer
+              ${isFocused ? `left-[23px] ${val ? 'opacity-0' : 'opacity-25'}  ` : 'left-1/2 -translate-x-1/2 opacity-100'}`}
             >
               {isFocused ? 'Enter your email' : emailEnter ? "You're on the waitlist" : 'Join the waitlist'}
             </label>

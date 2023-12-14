@@ -4,31 +4,27 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { allFeatures } from "contentlayer/generated";
 
+type ContentItem = {
+  type: string;
+  text?: string;
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+type Section = {
+  title: string;
+  content: ContentItem[];
+}
+
 // Define the createSections function
 const createSections = (title: string, rawContent: string) => {
   const contentLines = rawContent?.split("\n");
-  const sections: {
-    title: string;
-    content: {
-      type: string;
-      text?: string;
-      src?: string;
-      alt?: string;
-      width?: number;
-      height?: number;
-    }[];
-  }[] = [];
+  const sections: Section[] = [];
 
   let currentSection: {
     title: string;
-    content: {
-      type: string;
-      text?: string;
-      src?: string;
-      alt?: string;
-      width?: number;
-      height?: number;
-    }[];
+    content: ContentItem[]
   } = {
     title: title,
     content: [],
@@ -86,30 +82,28 @@ const Features = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>(
     Array.from({ length: numSections }, () => null)
   );
-
-  const allFeaturesData = {
-    nonlinear: allFeatures.find((feature) => feature.slug === "nonlinear")!,
-    questioning: allFeatures.find((feature) => feature.slug === "questioning")!,
-    newcontent: allFeatures.find((feature) => feature.slug === "new_content")!,
-  }
   
 
+  const nonlinear = allFeatures.find(
+    (feature) => feature.slug === "nonlinear"
+  )!;
+  const questioning = allFeatures.find(
+    (feature) => feature.slug === "questioning"
+  )!;
+  const newcontent = allFeatures.find(
+    (feature) => feature.slug === "new_content"
+  )!;
+
   // Create sections for each source with unique section titles
-  const nonlinearSections = createSections(
-    allFeaturesData.nonlinear.title,
-    allFeaturesData.nonlinear.body.raw
-  );
-  const questioningSections = createSections(
-    allFeaturesData.questioning.title,
-    allFeaturesData.questioning.body.raw
-  );
-  const newContentSections = createSections(
-    allFeaturesData.newcontent.title,
-    allFeaturesData.newcontent.body.raw
-  );
+  const nonlinearSections = createSections(nonlinear?.title, nonlinear?.body.raw);
+  const questioningSections = createSections(questioning?.title, questioning?.body.raw);
+  const newContentSections = createSections(newcontent?.title, newcontent?.body.raw);
 
   // Combine sections into a single array
-  const sections = [...nonlinearSections, ...questioningSections, ...newContentSections];
+  const sections: {
+    title: string;
+    content: ContentItem[];
+  }[] = [...nonlinearSections, ...questioningSections, ...newContentSections];
 
   const [activeSection, setActiveSection] = useState<number | null>(null);
 

@@ -10657,6 +10657,8 @@ var Component5 = /* @__PURE__ */ React7.forwardRef(function (props, ref) {
                               "data-framer-name": "Frame 15",
                               layout: "position",
                               layoutDependency,
+            
+            
                               layoutId: "eRNDyXM4I",
                               opacity: 1,
                               svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49 48"><path d="M 22.649 22.11 C 23.525 21.178 24.093 20.038 24.661 18.899 C 25.991 16.229 27.322 13.559 32.605 13.559 L 34.342 13.559 C 35.883 13.559 37.024 14.808 37.023 16.349 C 37.023 17.889 35.774 19.137 34.233 19.137 L 32.604 19.137 C 27.321 19.137 25.99 21.373 24.66 23.608 C 24.539 23.81 24.419 24.012 24.295 24.213 C 24.419 24.416 24.539 24.62 24.66 24.824 C 25.99 27.082 27.321 29.34 32.604 29.34 L 34.472 29.34 C 35.881 29.34 37.023 30.481 37.023 31.89 C 37.024 33.299 35.881 34.441 34.472 34.441 L 32.605 34.441 C 27.322 34.441 25.991 31.89 24.661 29.34 C 24.095 28.256 23.53 27.172 22.662 26.284 C 21.486 27.339 19.755 28.079 16.715 28.079 L 15.863 28.079 C 13.716 28.079 11.976 26.339 11.976 24.194 C 11.976 22.048 13.716 20.309 15.863 20.309 L 16.715 20.309 C 19.744 20.309 21.474 21.051 22.649 22.11 Z" fill="hsl(0, 0%, 100%)"></path></svg>',
@@ -13908,7 +13910,7 @@ var css7 = [
   '.framer-ZiJgx [data-border="true"]::after { content: ""; border-width: var(--border-top-width, 0) var(--border-right-width, 0) var(--border-bottom-width, 0) var(--border-left-width, 0); border-color: var(--border-color, none); border-style: var(--border-style, none); width: 100%; height: 100%; position: absolute; box-sizing: border-box; left: 0; top: 0; border-radius: inherit; pointer-events: none; }',
   "@supports (aspect-ratio: 1) { body { --framer-aspect-ratio-supported: auto; } }",
   ".framer-ZiJgx .framer-1w3po97 { display: block; }",
-  ".framer-ZiJgx .framer-hpdod { cursor: pointer; height: 537px; position: relative; width: 1009px; }",
+  ".framer-ZiJgx .framer-hpdod { cursor: pointer; height: 537px; position: relative; width: 1000px; }",
   ".framer-ZiJgx .framer-6s0tzo, .framer-ZiJgx .framer-1mvnusd { flex: none; height: 393px; left: calc(49.653121902874155% - 391px / 2); overflow: visible; position: absolute; top: calc(48.60335195530728% - 393px / 2); width: 391px; }",
   ".framer-ZiJgx .framer-4b524j-container { flex: none; height: auto; left: 28px; position: absolute; top: 77px; width: auto; }",
   ".framer-ZiJgx .framer-vvhei8-container { flex: none; height: auto; left: 48%; position: absolute; top: 0px; width: auto; }",
