@@ -10,56 +10,61 @@ interface FooterProps {
   currentVariant: string;
 }
 
-export default function Footer({
+const Footer: React.FC<FooterProps> = ({
   className,
   onToggleCircleMask,
   currentVariant,
-}: FooterProps) {
+}) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
+
+  const swiperSlides = [
+    "ideation agent",
+    "decision making",
+    "dynamic synthesis",
+    "dependency mapping",
+  ];
+
+  const determineSlideIndex = () => {
+    switch (currentVariant) {
+      case "Variant 1":
+      case "Variant 2":
+        return 0;
+      case "Variant 6":
+      case "Variant 7":
+      case "Variant 8":
+      case "Variant 9":
+      case "Variant 10":
+      case "Variant 11":
+      case "Variant 12":
+      case "Variant 13":
+      case "Variant 14":
+        return 1;
+      case "Variant 15":
+      case "Variant 16":
+      case "Variant 17":
+        return 2;
+      case "Variant 18":
+      case "Variant 19":
+      case "Variant 20":
+      case "Variant 21":
+      case "Variant 22":
+      case "Variant 23":
+      case "Variant 24":
+      case "Variant 25":
+        return 3;
+      default:
+        return 0;
+    }
+  };
 
   useEffect(() => {
     // Slide to a specific index based on the currentVariant
     if (swiperRef.current) {
-      let slideIndex = 0;
-
-      if (currentVariant === "Variant 1" || currentVariant === "Variant 2") {
-        slideIndex = 0;
-      } else if (
-        currentVariant === "Variant 6" ||
-        currentVariant === "Variant 7" ||
-        currentVariant === "Variant 8" ||
-        currentVariant === "Variant 9" ||
-        currentVariant === "Variant 10" ||
-        currentVariant === "Variant 11" ||
-        currentVariant === "Variant 12" ||
-        currentVariant === "Variant 13" ||
-        currentVariant === "Variant 14"
-      ) {
-        slideIndex = 1;
-      } else if (
-        currentVariant === "Variant 15" ||
-        currentVariant === "Variant 16" ||
-        currentVariant === "Variant 17"
-      ) {
-        slideIndex = 2;
-      } else if (
-        currentVariant === "Variant 18" ||
-        currentVariant === "Variant 19" ||
-        currentVariant === "Variant 20" ||
-        currentVariant === "Variant 21" ||
-        currentVariant === "Variant 22" ||
-        currentVariant === "Variant 23" ||
-        currentVariant === "Variant 24" ||
-        currentVariant === "Variant 25"
-      ) {
-        slideIndex = 3;
-      }
+      const slideIndex = determineSlideIndex();
 
       // Slide to the determined index
       swiperRef.current.slideTo(slideIndex);
-
-      console.log(slideIndex);
     }
   }, [currentVariant]);
 
@@ -69,13 +74,6 @@ export default function Footer({
   };
 
   const circleMaskClass = isCircleMaskOn ? "on" : "";
-
-  let swiperSlides = [
-    "ideation agent",
-    "decision making",
-    "dynamic synthesis",
-    "dependency mapping",
-  ];
 
   return (
     <>
@@ -97,12 +95,12 @@ export default function Footer({
                 },
               }}
             >
-              {swiperSlides.map((entries) => (
+              {swiperSlides.map((entry) => (
                 <SwiperSlide
                   className="text-[14px] font-[300] text-[#727272] swiper-slide-custom"
-                  key={entries}
+                  key={entry}
                 >
-                  {entries}
+                  {entry}
                 </SwiperSlide>
               ))}
               <SwiperSlide className="hidden"></SwiperSlide>
@@ -138,4 +136,6 @@ export default function Footer({
       </div>
     </>
   );
-}
+};
+
+export default Footer;

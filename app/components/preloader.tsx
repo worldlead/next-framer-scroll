@@ -7,10 +7,10 @@ interface PreloaderProps {
   onLoadingComplete: () => void;
 }
 
-export default function Preloader({
+const Preloader:React.FC<PreloaderProps> = ({
   className,
   onLoadingComplete,
-}: PreloaderProps) {
+}) => {
   const preloaderRef = useRef<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -115,4 +115,6 @@ export default function Preloader({
       </div>
     </div>
   );
-}
+};
+
+export default Preloader;

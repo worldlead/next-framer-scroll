@@ -11,7 +11,7 @@ interface ForceGraphProps {
   className?: string;
 }
 
-export default function ForceGraph({ className }: ForceGraphProps) {
+const ForceGraph: React.FC<ForceGraphProps> = ({ className }) => {
   const [graphData, setGraphData] = useState(null);
   const fgRef = useRef<any>(null);
   const circleRef = useRef(null);
@@ -79,4 +79,6 @@ export default function ForceGraph({ className }: ForceGraphProps) {
       />
     </div>
   ) : null;
-}
+};
+
+export default ForceGraph;

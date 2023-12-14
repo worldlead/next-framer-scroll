@@ -14,7 +14,5 @@ export default function FeaturesPage() {
       </div>
       <SocialPanel />
     </>
-
-
   );
 }

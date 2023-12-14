@@ -5,11 +5,9 @@ import Lenis from "@studio-freight/lenis";
 import Footer from "./footer";
 import FramerEmbed from "./framerembed";
 import { motion } from "framer-motion";
-
 import fylo from "./framer/fylo";
-
 import { FramerStyles } from "installable-framer/dist/react";
-import { ArrowBigRight, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { breakpoints, variants } from "@/util/break-points";
 
 interface CardData {
@@ -18,7 +16,7 @@ interface CardData {
   tag: string;
 }
 
-interface expander {
+interface ExpanderProps {
   className?: string;
 }
 
@@ -65,9 +63,20 @@ const cardData: CardData[] = [
   },
 ];
 
-export default function Expander({ className }: expander): JSX.Element {
+const Expander: React.FC<ExpanderProps> = ({ className }) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [emailEnter, setEmailEnter] = useState(false);
+  const [val, setVal] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+  const bannerText = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<React.RefObject<HTMLDivElement>[]>(
+    Array.from({ length: cardData.length }, () => useRef(null))
+  );
+  const prevScrollY = useRef(0);
   const [variant, setVariant] = useState<
     | "Variant 1"
     | "Variant 2"
@@ -96,17 +105,12 @@ export default function Expander({ className }: expander): JSX.Element {
     | "Variant 25"
   >("Variant 1");
 
-  const circleRef = useRef<HTMLDivElement>(null);
 
-  const bannerText = useRef<any>(null);
-  const footerRef = useRef<any>(null);
-
-  const cardRefs = useRef<React.RefObject<HTMLDivElement>[]>(
-    Array.from({ length: cardData.length }, () => useRef(null))
-  );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    //Function to handle banner and footer animation after a delay
+
+    const handleAnimationDelay = () => {
       if (bannerText.current) {
         bannerText.current.classList.add("z-50");
         bannerText.current.classList.remove("hidden");
@@ -115,18 +119,17 @@ export default function Expander({ className }: expander): JSX.Element {
       if (footerRef.current) {
         footerRef.current.classList.remove("hidden");
       }
-    }, 2000); // 2 seconds
+    }
+
+    const timer = setTimeout(handleAnimationDelay, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const prevScrollY = useRef(0);
-
   useEffect(() => {
     const lenis = new Lenis();
 
-    lenis.on("scroll", (e: any) => {
-      //console.log(e);
+    const handleScroll = (e: any) => {
       const { animatedScroll } = e;
       const currentURL = window.location.pathname;
 
@@ -142,8 +145,6 @@ export default function Expander({ className }: expander): JSX.Element {
       }
 
       prevScrollY.current = animatedScroll;
-
-      //console.log(e.animatedScroll);
 
       let currentVariantIndex = 0;
       for (let i = 0; i < breakpoints.length; i++) {
@@ -166,31 +167,31 @@ export default function Expander({ className }: expander): JSX.Element {
 
       setVariant(
         interpolatedVariant as
-          | "Variant 1"
-          | "Variant 2"
-          | "Variant 3"
-          | "Variant 4"
-          | "Variant 5"
-          | "Variant 6"
-          | "Variant 7"
-          | "Variant 8"
-          | "Variant 9"
-          | "Variant 10"
-          | "Variant 11"
-          | "Variant 12"
-          | "Variant 13"
-          | "Variant 14"
-          | "Variant 15"
-          | "Variant 16"
-          | "Variant 17"
-          | "Variant 18"
-          | "Variant 19"
-          | "Variant 20"
-          | "Variant 21"
-          | "Variant 22"
-          | "Variant 23"
-          | "Variant 24"
-          | "Variant 25"
+        | "Variant 1"
+        | "Variant 2"
+        | "Variant 3"
+        | "Variant 4"
+        | "Variant 5"
+        | "Variant 6"
+        | "Variant 7"
+        | "Variant 8"
+        | "Variant 9"
+        | "Variant 10"
+        | "Variant 11"
+        | "Variant 12"
+        | "Variant 13"
+        | "Variant 14"
+        | "Variant 15"
+        | "Variant 16"
+        | "Variant 17"
+        | "Variant 18"
+        | "Variant 19"
+        | "Variant 20"
+        | "Variant 21"
+        | "Variant 22"
+        | "Variant 23"
+        | "Variant 24"
+        | "Variant 25"
       );
 
       const maxZIndex = 8; // Define the maximum zIndex
@@ -254,147 +255,18 @@ export default function Expander({ className }: expander): JSX.Element {
           cardElement.style.backgroundColor = backgroundColor;
         }
       });
-    });
+    }
 
-    function raf(time: number) {
+    const raf = (time: number) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
 
+    lenis.on("scroll", handleScroll);
     requestAnimationFrame(raf);
+
     return () => {
-      lenis.off("scroll", (e: any) => {
-        //console.log(e);
-        const { animatedScroll } = e;
-        const currentURL = window.location.pathname;
-
-        // Handle the "circle" animation based on e.animatedScroll
-        if (animatedScroll < prevScrollY.current && currentURL === "/") {
-          // Scrolling up on the homepage, scroll to the top of the page instantly
-          window.scrollTo({ top: 0, behavior: "auto" });
-          setIsCircleMaskOn(false);
-          document.body.classList.remove("circle-mask-is-on");
-        } else if (animatedScroll !== 0 && currentURL === "/") {
-          setIsCircleMaskOn(true);
-          document.body.classList.add("circle-mask-is-on");
-        }
-
-        prevScrollY.current = animatedScroll;
-
-        //console.log(e.animatedScroll);
-
-        let currentVariantIndex = 0;
-        for (let i = 0; i < breakpoints.length; i++) {
-          if (animatedScroll >= breakpoints[i]) {
-            currentVariantIndex = i;
-          }
-        }
-
-        // Calculate the progress within the current breakpoint
-        const progress =
-          (animatedScroll - breakpoints[currentVariantIndex]) /
-          (breakpoints[currentVariantIndex + 1] -
-            breakpoints[currentVariantIndex]);
-
-        // Interpolate between the current and next variant
-        const currentVariant = variants[currentVariantIndex];
-        const nextVariant =
-          variants[currentVariantIndex + 1] || variants[currentVariantIndex];
-        const interpolatedVariant =
-          progress === 1 ? nextVariant : currentVariant;
-
-        setVariant(
-          interpolatedVariant as
-            | "Variant 1"
-            | "Variant 2"
-            | "Variant 3"
-            | "Variant 4"
-            | "Variant 5"
-            | "Variant 6"
-            | "Variant 7"
-            | "Variant 8"
-            | "Variant 9"
-            | "Variant 10"
-            | "Variant 11"
-            | "Variant 12"
-            | "Variant 13"
-            | "Variant 14"
-            | "Variant 15"
-            | "Variant 16"
-            | "Variant 17"
-            | "Variant 18"
-            | "Variant 19"
-            | "Variant 20"
-            | "Variant 21"
-            | "Variant 22"
-            | "Variant 23"
-            | "Variant 24"
-            | "Variant 25"
-        );
-
-        const maxZIndex = 8; // Define the maximum zIndex
-
-        // Update card animations based on e.animatedScroll
-        cardData.forEach((_, index) => {
-          // Calculate intermediate translateY values
-          const startTranslateY = -9.48198;
-          const endTranslateY = 0.559618;
-          const translateYRange = endTranslateY - startTranslateY;
-
-          // Calculate intermediate scale values
-          const startScale = 1.0;
-          const endScale = 0.9;
-          const scaleRange = endScale - startScale;
-
-          // Calculate intermediate values based on scroll position
-          const scrollPosition = e.animatedScroll;
-          let intermediateTranslateY =
-            startTranslateY +
-            translateYRange * (index / cardData.length) * scrollPosition;
-          let intermediateScale =
-            startScale +
-            scaleRange * (index / cardData.length) * scrollPosition;
-
-          // Loop translateY values if they exceed the range
-          while (intermediateTranslateY > endTranslateY) {
-            intermediateTranslateY -= translateYRange;
-          }
-          while (intermediateTranslateY < startTranslateY) {
-            intermediateTranslateY += translateYRange;
-          }
-
-          // Loop scale values if they exceed 0.9 or fall below 0.1
-          while (intermediateScale > 0.9) {
-            intermediateScale -= 0.8;
-          }
-          while (intermediateScale < 0.1) {
-            intermediateScale += 0.8;
-          }
-
-          // Calculate zIndex based on translateY
-          const zIndex =
-            (Math.floor(Math.abs(intermediateTranslateY) / 18) * 2) %
-            (maxZIndex + 2);
-
-          // Calculate intermediate background color based on zIndex
-          const startColor = [10, 10, 10];
-          const endColor = [31, 30, 30];
-          const intermediateColor = startColor.map(
-            (channel, i) =>
-              channel + ((endColor[i] - channel) / maxZIndex) * zIndex
-          );
-          const backgroundColor = `rgb(${intermediateColor.join(", ")})`;
-
-          // Find the corresponding card element and apply the updated styles
-
-          const cardElement = cardRefs.current[index].current;
-          if (cardElement) {
-            cardElement.style.transform = `translateY(${intermediateTranslateY}rem) scale(${intermediateScale})`;
-            cardElement.style.zIndex = zIndex.toString();
-            cardElement.style.backgroundColor = backgroundColor;
-          }
-        });
-      });
+      lenis.off("scroll", handleScroll);
     };
   }, []);
 
@@ -402,43 +274,24 @@ export default function Expander({ className }: expander): JSX.Element {
     setIsCircleMaskOn((prev) => !prev); // Toggle the class by updating the state
   };
 
-  console.log("Current Variant:", variant);
-  const [isFocused, setIsFocused] = useState(false);
-  const [emailEnter, setEmailEnter] = useState(false);
-  const [val, setVal] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null)
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const enteredValue = e.target.value;
-
     setVal(enteredValue);
-
-    if (e.target.value.trim().includes("@")) {
-      setEmailEnter(true);
-    } else {
-      setEmailEnter(false);
-    }
+    setEmailEnter(enteredValue.trim().includes("@"));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    e.stopPropagation();
-    
-    if (val.trim().includes("@")) {
-      setEmailEnter(true);
-    } else {
-      setEmailEnter(false);
-    }
-
+    setEmailEnter(val.trim().includes("@"));
     setVal("");
     setIsFocused(false);
   };
+
   return (
     <>
       <div
-        className={`absolute top-[20%] sm:top-[25%] 2xl:top-[30%] w-full flex justify-center ${
-          isCircleMaskOn ? "z-[99]" : ""
-        }`}
+        className={`absolute top-[20%] sm:top-[25%] 2xl:top-[30%] w-full flex justify-center ${isCircleMaskOn ? "z-[99]" : ""
+          }`}
       >
         {isCircleMaskOn && (
           <motion.div
@@ -479,26 +332,23 @@ export default function Expander({ className }: expander): JSX.Element {
           Join the waitlist
         </a> */}
         <form
-        onSubmit={handleSubmit}
-          className="group relative mt-60 sm:mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
+          onSubmit={handleSubmit}
+          className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
         >
           <div className="w-full relative">
             <input
-            ref={inputRef}
+              ref={inputRef}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               onChange={handleChange}
               value={isFocused ? val : ""}
               type="email"
               placeholder={""}
-              className={`${
-                emailEnter
-                  ? "backdrop-blur-sm bg-black/30 placeholder-white"
-                  : `${isFocused? '': 'placeholder-black'} hover:bg-[rgba(255,255,255,0.6)] bg-white`
-              } text-xl  border outline-none  rounded-3xl flex w-full p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
-              ${
-                isFocused ? "text-left" : "text-center"
-              }
+              className={`${emailEnter
+                ? "backdrop-blur-sm bg-black/30 placeholder-white"
+                : `${isFocused ? '' : 'placeholder-black'} hover:bg-[rgba(255,255,255,0.6)] bg-white`
+                } text-xl  border outline-none  rounded-3xl flex w-full p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
+              ${isFocused ? "text-left" : "text-center"}
               `}
             />
             {/* <label
@@ -508,18 +358,17 @@ export default function Expander({ className }: expander): JSX.Element {
               }`}
             > */}
             <label
-            onClick={()=>inputRef?.current?.focus()}
-              className={`absolute top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-liner duration-200 cursor-pointer ${
-                isFocused ? `left-[23px] ${val !== '' ? 'opacity-0' : 'opacity-25'}  ` : '-translate-x-1/2 left-1/2 '
-              }`}
+              onClick={() => inputRef?.current?.focus()}
+              className={`absolute top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-liner duration-200 cursor-pointer ${isFocused ? `left-[23px] ${val !== '' ? 'opacity-0' : 'opacity-25'}  ` : '-translate-x-1/2 left-1/2 '
+                }`}
             >
               {isFocused ? 'Enter your email' : emailEnter ? "You're on the waitlist" : 'Join the waitlist'}
             </label>
             <button type="submit" id="submit" disabled={!emailEnter}>
-              {isFocused? <ArrowRight
+              {isFocused ? <ArrowRight
                 size={20}
                 className="text-black absolute opacity-25 right-5 top-[24px]"
-              />: ''}
+              /> : ''}
             </button>
           </div>
         </form>
@@ -550,9 +399,7 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
       >
         <Footer
-          className={`sm:flex z-60 ${
-            isCircleMaskOn ? "mask-is-on" : ""
-          }`}
+          className={`sm:flex z-60 ${isCircleMaskOn ? "mask-is-on" : ""}`}
           onToggleCircleMask={handleToggleCircleMask}
           currentVariant={variant}
         />
@@ -560,3 +407,5 @@ export default function Expander({ className }: expander): JSX.Element {
     </>
   );
 }
+
+export default Expander;

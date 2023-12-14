@@ -4,7 +4,7 @@ import PageTransition from "../components/page-transition";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import SocialPanel from "../components/social-panel";
 
-export default function About() {
+const About = () => {
   return (
     <>
       <div>
@@ -18,4 +18,6 @@ export default function About() {
     </>
 
   );
-}
+};
+
+export default About;

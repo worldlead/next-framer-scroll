@@ -5,12 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 
-interface navbarProps {
+interface NavbarProps {
   className?: string;
   isLoaded?:boolean;
 }
 
-export default function Navbar({ className ,isLoaded}: navbarProps) {
+const Navbar: React.FC<NavbarProps> = ({ className ,isLoaded }) => {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -69,7 +69,7 @@ export default function Navbar({ className ,isLoaded}: navbarProps) {
               isMenuOpen ? "modal-open" : ""
             }`}
           >
-            <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black  border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[-7px] transition-transform duration-300 w-[22px]`}></div>
+            <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[-7px] transition-transform duration-300 w-[22px]`}></div>
             <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform transition-transform duration-300 w-[22px]`}></div>
             <div className={`burger-line ${isMenuOpen ? 'menu-toggle' : ''} bg-black border-black border rounded-[1px] h-[2px] absolute top-1/2 transform translate-y-[7px] transition-transform duration-300 w-[22px]`}></div>
           </div>
@@ -374,4 +374,6 @@ export default function Navbar({ className ,isLoaded}: navbarProps) {
       </div>
     </>
   );
-}
+};
+
+export default Navbar;

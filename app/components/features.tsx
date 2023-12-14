@@ -5,11 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { allFeatures } from "contentlayer/generated";
 
 // Define the createSections function
-function createSections(title: string, rawContent: string) {
-  console.log("Raw Content:", rawContent);
-
+const createSections = (title: string, rawContent: string) => {
   const contentLines = rawContent?.split("\n");
-
   const sections: {
     title: string;
     content: {
@@ -21,6 +18,7 @@ function createSections(title: string, rawContent: string) {
       height?: number;
     }[];
   }[] = [];
+
   let currentSection: {
     title: string;
     content: {
@@ -77,7 +75,7 @@ function createSections(title: string, rawContent: string) {
   return sections;
 }
 
-export default function Features() {
+const Features = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
@@ -89,31 +87,29 @@ export default function Features() {
     Array.from({ length: numSections }, () => null)
   );
 
-  console.log(allFeatures);
-
-  const nonlinear = allFeatures.find(
-    (feature) => feature.slug === "nonlinear"
-  )!;
-  const questioning = allFeatures.find(
-    (feature) => feature.slug === "questioning"
-  )!;
-  const newcontent = allFeatures.find(
-    (feature) => feature.slug === "new_content"
-  )!;
+  const allFeaturesData = {
+    nonlinear: allFeatures.find((feature) => feature.slug === "nonlinear")!,
+    questioning: allFeatures.find((feature) => feature.slug === "questioning")!,
+    newcontent: allFeatures.find((feature) => feature.slug === "new_content")!,
+  }
+  
 
   // Create sections for each source with unique section titles
-  const nonlinearSections = createSections(nonlinear?.title, nonlinear?.body.raw);
-  const questioningSections = createSections(
-    questioning?.title,
-    questioning?.body.raw
+  const nonlinearSections = createSections(
+    allFeaturesData.nonlinear.title,
+    allFeaturesData.nonlinear.body.raw
   );
-  const newContent = createSections(newcontent?.title, newcontent?.body.raw);
+  const questioningSections = createSections(
+    allFeaturesData.questioning.title,
+    allFeaturesData.questioning.body.raw
+  );
+  const newContentSections = createSections(
+    allFeaturesData.newcontent.title,
+    allFeaturesData.newcontent.body.raw
+  );
 
   // Combine sections into a single array
-  const sections: {
-    title: string;
-    content: { type: string; text: string }[];
-  }[] = [...nonlinearSections, ...questioningSections, ...newContent];
+  const sections = [...nonlinearSections, ...questioningSections, ...newContentSections];
 
   const [activeSection, setActiveSection] = useState<number | null>(null);
 
@@ -255,4 +251,6 @@ export default function Features() {
       </div>
     </>
   );
-}
+};
+
+export default Features;

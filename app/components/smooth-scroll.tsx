@@ -3,8 +3,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 // import Lenis from "@studio-freight/lenis";
-
-export default function SmoothScroll() {
+const SmoothScroll = () => {
   const numSections = 3;
   const sectionRefs = useRef<(HTMLDivElement | null)[]>(
     Array.from({ length: numSections }, () => null)
@@ -323,4 +322,6 @@ export default function SmoothScroll() {
       </div>
     </>
   );
-}
+};
+
+export default SmoothScroll;

@@ -1,4 +1,4 @@
-import fylo from 'src/framer'
+import fylo from './framer/fylo'
 import { FramerStyles } from 'installable-framer/dist/react'
 
 export default function App() {
