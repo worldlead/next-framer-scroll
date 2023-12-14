@@ -40,8 +40,8 @@ export default function Navbar({ className ,isLoaded}: navbarProps) {
   return (
     <>
       <div
-        className={`${className} overflow-hidden flex justify-between items-center px-4 sm:px-14 text-black h-16 top-4 sm:top-8 w-full transition-colors duration-500 z-[999] ${
-          pathName !== "/" ? "sticky" : "absolute"
+        className={`${className} overflow-hidden flex justify-between items-center px-4 sm:px-14 text-black h-16 mt-4 sm:top-8 w-full transition-colors duration-500 z-[999] ${
+          pathName !== "/" ? "" : "absolute"
         }`}
       >
         <nav className="nav-items hidden md:block">

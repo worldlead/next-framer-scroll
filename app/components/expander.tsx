@@ -509,8 +509,8 @@ export default function Expander({ className }: expander): JSX.Element {
             > */}
             <label
             onClick={()=>inputRef?.current?.focus()}
-              className={`absolute top-[24px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-liner duration-200 cursor-pointer ${
-                isFocused ? `left-[20px] ${val !== '' ? 'opacity-0' : 'opacity-25'}  ` : '-translate-x-1/2 left-1/2 '
+              className={`absolute top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-liner duration-200 cursor-pointer ${
+                isFocused ? `left-[23px] ${val !== '' ? 'opacity-0' : 'opacity-25'}  ` : '-translate-x-1/2 left-1/2 '
               }`}
             >
               {isFocused ? 'Enter your email' : emailEnter ? "You're on the waitlist" : 'Join the waitlist'}
