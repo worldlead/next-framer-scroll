@@ -82,7 +82,7 @@ export default function Footer({
       <div
         className={`${className} text-[#101942] justify-between items-center flex absolute bottom-0 left-0 w-full z-50 px-14 pb-[30px]`}
       >
-        <div className="w-2/5 flex-col gap-[10px] min-w-[300px]">
+        <div className="hidden sm:block w-2/5 flex-col gap-[10px] min-w-[300px]">
           <h5 className="text-[20px] font-[300]">highlighted features</h5>
           <div>
             <Swiper
@@ -128,7 +128,7 @@ export default function Footer({
             />
           </svg>
         </div>
-        <div className="w-2/5 flex-col gap-[10px] text-right">
+        <div className="hidden sm:block w-2/5 flex-col gap-[10px] text-right">
           <h5 className="text-[20px] font-[375]">towards a neural ecosystem</h5>
           <p className="text-[16px] font-[300] max-w-[300px] text-right ml-auto">
             creatives, researchers, & innovators use{" "}

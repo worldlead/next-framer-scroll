@@ -550,7 +550,7 @@ export default function Expander({ className }: expander): JSX.Element {
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
       >
         <Footer
-          className={`sm:flex hidden z-60 ${
+          className={`sm:flex z-60 ${
             isCircleMaskOn ? "mask-is-on" : ""
           }`}
           onToggleCircleMask={handleToggleCircleMask}
