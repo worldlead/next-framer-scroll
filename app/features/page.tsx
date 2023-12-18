@@ -11,7 +11,6 @@ const FeaturesPage = ()=> {
         <PageTransition />
         <Navbar />
         <Features />
-       
       </div>
       <SocialPanel />
     </>

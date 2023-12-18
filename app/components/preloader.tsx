@@ -1,5 +1,7 @@
 "use client";
 
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css'; //styles of nprogress
 import { useRef, useState, useEffect } from "react";
 
 interface PreloaderProps {
@@ -7,24 +9,32 @@ interface PreloaderProps {
   onLoadingComplete: () => void;
 }
 
-const Preloader:React.FC<PreloaderProps> = ({
+const Preloader: React.FC<PreloaderProps> = ({
   className,
   onLoadingComplete,
 }) => {
   const preloaderRef = useRef<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  NProgress.configure({ easing: 'ease', speed: 1000 });
+  const handleStart = () => {
+    NProgress.start();
+  };
+  const handleStop = () => {
+    NProgress.done();
+    onLoadingComplete();
+  };
 
+  window.addEventListener('load', handleStop);
   useEffect(() => {
-    // Simulate a delay to hide the preloader after 2000 milliseconds (2 seconds)
-    const delay = setTimeout(() => {
-      setIsLoading(false);
-      onLoadingComplete();
-    }, 2000);
-
-    return () => {
-      // Clear the timeout to prevent any potential memory leaks
-      clearTimeout(delay);
-    };
+    if (document.readyState === 'complete') {
+      // console.log('page loaded');
+      setTimeout(handleStop, 2000);
+      
+    } else {
+      
+      handleStart();
+      NProgress.inc(0.5);
+    }
+    return () => window.removeEventListener("load", handleStop);
   }, []);
 
   return (
@@ -113,6 +123,7 @@ const Preloader:React.FC<PreloaderProps> = ({
         </svg>
         <span className="relative top-[4px]">fylo</span>
       </div>
+      {/* <ProgressBar  /> */}
     </div>
   );
 };

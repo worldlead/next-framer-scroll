@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, forwardRef } from "react";
 import dynamic from "next/dynamic";
 
 const ForceGraph3D = dynamic(() => import("react-force-graph-3d"), {
   ssr: false,
 });
+
 
 interface ForceGraphProps {
   className?: string;
@@ -62,10 +63,11 @@ const ForceGraph = ({ className }: ForceGraphProps) => {
   };
 
   const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
-  
+
   if (!hasMounted) {
     return;
   }
+  
   return hasMounted && graphData ? (
     <div className={`${className} overflow-hidden`} onMouseMove={handleMouseMove}>
       <ForceGraph3D
@@ -77,8 +79,10 @@ const ForceGraph = ({ className }: ForceGraphProps) => {
         linkDirectionalParticles={1}
         backgroundColor="white"
       />
+
     </div>
   ) : null;
 };
+
 
 export default ForceGraph;

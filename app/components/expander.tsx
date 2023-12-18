@@ -9,6 +9,7 @@ import fylo from "./framer/fylo";
 import { FramerStyles } from "installable-framer/dist/react";
 import { ArrowRight } from "lucide-react";
 import { breakpoints, variants } from "@/util/break-points";
+import MyFramerComponent from "./framer-motion";
 
 interface CardData {
   profilePic: string;
@@ -293,16 +294,16 @@ const Expander = ({ className }: ExpanderProps) => {
   return (
     <>
       <div
-        className={`absolute top-[20%] sm:top-[25%] 2xl:top-[30%] w-full flex justify-center ${isCircleMaskOn ? "z-[99]" : ""
+        className={`absolute top-[20%] sm:top-[25%] 2xl:top-[30%] flex bg-white opacity-0.5 justify-center ${isCircleMaskOn ? "z-[99]" : ""
           }`}
       >
-        {/* {isCircleMaskOn && (
+        {isCircleMaskOn && (
           
           <motion.div
             
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
             animate={{ opacity: 1, y: 0, zIndex: 1 }}
-            className="bg-white"
+            className=""
             transition={{
               type: "spring",
               duration: 1,
@@ -319,8 +320,11 @@ const Expander = ({ className }: ExpanderProps) => {
               }}
             />
           </motion.div>
+        
+
           
-        )} */}
+
+        )}
       </div>
       <div
         ref={bannerText}

@@ -20,10 +20,10 @@ export default function Home() {
     }, 2000); // 2 seconds
   };
 
-  useEffect(() => {
-    // Simulating loading completion after some time (e.g., 2 seconds)
-    setTimeout(handleLoadingComplete, 2000); // 2 seconds
-  }, []);
+  // useEffect(() => {
+  //   // Simulating loading completion after some time (e.g., 2 seconds)
+  //   setTimeout(handleLoadingComplete, 5000); // 2 seconds
+  // }, []);
 
   return (
     <>
