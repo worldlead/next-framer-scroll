@@ -318,7 +318,6 @@ const Expander = ({ className }: ExpanderProps) => {
         {isCircleMaskOn && (
 
           <motion.div
-
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
             animate={{ opacity: 1, y: 0, zIndex: 1 }}
             className="bg-black"
@@ -338,10 +337,6 @@ const Expander = ({ className }: ExpanderProps) => {
               }}
             />
           </motion.div>
-
-
-
-
         )}
       </div>
       <div
