@@ -79,32 +79,41 @@ const Expander = ({ className }: ExpanderProps) => {
   );
   const prevScrollY = useRef(0);
   const [variant, setVariant] = useState<
-    | "Variant 1"
-    | "Variant 2"
-    | "Variant 3"
-    | "Variant 4"
-    | "Variant 5"
-    | "Variant 6"
-    | "Variant 7"
-    | "Variant 8"
-    | "Variant 9"
-    | "Variant 10"
-    | "Variant 11"
-    | "Variant 12"
-    | "Variant 13"
-    | "Variant 14"
-    | "Variant 15"
-    | "Variant 16"
-    | "Variant 17"
-    | "Variant 18"
-    | "Variant 19"
-    | "Variant 20"
-    | "Variant 21"
-    | "Variant 22"
-    | "Variant 23"
-    | "Variant 24"
-    | "Variant 25"
-  >("Variant 1");
+    | 'Variant B-2'
+    | 'Variant A-1'
+    | 'Variant A-2'
+    | 'Variant A-3'
+    | 'Variant A-4'
+    | 'Variant B-1'
+    | 'Variant B-3'
+    | 'Variant B-4'
+    | 'Variant B-5'
+    | 'Variant B-6'
+    | 'Variant B-7'
+    | 'Variant B-8'
+    | 'Variant C-1'
+    | 'Variant C-2'
+    | 'Variant C-3'
+    | 'Variant C-4'
+    | 'Variant C-5'
+    | 'Variant C-6'
+    | 'Variant D-1'
+    | 'Variant D-2'
+    | 'Variant D-3'
+    | 'Variant D-4'
+    | 'Variant E-1'
+    | 'Variant E-2'
+    | 'Variant E-3'
+    | 'Variant E-4'
+    | 'Variant E-5'
+    | 'Variant E-6'
+    | 'Variant E-7'
+    | 'Variant F-1'
+    | 'Variant F-2'
+    | 'Variant F-3'
+    | 'Variant F-4'
+    | 'Variant F-5'
+  >("Variant B-2");
 
 
 
@@ -171,31 +180,40 @@ const Expander = ({ className }: ExpanderProps) => {
 
       setVariant(
         interpolatedVariant as
-        | "Variant 1"
-        | "Variant 2"
-        | "Variant 3"
-        | "Variant 4"
-        | "Variant 5"
-        | "Variant 6"
-        | "Variant 7"
-        | "Variant 8"
-        | "Variant 9"
-        | "Variant 10"
-        | "Variant 11"
-        | "Variant 12"
-        | "Variant 13"
-        | "Variant 14"
-        | "Variant 15"
-        | "Variant 16"
-        | "Variant 17"
-        | "Variant 18"
-        | "Variant 19"
-        | "Variant 20"
-        | "Variant 21"
-        | "Variant 22"
-        | "Variant 23"
-        | "Variant 24"
-        | "Variant 25"
+        | 'Variant B-2'
+        | 'Variant A-1'
+        | 'Variant A-2'
+        | 'Variant A-3'
+        | 'Variant A-4'
+        | 'Variant B-1'
+        | 'Variant B-3'
+        | 'Variant B-4'
+        | 'Variant B-5'
+        | 'Variant B-6'
+        | 'Variant B-7'
+        | 'Variant B-8'
+        | 'Variant C-1'
+        | 'Variant C-2'
+        | 'Variant C-3'
+        | 'Variant C-4'
+        | 'Variant C-5'
+        | 'Variant C-6'
+        | 'Variant D-1'
+        | 'Variant D-2'
+        | 'Variant D-3'
+        | 'Variant D-4'
+        | 'Variant E-1'
+        | 'Variant E-2'
+        | 'Variant E-3'
+        | 'Variant E-4'
+        | 'Variant E-5'
+        | 'Variant E-6'
+        | 'Variant E-7'
+        | 'Variant F-1'
+        | 'Variant F-2'
+        | 'Variant F-3'
+        | 'Variant F-4'
+        | 'Variant F-5'
       );
 
       const maxZIndex = 8; // Define the maximum zIndex
@@ -294,16 +312,16 @@ const Expander = ({ className }: ExpanderProps) => {
   return (
     <>
       <div
-        className={`absolute top-[20%] sm:top-[25%] 2xl:top-[30%] flex bg-white opacity-0.5 justify-center ${isCircleMaskOn ? "z-[99]" : ""
+        className={`absolute top-[20%] sm:top-[25%] flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
           }`}
       >
         {isCircleMaskOn && (
-          
+
           <motion.div
-            
+
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
             animate={{ opacity: 1, y: 0, zIndex: 1 }}
-            className=""
+            className="bg-black"
             transition={{
               type: "spring",
               duration: 1,
@@ -320,9 +338,9 @@ const Expander = ({ className }: ExpanderProps) => {
               }}
             />
           </motion.div>
-        
 
-          
+
+
 
         )}
       </div>
@@ -361,7 +379,7 @@ const Expander = ({ className }: ExpanderProps) => {
               ${isFocused ? "text-left" : "text-center"}
               `}
             />
-            
+
             <label
               onClick={() => inputRef?.current?.focus()}
               className={`absolute top-[13px] sm:top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-out duration-500 cursor-pointer
