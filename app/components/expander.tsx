@@ -2,14 +2,13 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
-import Footer from "./footer";
-import FramerEmbed from "./framerembed";
+import Footer from "./Footer";
 import { motion } from "framer-motion";
 import fylo from "./framer/fylo";
 import { FramerStyles } from "installable-framer/dist/react";
 import { ArrowRight } from "lucide-react";
 import { breakpoints, variants } from "@/util/break-points";
-import MyFramerComponent from "./framer-motion";
+import MyFramerComponent from "./FramerMotion";
 
 interface CardData {
   profilePic: string;
@@ -313,7 +312,7 @@ const Expander = ({ className }: ExpanderProps) => {
   return (
     <>
       <div
-        className={`absolute top-[20%] sm:top-[25%] flex opacity-1 bg-red left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
+        className={`absolute top-[20%] sm:top-[25%] flex opacity-1 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
           }`}
       >
         {isCircleMaskOn && (
@@ -339,7 +338,7 @@ const Expander = ({ className }: ExpanderProps) => {
           </motion.div>
         )}
       </div>
-      {/* <div
+      <div
         ref={bannerText}
         className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
       >
@@ -384,8 +383,8 @@ const Expander = ({ className }: ExpanderProps) => {
             </button>
           </div>
         </form>
-      </div> */}
-      {/* <div
+      </div>
+      <div
         ref={circleRef}
         className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
       >
@@ -405,7 +404,7 @@ const Expander = ({ className }: ExpanderProps) => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
       <div
         ref={footerRef}
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}

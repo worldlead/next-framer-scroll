@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef, forwardRef } from "react";
 import dynamic from "next/dynamic";
+import { ForceGraphMethods } from "react-force-graph-3d";
 
 const ForceGraph3D = dynamic(() => import("react-force-graph-3d"), {
   ssr: false,
@@ -12,11 +13,10 @@ interface ForceGraphProps {
   className?: string;
 }
 
-const ForceGraph = ({ className }: ForceGraphProps) => {
+const ForceGraph: React.FC<ForceGraphProps> = ({ className }) => {
   const [graphData, setGraphData] = useState(null);
   const fgRef = useRef<any>(null);
-  const circleRef = useRef(null);
-
+  const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -29,9 +29,7 @@ const ForceGraph = ({ className }: ForceGraphProps) => {
       .then((data) => setGraphData(data));
   }, []);
 
-  const handleMouseMove = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const x = event.clientX;
     const y = event.clientY;
 
@@ -43,35 +41,35 @@ const ForceGraph = ({ className }: ForceGraphProps) => {
     const ny = -2 * (y / windowHeight - 0.5);
 
     // compute the new camera position, adjust the 10 to control orbit radius
-    const newCameraPosition = {
-      x: 10 * nx,
-      y: 10 * ny,
-      z: 3, // keep z constant to maintain a horizontal orbit
-    };
+    // const newCameraPosition = {
+    //   x: 10 * nx,
+    //   y: 10 * ny,
+    //   z: 3, // keep z constant to maintain a horizontal orbit
+    // };
 
-    // update the camera position
-    if (fgRef.current) {
-      // @ts-ignore
-      fgRef.current.cameraPosition(
-        newCameraPosition.x,
-        newCameraPosition.y,
-        newCameraPosition.z
-      );
-    }
+    // // update the camera position
+    // if (fgRef.current) {
+    //   // @ts-ignore
+    //   fgRef.current.cameraPosition(
+    //     newCameraPosition.x,
+    //     newCameraPosition.y,
+    //     newCameraPosition.z
+    //   );
+    // }
 
-    setCameraPosition(newCameraPosition);
+    // setCameraPosition(newCameraPosition);
   };
 
-  const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
+  
 
-  if (!hasMounted) {
-    return;
+  if (!hasMounted || !graphData) {
+    return null;
   }
   
-  return hasMounted && graphData ? (
+  return (
     <div className={`${className} overflow-hidden`} onMouseMove={handleMouseMove}>
+      
       <ForceGraph3D
-        ref={fgRef}
         graphData={graphData}
         linkColor={(link) => "grey"}
         nodeColor={(node) => "black"}
@@ -79,9 +77,8 @@ const ForceGraph = ({ className }: ForceGraphProps) => {
         linkDirectionalParticles={1}
         backgroundColor="white"
       />
-
     </div>
-  ) : null;
+  ); 
 };
 
 

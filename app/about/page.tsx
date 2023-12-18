@@ -1,8 +1,7 @@
-import SmoothScroll from "../components/smooth-scroll";
-import Navbar from "../components/navbar";
-import PageTransition from "../components/page-transition";
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
-import SocialPanel from "../components/social-panel";
+import SmoothScroll from "../components/SmoothScroll";
+import Navbar from "../components/Navbar";
+import PageTransition from "../components/PageTransition";
+import SocialPanel from "../components/SocialPanel";
 
 const About = () => {
   return (

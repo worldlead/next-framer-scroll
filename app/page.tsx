@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import Preloader from "./components/preloader";
-import ForceGraph from "./components/force-graph";
-import Expander from "./components/expander";
-import Navbar from "./components/navbar";
+import React, { useState } from "react";
+import Preloader from "./components/Preloader";
+import ForceGraph from "./components/ForceGraph";
+import Expander from "./components/Expander";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);

@@ -3947,7 +3947,7 @@ function useOnChange(value, callback,) {
   useEffect3(
     () => (
       // @ts-ignore this should be detected as a MV :shrug:
-      isMotionValue(value,) ? value.onChange(callback,) : void 0
+      isMotionValue(value,) ? value.on("change", callback) : void 0
     ),
   );
 }
