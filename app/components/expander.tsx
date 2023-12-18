@@ -142,17 +142,17 @@ const Expander = ({ className }: ExpanderProps) => {
     const handleScroll = (e: any) => {
       const { animatedScroll } = e;
       const currentURL = window.location.pathname;
-
+      
       // Handle the "circle" animation based on e.animatedScroll
       if (animatedScroll < prevScrollY.current && currentURL === "/") {
-        console.log("animated-1");
+     
         // Scrolling up on the homepage, scroll to the top of the page instantly
         window.scrollTo({ top: 0, behavior: "auto" });
-        setIsCircleMaskOn(true);
-        // document.body.classList.remove("circle-mask-is-on");
-        document.body.classList.add("circle-mask-is-on");
+        setIsCircleMaskOn(false);
+        document.body.classList.remove("circle-mask-is-on");
+        // document.body.classList.add("circle-mask-is-on");
       } else if (animatedScroll !== 0 && currentURL === "/") {
-        console.log("animated-2");
+        
         setIsCircleMaskOn(true);
         document.body.classList.add("circle-mask-is-on");
       }
@@ -171,13 +171,14 @@ const Expander = ({ className }: ExpanderProps) => {
         (animatedScroll - breakpoints[currentVariantIndex]) /
         (breakpoints[currentVariantIndex + 1] -
           breakpoints[currentVariantIndex]);
+      console.log(progress);
 
       // Interpolate between the current and next variant
       const currentVariant = variants[currentVariantIndex];
       const nextVariant =
         variants[currentVariantIndex + 1] || variants[currentVariantIndex];
       const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
-
+      console.log(nextVariant);
       setVariant(
         interpolatedVariant as
         | 'Variant B-2'
@@ -312,15 +313,14 @@ const Expander = ({ className }: ExpanderProps) => {
   return (
     <>
       <div
-        className={`absolute top-[20%] sm:top-[25%] flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
+        className={`absolute top-[20%] sm:top-[25%] flex opacity-1 bg-red left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
           }`}
       >
         {isCircleMaskOn && (
-
           <motion.div
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
             animate={{ opacity: 1, y: 0, zIndex: 1 }}
-            className="bg-black"
+            className=""
             transition={{
               type: "spring",
               duration: 1,
@@ -339,7 +339,7 @@ const Expander = ({ className }: ExpanderProps) => {
           </motion.div>
         )}
       </div>
-      <div
+      {/* <div
         ref={bannerText}
         className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
       >
@@ -348,12 +348,6 @@ const Expander = ({ className }: ExpanderProps) => {
         >
           ideation, evolved.
         </h1>
-        {/* <a
-          className={`rounded-lg bg-white flex sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg whitespace-nowrap`}
-          href="#"
-        >
-          Join the waitlist
-        </a> */}
         <form
           onSubmit={handleSubmit}
           className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
@@ -390,8 +384,8 @@ const Expander = ({ className }: ExpanderProps) => {
             </button>
           </div>
         </form>
-      </div>
-      <div
+      </div> */}
+      {/* <div
         ref={circleRef}
         className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
       >
@@ -411,7 +405,7 @@ const Expander = ({ className }: ExpanderProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div
         ref={footerRef}
         className={`footer-wrapper hidden w-full absolute z-50 bottom-0 animate-fade-in`}
