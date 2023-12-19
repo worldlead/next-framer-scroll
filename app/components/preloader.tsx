@@ -9,7 +9,7 @@ interface PreloaderProps {
   onLoadingComplete: () => void;
 }
 
-const Preloader: React.FC<PreloaderProps> = ({ className, onLoadingComplete }) => {
+export default function Preloader({ className, onLoadingComplete }: PreloaderProps) {
   
   const preloaderRef = useRef<any>(null);
   NProgress.configure({ easing: 'ease', speed: 1000 });
@@ -126,4 +126,4 @@ const Preloader: React.FC<PreloaderProps> = ({ className, onLoadingComplete }) =
   );
 };
 
-export default Preloader;
+

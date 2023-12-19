@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 
-const SmoothScroll = () => {
+export default function SmoothScroll() {
   const numSections = 3;
   const sectionRefs = useRef<(HTMLDivElement | null)[]>(
     Array.from({ length: numSections }, () => null)
@@ -325,4 +325,4 @@ const SmoothScroll = () => {
   );
 };
 
-export default SmoothScroll;
+

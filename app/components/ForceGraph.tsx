@@ -13,7 +13,7 @@ interface ForceGraphProps {
   className?: string;
 }
 
-const ForceGraph: React.FC<ForceGraphProps> = ({ className }) => {
+export default function ForceGraph({ className }: ForceGraphProps) {
   const [graphData, setGraphData] = useState(null);
   const fgRef = useRef<any>(null);
   const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
@@ -82,4 +82,4 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ className }) => {
 };
 
 
-export default ForceGraph;
+

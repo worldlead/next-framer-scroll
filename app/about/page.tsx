@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import PageTransition from "../components/PageTransition";
 import SocialPanel from "../components/SocialPanel";
 
-const About = () => {
+export default function About() {
   return (
     <>
       <div>
@@ -19,4 +19,4 @@ const About = () => {
   );
 };
 
-export default About;
+

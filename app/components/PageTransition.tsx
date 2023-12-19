@@ -1,4 +1,4 @@
-const PageTransition = () => {
+export default function PageTransition() {
   return (
     <>
       <div className="transition-overlay-wrapper"></div>
@@ -6,4 +6,4 @@ const PageTransition = () => {
   );
 };
 
-export default PageTransition;
+

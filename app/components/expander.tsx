@@ -63,7 +63,7 @@ const cardData: CardData[] = [
   },
 ];
 
-const Expander = ({ className }: ExpanderProps) => {
+export default function Expander({ className }: ExpanderProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -423,4 +423,4 @@ const Expander = ({ className }: ExpanderProps) => {
   );
 }
 
-export default Expander;
+

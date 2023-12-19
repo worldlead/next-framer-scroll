@@ -10,11 +10,11 @@ interface FooterProps {
   currentVariant: string;
 }
 
-const Footer: React.FC<FooterProps> = ({
+export default function Footer({
   className,
   onToggleCircleMask,
   currentVariant,
-}) => {
+}: FooterProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
 
@@ -138,4 +138,4 @@ const Footer: React.FC<FooterProps> = ({
   );
 };
 
-export default Footer;
+

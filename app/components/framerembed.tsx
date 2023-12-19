@@ -1,4 +1,4 @@
-const FramerEmbed = () => {
+export default function FramerEmbed() {
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <iframe
@@ -10,4 +10,3 @@ const FramerEmbed = () => {
     );
   };
   
-  export default FramerEmbed;

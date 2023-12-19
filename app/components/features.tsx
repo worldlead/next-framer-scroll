@@ -70,8 +70,7 @@ const createSections = (title: string, rawContent: string) => {
 
   return sections;
 }
-
-const Features = () => {
+export default function Features() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
@@ -245,4 +244,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+

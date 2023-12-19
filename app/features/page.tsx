@@ -4,7 +4,7 @@ import PageTransition from "../components/PageTransition";
 import SmoothScroll from "../components/SmoothScroll";
 import SocialPanel from "../components/SocialPanel";
 
-const FeaturesPage = ()=> {
+export default function FeaturesPage() {
   return (
     <>
       <div className="z-[99999] bg-white mb-[800px] md:mb-[600px]">
@@ -17,4 +17,3 @@ const FeaturesPage = ()=> {
   );
 };
 
-export default FeaturesPage;

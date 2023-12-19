@@ -10,7 +10,7 @@ interface NavbarProps {
   isLoaded?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ className ,isLoaded }) => {
+export default function Navbar({ className ,isLoaded }: NavbarProps) {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -376,4 +376,4 @@ const Navbar: React.FC<NavbarProps> = ({ className ,isLoaded }) => {
   );
 };
 
-export default Navbar;
+
