@@ -9,10 +9,8 @@ interface PreloaderProps {
   onLoadingComplete: () => void;
 }
 
-const Preloader: React.FC<PreloaderProps> = ({
-  className,
-  onLoadingComplete,
-}) => {
+const Preloader: React.FC<PreloaderProps> = ({ className, onLoadingComplete }) => {
+  
   const preloaderRef = useRef<any>(null);
   NProgress.configure({ easing: 'ease', speed: 1000 });
   const handleStart = () => {

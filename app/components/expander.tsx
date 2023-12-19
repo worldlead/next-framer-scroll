@@ -3,12 +3,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Footer from "./Footer";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import fylo from "./framer/fylo";
 import { FramerStyles } from "installable-framer/dist/react";
 import { ArrowRight } from "lucide-react";
 import { breakpoints, variants } from "@/util/break-points";
-import MyFramerComponent from "./FramerMotion";
+
 
 interface CardData {
   profilePic: string;
@@ -77,6 +77,7 @@ const Expander = ({ className }: ExpanderProps) => {
     Array.from({ length: cardData.length }, () => useRef(null))
   );
   const prevScrollY = useRef(0);
+  const { scrollYProgress } = useScroll();
   const [variant, setVariant] = useState<
     | 'Variant B-2'
     | 'Variant A-1'
@@ -139,6 +140,7 @@ const Expander = ({ className }: ExpanderProps) => {
     const lenis = new Lenis();
 
     const handleScroll = (e: any) => {
+      
       const { animatedScroll } = e;
       const currentURL = window.location.pathname;
       
@@ -170,14 +172,14 @@ const Expander = ({ className }: ExpanderProps) => {
         (animatedScroll - breakpoints[currentVariantIndex]) /
         (breakpoints[currentVariantIndex + 1] -
           breakpoints[currentVariantIndex]);
-      console.log(progress);
+     
 
       // Interpolate between the current and next variant
       const currentVariant = variants[currentVariantIndex];
       const nextVariant =
         variants[currentVariantIndex + 1] || variants[currentVariantIndex];
       const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
-      console.log(nextVariant);
+      
       setVariant(
         interpolatedVariant as
         | 'Variant B-2'
@@ -322,10 +324,11 @@ const Expander = ({ className }: ExpanderProps) => {
             className=""
             transition={{
               type: "spring",
-              duration: 1,
+              duration: 5,
               ease: "ease-in-out",
-              delay: 0.5,
+              delay: 1,
             }}
+            
           >
             <FramerStyles Components={[fylo]} />
             <fylo.Responsive
@@ -336,6 +339,7 @@ const Expander = ({ className }: ExpanderProps) => {
               }}
             />
           </motion.div>
+          
         )}
       </div>
       <div

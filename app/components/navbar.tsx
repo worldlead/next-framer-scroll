@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 interface NavbarProps {
   className?: string;
-  isLoaded?:boolean;
+  isLoaded?: boolean;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ className ,isLoaded }) => {

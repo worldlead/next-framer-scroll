@@ -3,9 +3,6 @@ import Router from 'next/router';
 import { useRouter } from 'next/navigation';
 import NProgress from 'nprogress';
 
-
-
-
 export default function ProgressBar() {
   
   NProgress.configure({ showSpinner: false });
