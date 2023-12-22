@@ -14,19 +14,7 @@ export default function Preloader({ className, onLoadingComplete }: PreloaderPro
     setTimeout(onLoadingComplete, 3000);
   };
   window.addEventListener('load', handleStop);
-  // useEffect(() => {
-  //   if (document.readyState === 'complete') {
-  //     // console.log('page loaded');
-  //     setTimeout(handleStop, 2000);
-      
-  //   } else {
-      
-  //     handleStart();
-  //     NProgress.inc(0.5);
-  //   }
-  //   return () => window.removeEventListener("load", handleStop);
-  // }, []);
-
+  
   return (
     <div
       ref={preloaderRef}
@@ -115,9 +103,7 @@ export default function Preloader({ className, onLoadingComplete }: PreloaderPro
       </div>
       <div className="absolute left-1/2 -translate-x-1/2 top-3/4">
         <ProgressBar  />
-
       </div>
-      
     </div>
   );
 };
