@@ -1,8 +1,6 @@
 "use client";
-
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css'; //styles of nprogress
 import { useRef, useState, useEffect } from "react";
+import ProgressBar from "./ProgressBar";
 
 interface PreloaderProps {
   className?: string;
@@ -12,35 +10,29 @@ interface PreloaderProps {
 export default function Preloader({ className, onLoadingComplete }: PreloaderProps) {
   
   const preloaderRef = useRef<any>(null);
-  NProgress.configure({ easing: 'ease', speed: 1000 });
-  const handleStart = () => {
-    NProgress.start();
-  };
   const handleStop = () => {
-    NProgress.done();
-    onLoadingComplete();
+    setTimeout(onLoadingComplete, 3000);
   };
-
   window.addEventListener('load', handleStop);
-  useEffect(() => {
-    if (document.readyState === 'complete') {
-      // console.log('page loaded');
-      setTimeout(handleStop, 2000);
+  // useEffect(() => {
+  //   if (document.readyState === 'complete') {
+  //     // console.log('page loaded');
+  //     setTimeout(handleStop, 2000);
       
-    } else {
+  //   } else {
       
-      handleStart();
-      NProgress.inc(0.5);
-    }
-    return () => window.removeEventListener("load", handleStop);
-  }, []);
+  //     handleStart();
+  //     NProgress.inc(0.5);
+  //   }
+  //   return () => window.removeEventListener("load", handleStop);
+  // }, []);
 
   return (
     <div
       ref={preloaderRef}
       className={className} // Display the preloader if isLoading is true
     >
-      <div className="text-[48px] gap-[16px] text-white flex items-center justify-center">
+      <div className="text-[48px] gap-[16px] absolute text-white flex items-center justify-center  top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="49"
@@ -121,7 +113,11 @@ export default function Preloader({ className, onLoadingComplete }: PreloaderPro
         </svg>
         <span className="relative top-[4px]">fylo</span>
       </div>
-      {/* <ProgressBar  /> */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-3/4">
+        <ProgressBar  />
+
+      </div>
+      
     </div>
   );
 };

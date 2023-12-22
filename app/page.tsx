@@ -43,7 +43,7 @@ export default function Home() {
           <Expander className="absolute left-1/2 top-[70%] sm:top-1/2 transform  -translate-x-1/2 -translate-y-1/2 sm:flex justify-between w-full text-center sm:text-left float-unset sm:float-left px-8 sm:px-[56px] items-center" />
         </div>
         <Preloader
-          className={`w-full h-full absolute bg-[#101942] flex items-center justify-center ${
+          className={`w-full h-full absolute bg-[#101942] items-center justify-center ${
             isLoaded ? "z-20" : "z-40"
           }`}
           onLoadingComplete={handleLoadingComplete}

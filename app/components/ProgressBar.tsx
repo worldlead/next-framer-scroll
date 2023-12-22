@@ -1,34 +1,36 @@
-import { useEffect } from 'react';
-import Router from 'next/router';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
 import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
-export default function ProgressBar() {
-  
-  NProgress.configure({ showSpinner: false });
-  const handleStart = () => {
-    NProgress.start();
-  };
-  const handleStop = () => {
-    NProgress.done();
-  };
-  window.addEventListener("load", handleStop);
-  
+export default function NProgressBar() {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    handleStart();
-
-    Router.events.on('routeChangeStart', handleStart);
-    Router.events.on('routeChangeComplete', handleStop);
-    Router.events.on('routeChangeError', handleStop);
+    const interval = setInterval(() => {
+      // Increment the progress state
+      setProgress((prevProgress) => {
+        const newProgress = prevProgress + 1;
+        // Update the NProgress bar
+        NProgress.set(newProgress / 100);
+        // Clear interval and finish NProgress when progress reaches 100
+        if (newProgress === 100) {
+          clearInterval(interval);
+          NProgress.done();
+        }
+        // Return the new progress state
+        return newProgress;
+      });
+    }, 1);
 
     return () => {
-      Router.events.off('routeChangeStart', handleStart);
-      Router.events.off('routeChangeComplete', handleStop);
-      Router.events.off('routeChangeError', handleStop);
+      clearInterval(interval);
     };
-  }, [Router]);
+  }, []);
 
   return (
-    <></>
+    <div>
+      <p className="text-white">{progress}</p>
+      {/* You can add more UI elements or components here */}
+    </div>
   );
-}
+};
