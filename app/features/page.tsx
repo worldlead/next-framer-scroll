@@ -11,6 +11,7 @@ export default function FeaturesPage() {
         <PageTransition />
         <Navbar />
         <Features />
+        
       </div>
       <SocialPanel />
     </>

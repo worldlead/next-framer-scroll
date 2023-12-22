@@ -65,10 +65,10 @@ const cardData: CardData[] = [
 
 export default function Expander({ className }: ExpanderProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [emailEnter, setEmailEnter] = useState(false);
   const [val, setVal] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const bannerText = useRef<HTMLDivElement>(null);
@@ -302,6 +302,7 @@ export default function Expander({ className }: ExpanderProps) {
     const enteredValue = e.target.value;
     setVal(enteredValue);
     setEmailEnter(enteredValue.trim().includes("@"));
+    setIsSubmitted(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -309,6 +310,7 @@ export default function Expander({ className }: ExpanderProps) {
     setEmailEnter(val.trim().includes("@"));
     setVal("");
     setIsFocused(false);
+    setIsSubmitted(true);
   };
 
   return (
@@ -347,7 +349,7 @@ export default function Expander({ className }: ExpanderProps) {
         className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
       >
         <h1
-          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[180px] sm:mb-0`}
+          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[100px] sm:mb-0`}
         >
           ideation, evolved.
         </h1>
@@ -355,7 +357,7 @@ export default function Expander({ className }: ExpanderProps) {
           onSubmit={handleSubmit}
           className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
         >
-          <div className="w-full relative">
+          
             <input
               ref={inputRef}
               onFocus={() => setIsFocused(true)}
@@ -364,28 +366,25 @@ export default function Expander({ className }: ExpanderProps) {
               value={isFocused ? val : ""}
               type="email"
               placeholder={""}
-              className={`${emailEnter
-                ? "backdrop-blur-sm bg-black/30 placeholder-white"
-                : `${isFocused ? '' : 'placeholder-black'} hover:bg-[rgba(255,255,255,0.6)] bg-white`
-                } text-xl  border outline-none  rounded-2xl flex w-full px-[19px] py-[8px] sm:p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
+              className={` placeholder-black text-xl  border outline-none rounded-2xl flex w-full px-[19px] py-[8px] sm:p-[19px] justify-center items-center cursor-pointer shadow-lg whitespace-nowrap 
               ${isFocused ? "text-left" : "text-center"}
               `}
             />
 
             <label
               onClick={() => inputRef?.current?.focus()}
-              className={`absolute top-[13px] sm:top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-out duration-500 cursor-pointer
-              ${isFocused ? `left-[23px] ${val ? 'opacity-0' : 'opacity-25'}  ` : 'left-1/2 -translate-x-1/2 opacity-100'}`}
+              className={`absolute top-[13px] sm:top-[24px] min-w-[130px] text-black  transition-all ease-out duration-500 cursor-pointer
+              ${isFocused ? `left-[18px] sm:left-[21px]  ${val ? 'opacity-0' : 'opacity-50'}  ` : 'opacity-100'}  `}
             >
-              {isFocused ? 'Enter your email' : emailEnter ? "You're on the waitlist" : 'Join the waitlist'}
+              {isFocused ? 'Enter your email' : isSubmitted ? "You are on the waitlist" : "Join the waitlist"}
             </label>
             <button type="submit" id="submit" disabled={!emailEnter}>
               {isFocused ? <ArrowRight
                 size={20}
-                className="text-black absolute opacity-25 right-5 top-[24px]"
+                className="text-black absolute opacity-50 right-5 -translate-y-1/2"
               /> : ''}
             </button>
-          </div>
+          
         </form>
       </div>
       <div
