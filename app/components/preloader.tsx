@@ -11,10 +11,12 @@ export default function Preloader({ className, onLoadingComplete }: PreloaderPro
   
   const preloaderRef = useRef<any>(null);
   const handleStop = () => {
-    setTimeout(onLoadingComplete, 3000);
+    setTimeout(onLoadingComplete, 4500);
   };
-  window.addEventListener('load', handleStop);
   
+  useEffect(() => {
+    handleStop();
+  }, []);
   return (
     <div
       ref={preloaderRef}

@@ -9,8 +9,9 @@ export default function NProgressBar() {
     const interval = setInterval(() => {
       // Increment the progress state
       setProgress((prevProgress) => {
-        const newProgress = prevProgress + 1;
+        const newProgress = prevProgress + 2;
         // Update the NProgress bar
+        console.log(newProgress);
         NProgress.set(newProgress / 100);
         // Clear interval and finish NProgress when progress reaches 100
         if (newProgress === 100) {
@@ -20,7 +21,7 @@ export default function NProgressBar() {
         // Return the new progress state
         return newProgress;
       });
-    }, 1);
+    }, 10);
 
     return () => {
       clearInterval(interval);
