@@ -70,8 +70,7 @@ const createSections = (title: string, rawContent: string) => {
 
   return sections;
 }
-
-const Features = () => {
+export default function Features() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
@@ -82,7 +81,7 @@ const Features = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>(
     Array.from({ length: numSections }, () => null)
   );
-  
+
 
   const nonlinear = allFeatures.find(
     (feature) => feature.slug === "nonlinear"
@@ -155,9 +154,8 @@ const Features = () => {
       <p
         key={index}
         ref={(el) => (navigationRefs.current[index] = el)}
-        className={`toc text-[#d3d3d3] backdrop-blur-0.5 cursor-pointer pb-4 sm:pb-8 transition-color duration-200 ease-in-out ${
-          isLinkSelected ? "selected" : "" // Add "selected" class if the link is selected
-        }`}
+        className={`toc text-[#d3d3d3] backdrop-blur-0.5 cursor-pointer pb-4 sm:pb-8 transition-color duration-200 ease-in-out ${isLinkSelected ? "selected" : "" // Add "selected" class if the link is selected
+          }`}
         onClick={() => {
           // Scroll to the corresponding section when a navigation link is clicked
           if (sectionRefs.current[index]) {
@@ -184,9 +182,8 @@ const Features = () => {
     <>
       <div className="about shadow-[0_100px_100px_-15px_rgba(0,0,0,1)]">
         <div
-          className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-4 sm:px-24 relative ${
-            isPageLoaded ? "pt-[90px] sm:pt-[180px]" : "pt-[25px] sm:pt-[50px]"
-          }`}
+          className={`about-page flex transition duration-1000 flex-col gap-16 mx-auto max-w-screen-xl px-4 sm:px-24 relative ${isPageLoaded ? "pt-[90px] sm:pt-[180px]" : "pt-[25px] sm:pt-[50px]"
+            }`}
         >
           <div className="banner">
             <h1 className="text-3xl sm:text-7xl font-light tracking-tighter leading-11 text-center space-2 max-w-[90%] m-auto">
@@ -247,4 +244,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+

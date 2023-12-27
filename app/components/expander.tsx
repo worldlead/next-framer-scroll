@@ -2,14 +2,13 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
-import Footer from "./footer";
-import FramerEmbed from "./framerembed";
-import { motion } from "framer-motion";
+import Footer from "./Footer";
+import { motion, useScroll } from "framer-motion";
 import fylo from "./framer/fylo";
 import { FramerStyles } from "installable-framer/dist/react";
 import { ArrowRight } from "lucide-react";
 import { breakpoints, variants } from "@/util/break-points";
-import MyFramerComponent from "./framer-motion";
+
 
 interface CardData {
   profilePic: string;
@@ -64,12 +63,12 @@ const cardData: CardData[] = [
   },
 ];
 
-const Expander = ({ className }: ExpanderProps) => {
+export default function Expander({ className }: ExpanderProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [emailEnter, setEmailEnter] = useState(false);
   const [val, setVal] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const bannerText = useRef<HTMLDivElement>(null);
@@ -78,6 +77,7 @@ const Expander = ({ className }: ExpanderProps) => {
     Array.from({ length: cardData.length }, () => useRef(null))
   );
   const prevScrollY = useRef(0);
+  const { scrollYProgress } = useScroll();
   const [variant, setVariant] = useState<
     | 'Variant B-2'
     | 'Variant A-1'
@@ -140,19 +140,20 @@ const Expander = ({ className }: ExpanderProps) => {
     const lenis = new Lenis();
 
     const handleScroll = (e: any) => {
+      
       const { animatedScroll } = e;
       const currentURL = window.location.pathname;
-
+      
       // Handle the "circle" animation based on e.animatedScroll
       if (animatedScroll < prevScrollY.current && currentURL === "/") {
-        console.log("animated-1");
+     
         // Scrolling up on the homepage, scroll to the top of the page instantly
         window.scrollTo({ top: 0, behavior: "auto" });
-        setIsCircleMaskOn(true);
-        // document.body.classList.remove("circle-mask-is-on");
-        document.body.classList.add("circle-mask-is-on");
+        setIsCircleMaskOn(false);
+        document.body.classList.remove("circle-mask-is-on");
+        // document.body.classList.add("circle-mask-is-on");
       } else if (animatedScroll !== 0 && currentURL === "/") {
-        console.log("animated-2");
+        
         setIsCircleMaskOn(true);
         document.body.classList.add("circle-mask-is-on");
       }
@@ -171,13 +172,14 @@ const Expander = ({ className }: ExpanderProps) => {
         (animatedScroll - breakpoints[currentVariantIndex]) /
         (breakpoints[currentVariantIndex + 1] -
           breakpoints[currentVariantIndex]);
+     
 
       // Interpolate between the current and next variant
       const currentVariant = variants[currentVariantIndex];
       const nextVariant =
         variants[currentVariantIndex + 1] || variants[currentVariantIndex];
       const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
-
+      
       setVariant(
         interpolatedVariant as
         | 'Variant B-2'
@@ -300,6 +302,7 @@ const Expander = ({ className }: ExpanderProps) => {
     const enteredValue = e.target.value;
     setVal(enteredValue);
     setEmailEnter(enteredValue.trim().includes("@"));
+    setIsSubmitted(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -307,26 +310,27 @@ const Expander = ({ className }: ExpanderProps) => {
     setEmailEnter(val.trim().includes("@"));
     setVal("");
     setIsFocused(false);
+    setIsSubmitted(true);
   };
 
   return (
     <>
       <div
-        className={`absolute top-[20%] sm:top-[25%] flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
+        className={`absolute top-[20%] sm:top-[25%] flex opacity-1 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
           }`}
       >
         {isCircleMaskOn && (
-
           <motion.div
             initial={{ opacity: 0, y: -50, zIndex: 0 }}
             animate={{ opacity: 1, y: 0, zIndex: 1 }}
-            className="bg-black"
+            className=""
             transition={{
               type: "spring",
-              duration: 1,
+              duration: 5,
               ease: "ease-in-out",
-              delay: 0.5,
+              delay: 1,
             }}
+            
           >
             <FramerStyles Components={[fylo]} />
             <fylo.Responsive
@@ -337,6 +341,7 @@ const Expander = ({ className }: ExpanderProps) => {
               }}
             />
           </motion.div>
+          
         )}
       </div>
       <div
@@ -344,21 +349,15 @@ const Expander = ({ className }: ExpanderProps) => {
         className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
       >
         <h1
-          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[180px] sm:mb-0`}
+          className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[100px] sm:mb-0`}
         >
           ideation, evolved.
         </h1>
-        {/* <a
-          className={`rounded-lg bg-white flex sm:w-[470px] p-[19px] pl-[100px] pr-[100px] justify-center items-center h-[52px] hover:opacity-[0.6] hover:bg-[rgba(255,255,255,0.6)] transition duration-500 cursor-pointer shadow-lg whitespace-nowrap`}
-          href="#"
-        >
-          Join the waitlist
-        </a> */}
         <form
           onSubmit={handleSubmit}
           className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
         >
-          <div className="w-full relative">
+          
             <input
               ref={inputRef}
               onFocus={() => setIsFocused(true)}
@@ -367,28 +366,25 @@ const Expander = ({ className }: ExpanderProps) => {
               value={isFocused ? val : ""}
               type="email"
               placeholder={""}
-              className={`${emailEnter
-                ? "backdrop-blur-sm bg-black/30 placeholder-white"
-                : `${isFocused ? '' : 'placeholder-black'} hover:bg-[rgba(255,255,255,0.6)] bg-white`
-                } text-xl  border outline-none  rounded-2xl flex w-full px-[19px] py-[8px] sm:p-[19px] justify-center items-center hover:opacity-[0.9]  cursor-pointer shadow-lg whitespace-nowrap 
+              className={` placeholder-black text-xl  border outline-none rounded-2xl flex w-full px-[19px] py-[8px] sm:p-[19px] justify-center items-center cursor-pointer shadow-lg whitespace-nowrap 
               ${isFocused ? "text-left" : "text-center"}
               `}
             />
 
             <label
               onClick={() => inputRef?.current?.focus()}
-              className={`absolute top-[13px] sm:top-[24px] min-w-[130px] ${emailEnter ? 'text-white' : 'text-black'}  transition-all ease-out duration-500 cursor-pointer
-              ${isFocused ? `left-[23px] ${val ? 'opacity-0' : 'opacity-25'}  ` : 'left-1/2 -translate-x-1/2 opacity-100'}`}
+              className={`absolute top-[13px] sm:top-[24px] min-w-[130px] text-black  transition-all ease-out duration-500 cursor-pointer
+              ${isFocused ? `left-[18px] sm:left-[21px]  ${val ? 'opacity-0' : 'opacity-50'}  ` : 'opacity-100'}  `}
             >
-              {isFocused ? 'Enter your email' : emailEnter ? "You're on the waitlist" : 'Join the waitlist'}
+              {isFocused ? 'Enter your email' : isSubmitted ? "You are on the waitlist" : "Join the waitlist"}
             </label>
             <button type="submit" id="submit" disabled={!emailEnter}>
               {isFocused ? <ArrowRight
                 size={20}
-                className="text-black absolute opacity-25 right-5 top-[24px]"
+                className="text-black absolute opacity-50 right-5 -translate-y-1/2"
               /> : ''}
             </button>
-          </div>
+          
         </form>
       </div>
       <div
@@ -426,4 +422,4 @@ const Expander = ({ className }: ExpanderProps) => {
   );
 }
 
-export default Expander;
+

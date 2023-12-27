@@ -1,6 +1,6 @@
 "use client";
 
-const Analytics = () => {
+export default function Analytic() {
 	const token = process.env.NEXT_PUBLIC_BEAM_TOKEN;
 	if (!token) {
 		return null;
@@ -13,5 +13,3 @@ const Analytics = () => {
 		/>
 	);
 };
-
-export default Analytics;

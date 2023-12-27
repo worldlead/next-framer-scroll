@@ -1,8 +1,8 @@
 "use client";
 import { Github, Mail, Twitter } from "lucide-react";
 import Link from "next/link";
-import { Navigation } from "../components/nav";
-import Login from "../components/auth";
+import { Navigation } from "../components/Nav";
+import Login from "../components/Auth";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
