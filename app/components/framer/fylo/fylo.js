@@ -11077,7 +11077,7 @@ var Component6 = /* @__PURE__ */ React8.forwardRef(function (props, ref,) {
           layoutDependency,
           layoutId: 'zEXSsGxpE',
           ref: ref !== null && ref !== void 0 ? ref : ref1,
-          style: { backgroundColor: 'rgb(255, 255, 255)', ...style, },
+          style: { ...style, },
           ...addPropertyOverrides6(
             {
               aOPZX8nJO: { 'data-framer-name': 'Variant B-5', onTap: onTap6gcwj6, },
