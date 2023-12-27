@@ -1,37 +1,31 @@
-import { useEffect } from 'react';
-import Router from 'next/router';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
 import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
-
-
-
-export default function ProgressBar() {
-  
-  NProgress.configure({ showSpinner: false });
-  const handleStart = () => {
-    NProgress.start();
-  };
-  const handleStop = () => {
-    NProgress.done();
-  };
-  window.addEventListener("load", handleStop);
+interface StateProps {
+  progress: number;
+  handleProgress: (newState: number) => void;
+}
+export default function ProgressBar({ progress, handleProgress }: StateProps) {
   
   useEffect(() => {
-    handleStart();
-
-    Router.events.on('routeChangeStart', handleStart);
-    Router.events.on('routeChangeComplete', handleStop);
-    Router.events.on('routeChangeError', handleStop);
+    let progressState = 0;
+    const interval = setInterval(() => {
+      progressState++;
+      handleProgress(progressState);
+      if (progressState === 100) {
+        clearInterval(interval);
+      }
+    }, 1);
 
     return () => {
-      Router.events.off('routeChangeStart', handleStart);
-      Router.events.off('routeChangeComplete', handleStop);
-      Router.events.off('routeChangeError', handleStop);
+      clearInterval(interval);
     };
-  }, [Router]);
+  }, []);
 
   return (
-    <></>
+    <div>
+      <p className="text-white">{progress}</p>
+    </div>
   );
-}
+};

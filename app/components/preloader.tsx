@@ -1,48 +1,32 @@
 "use client";
-
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css'; //styles of nprogress
 import { useRef, useState, useEffect } from "react";
+import ProgressBar from "./ProgressBar";
 
 interface PreloaderProps {
   className?: string;
   onLoadingComplete: () => void;
 }
 
-const Preloader: React.FC<PreloaderProps> = ({
-  className,
-  onLoadingComplete,
-}) => {
+export default function Preloader({ className, onLoadingComplete }: PreloaderProps) {
+  const [progress, setProgress] = useState<number>(0);
   const preloaderRef = useRef<any>(null);
-  NProgress.configure({ easing: 'ease', speed: 1000 });
-  const handleStart = () => {
-    NProgress.start();
-  };
-  const handleStop = () => {
-    NProgress.done();
-    onLoadingComplete();
-  };
+  
+  // const handleProgressState = (newState: number) => {
+  //   setProgress(newState);
+  // }
 
-  window.addEventListener('load', handleStop);
   useEffect(() => {
-    if (document.readyState === 'complete') {
-      // console.log('page loaded');
-      setTimeout(handleStop, 2000);
-      
-    } else {
-      
-      handleStart();
-      NProgress.inc(0.5);
+    if (progress === 100) {
+      onLoadingComplete(); // Call onLoadingComplete when progress reaches 100
     }
-    return () => window.removeEventListener("load", handleStop);
-  }, []);
+  }, [progress, onLoadingComplete]);
 
   return (
     <div
       ref={preloaderRef}
       className={className} // Display the preloader if isLoading is true
     >
-      <div className="text-[48px] gap-[16px] text-white flex items-center justify-center">
+      <div className="text-[48px] gap-[16px] absolute text-white flex items-center justify-center  top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="49"
@@ -123,9 +107,11 @@ const Preloader: React.FC<PreloaderProps> = ({
         </svg>
         <span className="relative top-[4px]">fylo</span>
       </div>
-      {/* <ProgressBar  /> */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-3/4">
+        <ProgressBar progress={progress} handleProgress={setProgress} />
+      </div>
     </div>
   );
 };
 
-export default Preloader;
+
