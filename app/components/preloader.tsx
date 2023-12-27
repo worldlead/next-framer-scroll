@@ -10,11 +10,7 @@ interface PreloaderProps {
 export default function Preloader({ className, onLoadingComplete }: PreloaderProps) {
   const [progress, setProgress] = useState<number>(0);
   const preloaderRef = useRef<any>(null);
-  
-  // const handleProgressState = (newState: number) => {
-  //   setProgress(newState);
-  // }
-
+ 
   useEffect(() => {
     if (progress === 100) {
       onLoadingComplete(); // Call onLoadingComplete when progress reaches 100
