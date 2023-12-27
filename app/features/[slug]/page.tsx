@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { allFeatures } from "contentlayer/generated";
-import { Mdx } from "@/app/components/Mdx";
+import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
 import { ReportView } from "./view";

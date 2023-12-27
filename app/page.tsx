@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import Preloader from "./components/Preloader";
-import ForceGraph from "./components/ForceGraph";
-import Expander from "./components/Expander";
-import Navbar from "./components/Navbar";
+import React, { useState, useRef, useEffect } from "react";
+import Preloader from "./components/preloader";
+import ForceGraph from "./components/force-graph";
+import Expander from "./components/expander";
+import Navbar from "./components/navbar";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,7 +45,7 @@ export default function Home() {
           )}
         </div>
         <Preloader
-          className={`w-full h-full absolute bg-[#101942] items-center justify-center ${
+          className={`w-full h-full absolute bg-[#101942] flex items-center justify-center ${
             isLoaded ? "z-20" : "z-40"
           }`}
           onLoadingComplete={handleLoadingComplete}

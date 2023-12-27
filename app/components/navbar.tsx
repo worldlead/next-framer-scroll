@@ -7,10 +7,10 @@ import { useRouter } from "next/router";
 
 interface NavbarProps {
   className?: string;
-  isLoaded?: boolean;
+  isLoaded?:boolean;
 }
 
-export default function Navbar({ className ,isLoaded }: NavbarProps) {
+const Navbar: React.FC<NavbarProps> = ({ className ,isLoaded }) => {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -376,4 +376,4 @@ export default function Navbar({ className ,isLoaded }: NavbarProps) {
   );
 };
 
-
+export default Navbar;

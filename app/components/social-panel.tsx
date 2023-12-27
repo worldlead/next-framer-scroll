@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
-export default function SocialPanel() {
+const SocialPanel = () => {
     return (
         <>
             <div className="fixed left-0 bottom-0  h-[800px] md:h-[600px] bg-black w-full -z-[99] px-[1rem] md:px-[10rem] py-36 md:py-48  text-white leading-[1.5px]">
@@ -30,3 +30,4 @@ export default function SocialPanel() {
     );
 }
 
+export default SocialPanel;
