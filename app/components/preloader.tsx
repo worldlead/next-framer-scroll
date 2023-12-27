@@ -8,15 +8,19 @@ interface PreloaderProps {
 }
 
 export default function Preloader({ className, onLoadingComplete }: PreloaderProps) {
-  
+  const [progress, setProgress] = useState<number>(0);
   const preloaderRef = useRef<any>(null);
-  const handleStop = () => {
-    setTimeout(onLoadingComplete, 4500);
-  };
   
+  // const handleProgressState = (newState: number) => {
+  //   setProgress(newState);
+  // }
+
   useEffect(() => {
-    handleStop();
-  }, []);
+    if (progress === 100) {
+      onLoadingComplete(); // Call onLoadingComplete when progress reaches 100
+    }
+  }, [progress, onLoadingComplete]);
+
   return (
     <div
       ref={preloaderRef}
@@ -104,7 +108,7 @@ export default function Preloader({ className, onLoadingComplete }: PreloaderPro
         <span className="relative top-[4px]">fylo</span>
       </div>
       <div className="absolute left-1/2 -translate-x-1/2 top-3/4">
-        <ProgressBar  />
+        <ProgressBar progress={progress} handleProgress={setProgress} />
       </div>
     </div>
   );

@@ -7,17 +7,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-// export default function Example() {
-// 	return (
-// 		<div className=" bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
-// 			<Navigation />
-// 			<Login />
-// 		</div>
-// 	);
-// }
-
-
-
 export default function Example() {
 	return (
 		<div>
