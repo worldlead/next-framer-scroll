@@ -375,7 +375,7 @@ export default function Expander({ className }: ExpanderProps) {
               onClick={() => inputRef?.current?.focus()}
               className={`absolute top-[13px] sm:top-[24px] min-w-[130px] text-black  transition-all ease-out duration-500 cursor-pointer
               ${isFocused ? `sm:!left-[21px]  ${val ? 'opacity-0' : 'opacity-50'}  ` : ' opacity-100'}  `}
-              style={{ left: isFocused ? '18px':'calc(50% - 65px)' }}
+              style={{ left: isFocused? '18px':'calc(50% - 65px)' }}
             >
               {isFocused ? 'Enter your email' : isSubmitted ? "You are on the waitlist" : "Join the waitlist"}
             </label>
