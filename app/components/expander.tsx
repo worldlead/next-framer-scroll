@@ -355,7 +355,7 @@ export default function Expander({ className }: ExpanderProps) {
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] "
+          className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
         >
           
             <input
