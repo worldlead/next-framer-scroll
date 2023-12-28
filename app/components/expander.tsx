@@ -355,7 +355,7 @@ export default function Expander({ className }: ExpanderProps) {
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
+          className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] "
         >
           
             <input
@@ -374,10 +374,12 @@ export default function Expander({ className }: ExpanderProps) {
             <label
               onClick={() => inputRef?.current?.focus()}
               className={`absolute top-[13px] sm:top-[24px] min-w-[130px] text-black  transition-all ease-out duration-500 cursor-pointer
-              ${isFocused ? `left-[18px] sm:left-[21px]  ${val ? 'opacity-0' : 'opacity-50'}  ` : 'opacity-100'}  `}
+              ${isFocused ? `sm:!left-[21px]  ${val ? 'opacity-0' : 'opacity-50'}  ` : ' opacity-100'}  `}
+              style={{ left: isFocused ? '18px':'calc(50% - 65px)' }}
             >
               {isFocused ? 'Enter your email' : isSubmitted ? "You are on the waitlist" : "Join the waitlist"}
             </label>
+            
             <button type="submit" id="submit" disabled={!emailEnter}>
               {isFocused ? <ArrowRight
                 size={20}
