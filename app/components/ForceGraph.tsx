@@ -12,7 +12,7 @@ interface ForceGraphProps {
   className?: string;
 }
 
-const ForceGraph = ({ className }: ForceGraphProps) => {
+export default function ForceGraph({ className }: ForceGraphProps) {
   const [graphData, setGraphData] = useState(null);
   const fgRef = useRef<any>(null);
   const circleRef = useRef(null);
@@ -85,4 +85,3 @@ const ForceGraph = ({ className }: ForceGraphProps) => {
 };
 
 
-export default ForceGraph;

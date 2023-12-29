@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Footer from "./Footer";
-import { motion, useScroll } from "framer-motion";
+import { animate, motion, useScroll } from "framer-motion";
 import fylo from "./framer/fylo";
 import { FramerStyles } from "installable-framer/dist/react";
 import { ArrowRight } from "lucide-react";
@@ -140,25 +140,21 @@ export default function Expander({ className }: ExpanderProps) {
     const lenis = new Lenis();
 
     const handleScroll = (e: any) => {
-      
-      const { animatedScroll } = e;
+     
+      const { animatedScroll, direction } = e;
       const currentURL = window.location.pathname;
       
       // Handle the "circle" animation based on e.animatedScroll
-      if (animatedScroll < prevScrollY.current && currentURL === "/") {
-     
-        // Scrolling up on the homepage, scroll to the top of the page instantly
-        window.scrollTo({ top: 0, behavior: "auto" });
+      if (direction === -1 && currentURL === "/") {
+
+        lenis.scrollTo(0, {immediate: true});
         setIsCircleMaskOn(false);
         document.body.classList.remove("circle-mask-is-on");
-        // document.body.classList.add("circle-mask-is-on");
-      } else if (animatedScroll !== 0 && currentURL === "/") {
+      } else if (direction === 1 && currentURL === "/") {
         
         setIsCircleMaskOn(true);
         document.body.classList.add("circle-mask-is-on");
       }
-
-      prevScrollY.current = animatedScroll;
 
       let currentVariantIndex = 0;
       for (let i = 0; i < breakpoints.length; i++) {
@@ -166,18 +162,15 @@ export default function Expander({ className }: ExpanderProps) {
           currentVariantIndex = i;
         }
       }
-
+      
       // Calculate the progress within the current breakpoint
-      const progress =
-        (animatedScroll - breakpoints[currentVariantIndex]) /
-        (breakpoints[currentVariantIndex + 1] -
-          breakpoints[currentVariantIndex]);
+      const progress = (animatedScroll - breakpoints[currentVariantIndex]) /
+                      (breakpoints[currentVariantIndex + 1] - breakpoints[currentVariantIndex]);
      
 
       // Interpolate between the current and next variant
       const currentVariant = variants[currentVariantIndex];
-      const nextVariant =
-        variants[currentVariantIndex + 1] || variants[currentVariantIndex];
+      const nextVariant = variants[currentVariantIndex + 1] || variants[currentVariantIndex];
       const interpolatedVariant = progress === 1 ? nextVariant : currentVariant;
       
       setVariant(
@@ -315,9 +308,9 @@ export default function Expander({ className }: ExpanderProps) {
 
   return (
     <>
+      
       <div
-        className={`absolute top-[20%] sm:top-[25%] flex opacity-1 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
-          }`}
+        className={`fixed top-[20%] sm:top-[25%] flex opacity-1 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""}`}
       >
         {isCircleMaskOn && (
           <motion.div
@@ -392,10 +385,11 @@ export default function Expander({ className }: ExpanderProps) {
       <div
         ref={circleRef}
         className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
+        // className={`circle-mask z-50`}
       >
         <div className="opacity-wrapper">
-          <div className="bg-blue-gradient h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
-            <div className="absolute h-[10000px] w-full card-stack-wrapper"></div>
+          <div className="h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
+            <div className="absolute left-0 h-[10000px] w-full card-stack-wrapper "></div>
             <div className="hidden sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
               <h1 className="text-spectrum-space w-[50%] text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
                 ideation, evolved.
