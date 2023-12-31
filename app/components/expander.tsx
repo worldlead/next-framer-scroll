@@ -2,8 +2,9 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
-import Footer from "./Footer";
-import { animate, motion, useScroll } from "framer-motion";
+import Footer from "./footer";
+import FramerEmbed from "./framerembed";
+import { motion } from "framer-motion";
 import fylo from "./framer/fylo";
 import { FramerStyles } from "installable-framer/dist/react";
 import { ArrowRight } from "lucide-react";
@@ -77,7 +78,6 @@ export default function Expander({ className }: ExpanderProps) {
     Array.from({ length: cardData.length }, () => useRef(null))
   );
   const prevScrollY = useRef(0);
-  const { scrollYProgress } = useScroll();
   const [variant, setVariant] = useState<
     | 'Variant B-2'
     | 'Variant A-1'
@@ -308,33 +308,13 @@ export default function Expander({ className }: ExpanderProps) {
 
   return (
     <>
-      
+
       <div
-        className={`fixed top-[20%] sm:top-[25%] flex opacity-1 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""}`}
+        className={`absolute flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
+          }`}
       >
         {isCircleMaskOn && (
-          <motion.div
-            initial={{ opacity: 0, y: -50, zIndex: 0 }}
-            animate={{ opacity: 1, y: 0, zIndex: 1 }}
-            className=""
-            transition={{
-              type: "spring",
-              duration: 5,
-              ease: "ease-in-out",
-              delay: 1,
-            }}
-            
-          >
-            <FramerStyles Components={[fylo]} />
-            <fylo.Responsive
-              variants={{
-                Desktop: variant,
-                Tablet: variant,
-                Mobile: variant,
-              }}
-            />
-          </motion.div>
-          
+          <FramerEmbed></FramerEmbed>
         )}
       </div>
       <div
@@ -350,7 +330,7 @@ export default function Expander({ className }: ExpanderProps) {
           onSubmit={handleSubmit}
           className="group relative mt-0 md:w-[50%] lg:w-[40%] xl:w-[30%] flex justify-center"
         >
-          
+
             <input
               ref={inputRef}
               onFocus={() => setIsFocused(true)}
