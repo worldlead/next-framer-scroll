@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Preloader from "./components/Preloader";
+import Preloader from "./components/preloader";
 import ForceGraph from "./components/ForceGraph";
 import Expander from "./components/Expander";
 import Navbar from "./components/Navbar";

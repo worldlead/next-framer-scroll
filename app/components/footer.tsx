@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SwiperCore from "swiper";
@@ -7,13 +7,11 @@ import SwiperCore from "swiper";
 interface FooterProps {
   className?: string;
   onToggleCircleMask: () => void;
-  currentVariant: string;
 }
 
 export default function Footer({
   className,
   onToggleCircleMask,
-  currentVariant,
 }: FooterProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
@@ -25,48 +23,6 @@ export default function Footer({
     "dependency mapping",
   ];
 
-  const determineSlideIndex = () => {
-    switch (currentVariant) {
-      case "Variant 1":
-      case "Variant 2":
-        return 0;
-      case "Variant 6":
-      case "Variant 7":
-      case "Variant 8":
-      case "Variant 9":
-      case "Variant 10":
-      case "Variant 11":
-      case "Variant 12":
-      case "Variant 13":
-      case "Variant 14":
-        return 1;
-      case "Variant 15":
-      case "Variant 16":
-      case "Variant 17":
-        return 2;
-      case "Variant 18":
-      case "Variant 19":
-      case "Variant 20":
-      case "Variant 21":
-      case "Variant 22":
-      case "Variant 23":
-      case "Variant 24":
-      case "Variant 25":
-        return 3;
-      default:
-        return 0;
-    }
-  };
-
-  useEffect(() => {
-    // Slide to a specific index based on the currentVariant
-    if (swiperRef.current) {
-      const slideIndex = determineSlideIndex();
-
-      // Slide to the determined index
-      swiperRef.current.slideTo(slideIndex);
-    }
-  }, [currentVariant]);
 
   const handleScrollWrapperClick = () => {
     setIsCircleMaskOn(!isCircleMaskOn);
