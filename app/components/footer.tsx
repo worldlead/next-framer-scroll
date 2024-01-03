@@ -40,7 +40,7 @@ export default function Footer({
           <h5 className="text-[20px] font-[300]">highlighted features</h5>
           <div>
             <Swiper
-              spaceBetween={50}
+              spaceBetween={10}
               slidesPerView={2} // Default slides per view
               draggable={false}
               onSlideChange={() => console.log("slide change")}
@@ -65,7 +65,7 @@ export default function Footer({
           </div>
         </div>
         <div
-          className={`absolute scroll-wrapper w-[40px] h-[40px] bg-[rgba(0,0,0,0.1)] rounded-[10px] flex items-center justify-center overflow-hidden cursor-pointer relative transition duration-500 ${circleMaskClass}`}
+          className={`scroll-wrapper w-[50px] h-[50px] bg-[rgba(0,0,0,0.1)] rounded-[10px] flex items-center justify-center overflow-hidden cursor-pointer relative transition duration-500 ${circleMaskClass}`}
           onClick={handleScrollWrapperClick}
         >
           <svg
@@ -84,9 +84,9 @@ export default function Footer({
         </div>
         <div className="hidden sm:block w-2/5 flex-col gap-[10px] text-right">
           <h5 className="text-[20px] font-[375]">towards a neural ecosystem</h5>
-          <p className="text-[16px] font-[300] max-w-[300px] text-right ml-auto">
+          <p className="text-[16px] font-[300] max-w-[600px] text-right ml-auto">
             creatives, researchers, & innovators use{" "}
-            <span className="font-[500]">fylo</span> to augment cognitive powers
+            <span className="font-[500]">fylo</span> to augment ideation
           </p>
         </div>
       </div>

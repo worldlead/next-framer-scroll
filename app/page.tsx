@@ -33,8 +33,8 @@ export default function Home() {
         </div>
         <div className="wrapper-scene">
           <ForceGraph
-            className={`w-screen force-graph transition duration-2000 absolute z-40 inset-0 animate-fade-in ease-in-out ${
-              isLoaded ? "animate-scale-in" : "animate-scale-out"
+            className={`w-screen force-graph transition-all duration-2000 absolute z-40 inset-0 animate-fade-in ease-in-out rounded-[60px] ${
+              isLoaded ? "animate-scale-in" : "animate-scale-out rounded-[10px]"
             }`}
           />
         </div>
