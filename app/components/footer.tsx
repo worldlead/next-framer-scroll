@@ -9,10 +9,10 @@ interface FooterProps {
   onToggleCircleMask: () => void;
 }
 
-export default function Footer({
-  className,
-  onToggleCircleMask,
-}: FooterProps) {
+export default ({
+                  className,
+                  onToggleCircleMask,
+                }: FooterProps) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
 
