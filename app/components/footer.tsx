@@ -34,7 +34,7 @@ export default ({
   return (
     <>
       <div
-        className={`${className} text-[#101942] justify-center sm:justify-between items-center flex absolute bottom-0 left-0 w-full z-50 px-14 pb-[30px]`}
+        className={`${className} text-[#101942] justify-center sm:justify-between items-center flex fixed bottom-0 left-0 w-full z-50 px-14 pb-[30px]`}
       >
         <div className="hidden sm:block w-2/5 flex-col gap-[10px] min-w-[300px]">
           <h5 className="text-[20px] font-[300]">highlighted features</h5>

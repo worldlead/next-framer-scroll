@@ -11,7 +11,7 @@ export default function ProgressBar({ progress, handleProgress }: StateProps) {
   useEffect(() => {
     let progressState = 0;
     const interval = setInterval(() => {
-      progressState = progressState + 2;
+      progressState = progressState + 1;
       handleProgress(progressState);
       if (progressState === 100) {
         clearInterval(interval);
