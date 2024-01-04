@@ -339,7 +339,7 @@ export default function Expander({ className }: ExpanderProps) {
       </div>
       <div
         ref={bannerText}
-        className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
+        className={`${className}flex items-center transition z-50 opacity-0 animate-fade-in`}
       >
         <h1
           className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[100px] sm:mb-0`}
@@ -385,7 +385,7 @@ export default function Expander({ className }: ExpanderProps) {
       <div
         ref={circleRef}
         className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
-        // className={`circle-mask z-50`}
+        
       >
         <div className="opacity-wrapper">
           <div className="h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">

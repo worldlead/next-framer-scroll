@@ -29,11 +29,11 @@ export default function Home() {
             isLoaded ? "" : "hidden"
           }`}
         >
-          <Navbar isLoaded={isLoaded} className={`animate-fade-in ${isLoaded ? "z-[70]" : ""}`} />
+          <Navbar isLoaded={isLoaded} className={` animate-fade-in ${isLoaded ? "z-[70]" : ""}`} />
         </div>
         <div className="wrapper-scene">
           <ForceGraph
-            className={`w-screen force-graph transition duration-2000 absolute z-40 inset-0 animate-fade-in ease-in-out ${
+            className={`w-screen force-graph transition absolute z-40 inset-0 animate-fade-in ease-in-out ${
               isLoaded ? "animate-scale-in" : "animate-scale-out"
             }`}
           />
