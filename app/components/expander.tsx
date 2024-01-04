@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
-import Footer from "./Footer";
-import FramerEmbed from "./Framerembed";
+import Footer from "./footer";
+import FramerEmbed from "./framerembed";
 import { ArrowRight } from "lucide-react";
 
 interface ExpanderProps {
@@ -186,4 +186,4 @@ let expander = function Expander({className}: ExpanderProps) {
       </>
   );
 };
-export default expander;
+export default expander
