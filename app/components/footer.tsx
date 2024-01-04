@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SwiperCore from "swiper";
@@ -7,14 +7,12 @@ import SwiperCore from "swiper";
 interface FooterProps {
   className?: string;
   onToggleCircleMask: () => void;
-  currentVariant: string;
 }
 
-export default function Footer({
-  className,
-  onToggleCircleMask,
-  currentVariant,
-}: FooterProps) {
+export default ({
+                  className,
+                  onToggleCircleMask,
+                }: FooterProps) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
 
@@ -25,48 +23,6 @@ export default function Footer({
     "dependency mapping",
   ];
 
-  const determineSlideIndex = () => {
-    switch (currentVariant) {
-      case "Variant 1":
-      case "Variant 2":
-        return 0;
-      case "Variant 6":
-      case "Variant 7":
-      case "Variant 8":
-      case "Variant 9":
-      case "Variant 10":
-      case "Variant 11":
-      case "Variant 12":
-      case "Variant 13":
-      case "Variant 14":
-        return 1;
-      case "Variant 15":
-      case "Variant 16":
-      case "Variant 17":
-        return 2;
-      case "Variant 18":
-      case "Variant 19":
-      case "Variant 20":
-      case "Variant 21":
-      case "Variant 22":
-      case "Variant 23":
-      case "Variant 24":
-      case "Variant 25":
-        return 3;
-      default:
-        return 0;
-    }
-  };
-
-  useEffect(() => {
-    // Slide to a specific index based on the currentVariant
-    if (swiperRef.current) {
-      const slideIndex = determineSlideIndex();
-
-      // Slide to the determined index
-      swiperRef.current.slideTo(slideIndex);
-    }
-  }, [currentVariant]);
 
   const handleScrollWrapperClick = () => {
     setIsCircleMaskOn(!isCircleMaskOn);
@@ -84,7 +40,7 @@ export default function Footer({
           <h5 className="text-[20px] font-[300]">highlighted features</h5>
           <div>
             <Swiper
-              spaceBetween={50}
+              spaceBetween={10}
               slidesPerView={2} // Default slides per view
               draggable={false}
               onSlideChange={() => console.log("slide change")}
@@ -109,7 +65,7 @@ export default function Footer({
           </div>
         </div>
         <div
-          className={`absolute scroll-wrapper w-[40px] h-[40px] bg-[rgba(0,0,0,0.1)] rounded-[10px] flex items-center justify-center overflow-hidden cursor-pointer relative transition duration-500 ${circleMaskClass}`}
+          className={`scroll-wrapper w-[50px] h-[50px] bg-[rgba(0,0,0,0.1)] rounded-[10px] flex items-center justify-center overflow-hidden cursor-pointer relative transition duration-500 ${circleMaskClass}`}
           onClick={handleScrollWrapperClick}
         >
           <svg
@@ -128,9 +84,9 @@ export default function Footer({
         </div>
         <div className="hidden sm:block w-2/5 flex-col gap-[10px] text-right">
           <h5 className="text-[20px] font-[375]">towards a neural ecosystem</h5>
-          <p className="text-[16px] font-[300] max-w-[300px] text-right ml-auto">
+          <p className="text-[16px] font-[300] max-w-[600px] text-right ml-auto">
             creatives, researchers, & innovators use{" "}
-            <span className="font-[500]">fylo</span> to augment cognitive powers
+            <span className="font-[500]">fylo</span> to augment ideation
           </p>
         </div>
       </div>

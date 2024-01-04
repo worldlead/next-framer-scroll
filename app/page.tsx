@@ -1,24 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import Preloader from "./components/Preloader";
-import ForceGraph from "./components/ForceGraph";
+import CameraOrbit from "./components/force-graph";
 import Expander from "./components/Expander";
 import Navbar from "./components/Navbar";
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
+    const [graphData, setGraphData] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-  const handleLoadingComplete = () => {
-    setIsLoaded(true);
-    // setTimeout(() => {
-      // Remove the 'overflow-hidden' class after 2 seconds
-      const mainWrapper = document.querySelector(".main-wrapper");
-      if (mainWrapper) {
-        mainWrapper.classList.remove("overflow-hidden");
-      }
-    // }, 1000); // 2 seconds
-  };
+    useEffect(() => {
+        fetch("/blocks.json")
+            .then(res => res.json())
+            .then(data => setGraphData(data));
+    }, []);
+
+    const handleLoadingComplete = () => {
+        setIsLoaded(true);
+        // setTimeout(() => {
+            // Remove the 'overflow-hidden' class after 2 seconds
+            const mainWrapper = document.querySelector(".main-wrapper");
+            if (mainWrapper) {
+                mainWrapper.classList.remove("overflow-hidden");
+            }
+        // }, 2000); // 2 seconds
+    };
 
 
   return (
@@ -32,11 +39,7 @@ export default function Home() {
           <Navbar isLoaded={isLoaded} className={` animate-fade-in ${isLoaded ? "z-[70]" : ""}`} />
         </div>
         <div className="wrapper-scene">
-          <ForceGraph
-            className={`w-screen force-graph transition absolute z-40 inset-0 animate-fade-in ease-in-out ${
-              isLoaded ? "animate-scale-in" : "animate-scale-out"
-            }`}
-          />
+          {graphData && <CameraOrbit data={graphData} className={`w-full h-full ${isLoaded ? "z-10" : ""}`} />}
         </div>
         <div className="page-wrapper w-full" >
           <div className="buffer-page-wrapper fixed inset-0 pointer-events-none bg-opacity-0 z-7"></div>
