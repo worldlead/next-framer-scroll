@@ -118,7 +118,7 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
     }
 
     return hasMounted && data ? (
-        <div className="{className}">
+        <div className={`${className} overflow-hidden`}>
             <ForceGraph3D
                 ref={fgRef}
                 graphData={data}
