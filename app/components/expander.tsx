@@ -57,8 +57,8 @@ let expander = function Expander({className}: ExpanderProps) {
         document.body.classList.remove("circle-mask-is-on");
       } else if (direction === 1 && currentURL === "/") {
 
-        document.body.classList.add("circle-mask-is-on");
         setIsCircleMaskOn(true);
+        document.body.classList.add("circle-mask-is-on");
       }
 
       // Interpolate between the current and next variant
@@ -98,8 +98,10 @@ let expander = function Expander({className}: ExpanderProps) {
 
   return (
       <>
+
         <div
-            className={`fixed top-0 opacity-0.5 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""}`}
+            className={`absolute flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center ${isCircleMaskOn ? "z-[99]" : ""
+            }`}
         >
           {isCircleMaskOn && (
               <FramerEmbed></FramerEmbed>
@@ -107,7 +109,7 @@ let expander = function Expander({className}: ExpanderProps) {
         </div>
         <div
             ref={bannerText}
-            className={`${className}flex items-center transition z-50 opacity-0 animate-fade-in`}
+            className={`${className}flex items-center transition duration-500 z-50 opacity-0 animated-fade-in`}
         >
           <h1
               className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[100px] sm:mb-0`}
@@ -153,11 +155,12 @@ let expander = function Expander({className}: ExpanderProps) {
         <div
             ref={circleRef}
             className={`circle-mask z-50 ${isCircleMaskOn ? "on" : ""}`}
+            // className={`circle-mask z-50`}
         >
           <div className="opacity-wrapper">
             <div className="h-screen absolute top-0 left-0 w-full sm:px-[7.5rem] py-[12rem]">
-            <div className="absolute left-0 h-[10000px] w-full card-stack-wrapper "></div>
-              <div className="hidden sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
+              <div
+                  className="hidden sm:w-unset absolute sm:left-1/2 sm:top-1/2 flex-col sm:w-1/2 px-8 sm:px-[56px] bottom-[100px] items-center">
                 <h1 className="text-spectrum-space w-[50%] text-center leading-trim-cap font-pp-supply-sans text-[30px] sm:text-[48px] font-light leading-24 tracking-1.6">
                   ideation, evolved.
                 </h1>

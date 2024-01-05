@@ -110,6 +110,9 @@ dependencies:
   swiper:
     specifier: ^10.3.1
     version: 10.3.1
+  three-forcegraph:
+    specifier: 1.41.10
+    version: 1.41.10(three@0.159.0)
   typed.js:
     specifier: ^2.0.16
     version: 2.1.0
