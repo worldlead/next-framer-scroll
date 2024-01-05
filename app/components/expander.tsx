@@ -183,4 +183,4 @@ let expander = function Expander({className}: ExpanderProps) {
       </>
   );
 };
-export default expander;
+export default expander
