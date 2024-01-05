@@ -5,6 +5,7 @@ import Preloader from "./components/Preloader";
 import CameraOrbit from "./components/force-graph";
 import Expander from "./components/Expander";
 import Navbar from "./components/Navbar";
+import ForceGraph from "./components/ForceGraph";
 
 export default function Home() {
   const [graphData, setGraphData] = useState(null);

@@ -42,8 +42,7 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
     const animationFrameRef = useRef<number | null>(null);
     const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
     const [hasMounted, setHasMounted] = useState(false);
-    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-    const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+
     useEffect(() => {
         setHasMounted(true);
     }, []);
@@ -55,8 +54,8 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
         if (fgRef.current) {
             const time = performance.now() / 24000;
             const defaultAngle = time % (Math.PI * 2);
-            const mouseXFactor = mousePosition.x / windowWidth * 2;
-            const mouseYFactor = mousePosition.y / windowHeight * 2;
+            const mouseXFactor = mousePosition.x / window.innerWidth * 2;
+            const mouseYFactor = mousePosition.y / window.innerHeight * 2;
 
             const mouseAngle = mouseXFactor * Math.PI * -0.1;
 
@@ -88,8 +87,9 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
 
     useEffect(() => {
 
+        const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+        const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
         const handleMouseMove = (event: MouseEvent) => {
-            
             setMousePosition({
                 x: event.clientX - windowWidth / 2,
                 y: event.clientY - windowHeight / 2,
@@ -118,7 +118,7 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
     }
 
     return hasMounted && data ? (
-        <div className={`${className} overflow-hidden`}>
+        <div className={`${className} overflow-hidden `}>
             <ForceGraph3D
                 ref={fgRef}
                 graphData={data}
