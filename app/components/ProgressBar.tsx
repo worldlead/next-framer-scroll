@@ -16,7 +16,7 @@ export default function ProgressBar({ progress, handleProgress }: StateProps) {
       if (progressState === 100) {
         clearInterval(interval);
       }
-    }, 1);
+    }, 50);
 
     return () => {
       clearInterval(interval);

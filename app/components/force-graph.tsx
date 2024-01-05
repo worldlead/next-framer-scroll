@@ -47,13 +47,6 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
         setHasMounted(true);
     }, []);
 
-    const handleMouseMove = (event: MouseEvent) => {
-        setMousePosition({
-            x: event.clientX - window.innerWidth / 2,
-            y: event.clientY - window.innerHeight / 2,
-        });
-    };
-
     const dampeningFactor = 0.1; // Adjust this value to control the dampening effect
     const targetPosition = useRef({ x: 0, y: 0, z: distance });
 
@@ -93,6 +86,16 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
     }, [mousePosition.x, mousePosition.y]);
 
     useEffect(() => {
+
+        const handleMouseMove = (event: MouseEvent) => {
+            const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+            const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+            setMousePosition({
+                x: event.clientX - windowWidth / 2,
+                y: event.clientY - windowHeight / 2,
+            });
+        };
+        
         window.addEventListener('mousemove', handleMouseMove);
         animate();
 
@@ -115,7 +118,7 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
     }
 
     return hasMounted && data ? (
-        <div className={className}>
+        <div className={`${className} overflow-hidden`}>
             <ForceGraph3D
                 ref={fgRef}
                 graphData={data}

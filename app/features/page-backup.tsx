@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { allFeatures } from "contentlayer/generated";
-import { Navigation } from "../components/nav";
-import { Card } from "../components/card";
+import { Navigation } from "../components/Nav";
+import { Card } from "../components/Card";
 import { Article } from "./article";
 import { Redis } from "@upstash/redis";
 import { Eye } from "lucide-react";

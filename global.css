@@ -132,7 +132,7 @@ body {
   
   transition-delay: 50ms;
   transition-duration: 1.2s;
-  
+  /* overflow: hidden; */
 }
 .circle-mask.on .opacity__wrapper {
   opacity: 1;

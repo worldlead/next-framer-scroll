@@ -26,6 +26,7 @@ export default ({
 
   const handleScrollWrapperClick = () => {
     setIsCircleMaskOn(!isCircleMaskOn);
+    document.body.classList.add("circle-mask-is-on");
     onToggleCircleMask();
   };
 

@@ -4,7 +4,7 @@ const FramerEmbed = () => {
   const [scale, setScale] = useState(1);
 
   const updateScale = () => {
-    const windowWidth = window.innerWidth;
+    const windowWidth = typeof window !=="undefined" ? window.innerWidth : 0;
     // Constants to adjust the scaling effect
     const baseWidth = 1220; // Base width for full scale (1.0)
     const scaleFactor = -0.7; // Adjust this factor to change the scaling sensitivity
