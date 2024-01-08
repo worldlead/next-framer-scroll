@@ -16,7 +16,7 @@ export default function ProgressBar({ progress, handleProgress }: StateProps) {
       if (progressState === 100) {
         clearInterval(interval);
       }
-    }, 50);
+    }, 1);
 
     return () => {
       clearInterval(interval);
@@ -25,7 +25,7 @@ export default function ProgressBar({ progress, handleProgress }: StateProps) {
 
   return (
     <div>
-      <p className="text-white">{progress}</p>
+      <p className="text-white"></p>
     </div>
   );
 };

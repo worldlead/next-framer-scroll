@@ -8,9 +8,10 @@ import { ArrowRight } from "lucide-react";
 
 interface ExpanderProps {
   className?: string;
+  isScrolled?: boolean;
 }
 
-export default function Expander({ className }: ExpanderProps) {
+export default function Expander({ className, isScrolled }: ExpanderProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [emailEnter, setEmailEnter] = useState(false);
@@ -21,9 +22,17 @@ export default function Expander({ className }: ExpanderProps) {
   const bannerText = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
-
+ 
   useEffect(() => {
     //Function to handle banner and footer animation after a delay
+    
+    if (isScrolled) {
+      setIsCircleMaskOn(true);
+      document.body.classList.add("circle-mask-is-on");
+    } else if (!isScrolled) {
+      setIsCircleMaskOn(false);
+      setTimeout(() => document.body.classList.remove("circle-mask-is-on"), 1000);
+    }
 
     const handleAnimationDelay = () => {
       if (bannerText.current) {
@@ -39,7 +48,7 @@ export default function Expander({ className }: ExpanderProps) {
     const timer = setTimeout(handleAnimationDelay, 2000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isScrolled]);
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -96,11 +105,12 @@ export default function Expander({ className }: ExpanderProps) {
     setIsSubmitted(true);
   };
 
+  
+
   return (
     <>
-
       <div
-        className={`fixed flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center transition-all ${isCircleMaskOn ? "z-[99] opacity-100 animate-scale-in" : "animate-scale-out"}`}
+        className={`fixed flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center transition-all pointer-events-none ${isCircleMaskOn ? "z-[99] opacity-100 animate-scale-in" : "animate-scale-out"}`}
       >
         {isCircleMaskOn && (
           <FramerEmbed></FramerEmbed>
@@ -108,7 +118,7 @@ export default function Expander({ className }: ExpanderProps) {
       </div>
       <div
         ref={bannerText}
-        className={`${className}flex items-center transition z-50 opacity-0 animate-fade-in ${isCircleMaskOn ? "z-[0]" : ""}`}
+        className={`${className} items-center transition z-50 opacity-0 animate-fade-in ${isCircleMaskOn ? "z-[0]" : ""}`}
       >
         <h1
           className={`text-spectrum-space animate-fade-in leading-trim-cap font-pp-supply-sans text-[30px] md:text-[54px] font-light leading-24 tracking-1.6 mb-[100px] sm:mb-0`}

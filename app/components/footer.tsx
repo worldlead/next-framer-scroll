@@ -10,9 +10,9 @@ interface FooterProps {
 }
 
 export default ({
-                  className,
-                  onToggleCircleMask,
-                }: FooterProps) => {
+  className,
+  onToggleCircleMask,
+}: FooterProps) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
 
