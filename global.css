@@ -108,7 +108,8 @@ body {
 
 .circle-mask {
   /* background: linear-gradient(114deg, rgba(16, 25, 66, 1), rgb(17, 29, 81)); */
-  background: rgb(16, 25, 66);
+  background: #ffffff;
+  mix-blend-mode: exclusion;
   -webkit-clip-path: circle(0);
   clip-path: circle(0);
   height: 100vh;
