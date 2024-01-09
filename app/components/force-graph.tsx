@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback, HTMLAttributes } from "react";
-import ForceGraph3D from "react-force-graph-3d";
+import React, { useEffect, useRef, useState, useCallback, HTMLAttributes, forwardRef, MutableRefObject } from "react";
+import dynamic from "next/dynamic";
+import ForceGraph3D, { ForceGraphMethods } from "react-force-graph-3d";
 
 
-// Define types for your data structure
 interface DataProps {
-    className?: string;
+    nodes: Node[];
+    links: Link[];
 }
 
 interface CameraOrbitProps extends HTMLAttributes<HTMLDivElement> {
@@ -32,20 +33,39 @@ interface Link {
     // Other properties as expected by ForceGraph3D
 }
 
-interface DataProps {
-    nodes: Node[];
-    links: Link[];
+interface MyForceGraphProps {
+    // Add your specific props here
+    graphData: any; // replace 'any' with the actual type of your graph data
+    enableNodeDrag: boolean;
+    enableNavigationControls: boolean;
+    showNavInfo: boolean;
+    linkColor: () => string;
+    nodeColor: () => string;
+    nodeRelSize: number;
+    linkDirectionalParticles: number;
+    backgroundColor: string;
 }
+
+// const ForceGraph3D = dynamic(() => import("react-force-graph-3d"), {
+//     ssr: false,
+// });
+
+
+const MyForceGraph = forwardRef<ForceGraphMethods, MyForceGraphProps>((props, ref) => (
+    <ForceGraph3D
+        {...props}
+        ref={ref as MutableRefObject<ForceGraphMethods>}
+    />
+));
+
 const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
+
     const fgRef = useRef<any>(null);
+
     const distance = 2400;
     const animationFrameRef = useRef<number | null>(null);
     const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
     const [hasMounted, setHasMounted] = useState(false);
-
-    useEffect(() => {
-        setHasMounted(true);
-    }, []);
 
     const dampeningFactor = 0.1; // Adjust this value to control the dampening effect
     const targetPosition = useRef({ x: 0, y: 0, z: distance });
@@ -54,57 +74,67 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
         if (fgRef.current) {
             const time = performance.now() / 24000;
             const defaultAngle = time % (Math.PI * 2);
-            const mouseXFactor = mousePosition.x / window.innerWidth * 2;
-            const mouseYFactor = mousePosition.y / window.innerHeight * 2;
 
-            const mouseAngle = mouseXFactor * Math.PI * -0.1;
+            if (typeof window !== "undefined") {
+                // Client-side-only code
+                const mouseXFactor = mousePosition.x / window.innerWidth * 2;
+                const mouseYFactor = mousePosition.y / window.innerHeight * 2;
 
-            const totalAngle = defaultAngle + mouseAngle;
+                const mouseAngle = mouseXFactor * Math.PI * -0.1;
+                const totalAngle = defaultAngle + mouseAngle;
 
-            // Calculate the target position
-            targetPosition.current = {
-                x: distance * Math.sin(totalAngle),
-                y: distance * Math.sin(mouseYFactor * Math.PI / 6),
-                z: distance * Math.cos(totalAngle),
-            };
+                // Calculate the target position
+                targetPosition.current = {
+                    x: distance * Math.sin(totalAngle),
+                    y: distance * Math.sin(mouseYFactor * Math.PI / 6),
+                    z: distance * Math.cos(totalAngle),
+                };
 
-            // Get the current camera position
-            const currentPosition = fgRef.current.cameraPosition();
+                // Get the current camera position
+                const currentPosition = fgRef.current.cameraPosition();
 
-            // Interpolate towards the target position
-            fgRef.current.cameraPosition(
-                {
-                    x: currentPosition.x + (targetPosition.current.x - currentPosition.x) * dampeningFactor,
-                    y: currentPosition.y + (targetPosition.current.y - currentPosition.y) * dampeningFactor,
-                    z: currentPosition.z + (targetPosition.current.z - currentPosition.z) * dampeningFactor,
-                },
-                null,  // Look-at position (null keeps current look-at)
-                0      // No transition duration, we're manually animating
-            );
+                // Interpolate towards the target position
+                fgRef.current.cameraPosition(
+                    {
+                        x: currentPosition.x + (targetPosition.current.x - currentPosition.x) * dampeningFactor,
+                        y: currentPosition.y + (targetPosition.current.y - currentPosition.y) * dampeningFactor,
+                        z: currentPosition.z + (targetPosition.current.z - currentPosition.z) * dampeningFactor,
+                    },
+                    null,  // Look-at position (null keeps current look-at)
+                    0      // No transition duration, we're manually animating
+                );
+            }
         }
         animationFrameRef.current = requestAnimationFrame(animate);
     }, [mousePosition.x, mousePosition.y]);
 
+
+
     useEffect(() => {
-
-        const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-        const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
-        const handleMouseMove = (event: MouseEvent) => {
-            setMousePosition({
-                x: event.clientX - windowWidth / 2,
-                y: event.clientY - windowHeight / 2,
-            });
-        };
-        
-        window.addEventListener('mousemove', handleMouseMove);
-        animate();
-
+        setHasMounted(true);
         return () => {
-            if (animationFrameRef.current !== null) {
-                cancelAnimationFrame(animationFrameRef.current);
-            }
-            window.removeEventListener('mousemove', handleMouseMove);
+
         };
+    }, []);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const handleMouseMove = (event: MouseEvent) => {
+                setMousePosition({
+                    x: event.clientX - window.innerWidth / 2,
+                    y: event.clientY - window.innerHeight / 2,
+                });
+
+            };
+            window.addEventListener('mousemove', handleMouseMove);
+            animate();
+            return () => {
+                if (animationFrameRef.current !== null) {
+                    cancelAnimationFrame(animationFrameRef.current);
+                }
+                window.removeEventListener('mousemove', handleMouseMove);
+            };
+        }
     }, [animate]);
 
     useEffect(() => {
@@ -117,9 +147,9 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
         return null;
     }
 
-    return hasMounted && data ? (
-        <div className={`${className} overflow-hidden `}>
-            <ForceGraph3D
+    return (
+        <div className={`${className} overflow-hidden `} >
+            <MyForceGraph
                 ref={fgRef}
                 graphData={data}
                 enableNodeDrag={false}
@@ -132,7 +162,7 @@ const CameraOrbit: React.FC<CameraOrbitProps> = ({ data, className }) => {
                 backgroundColor="white"
             />
         </div>
-    ) : null;
+    );
 };
 
 export default CameraOrbit;

@@ -227,14 +227,17 @@ export default function SmoothScroll() {
             const yOffset = -100; // Adjust the yOffset as needed
             const elementTop =
               sectionRefs.current[index]!.getBoundingClientRect().top;
-            const scrollTop =
-              window.pageYOffset || document.documentElement.scrollTop;
-            const targetY = elementTop + scrollTop + yOffset - 100;
-
-            window.scrollTo({ top: targetY, behavior: "smooth" });
-
-            // Update the active section index when the link is clicked
-            setActiveSection(index);
+              if (typeof window !== "undefined") {
+                // Client-side-only code
+                const scrollTop =
+                  window.pageYOffset || document.documentElement.scrollTop;
+                const targetY = elementTop + scrollTop + yOffset - 100;
+    
+                window.scrollTo({ top: targetY, behavior: "smooth" });
+    
+                // Update the active section index when the link is clicked
+                setActiveSection(index);
+              }
           }
         }}
       >

@@ -1,21 +1,25 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 
 const FramerEmbed = () => {
   const [scale, setScale] = useState(1);
 
   const updateScale = () => {
-    const windowWidth = typeof window !=="undefined" ? window.innerWidth : 0;
+    
     // Constants to adjust the scaling effect
     const baseWidth = 1220; // Base width for full scale (1.0)
     const scaleFactor = -0.7; // Adjust this factor to change the scaling sensitivity
 
     // Calculating scale using a modified inverse function
-    let scaleValue = 1 + scaleFactor * (1 - windowWidth / baseWidth);
+    if (typeof window !== "undefined") {
+      // Client-side-only code
+      let scaleValue = 1 + scaleFactor * (1 - window.innerWidth / baseWidth);
+      // Ensure the scale is within reasonable bounds
+      scaleValue = Math.max(0.5, Math.min(scaleValue, 1.7));
+  
+      setScale(scaleValue);
+    }
 
-    // Ensure the scale is within reasonable bounds
-    scaleValue = Math.max(0.5, Math.min(scaleValue, 1.7));
-
-    setScale(scaleValue);
   };
 
   useEffect(() => {

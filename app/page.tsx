@@ -7,6 +7,7 @@ import Expander from "./components/Expander";
 import Navbar from "./components/Navbar";
 
 
+
 export default function Home() {
   const [graphData, setGraphData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -55,6 +56,7 @@ export default function Home() {
         </div>
         <div className="wrapper-scene ">
           {isLoaded && graphData && <CameraOrbit data={graphData} className={`w-full absolute z-40 inset-0 rounded-[45px] border-[4px] sm:border-[12px] border-[#101942FF] ${isLoaded ? "z-10" : ""}`} />}
+         
         </div>
         <div className="page-wrapper w-full h-full" >
           <div className="buffer-page-wrapper fixed inset-0 pointer-events-none bg-opacity-0 z-7"></div>
