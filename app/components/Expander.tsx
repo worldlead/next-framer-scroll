@@ -9,9 +9,10 @@ import { ArrowRight } from "lucide-react";
 interface ExpanderProps {
   className?: string;
   isScrolled?: boolean;
+  triggerWheelEvent: () => void;
 }
 
-export default function Expander({ className, isScrolled }: ExpanderProps) {
+export default function Expander({ className, isScrolled, triggerWheelEvent }: ExpanderProps) {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [emailEnter, setEmailEnter] = useState(false);
@@ -30,8 +31,9 @@ export default function Expander({ className, isScrolled }: ExpanderProps) {
       setIsCircleMaskOn(true);
       document.body.classList.add("circle-mask-is-on");
     } else if (!isScrolled) {
+      
       setIsCircleMaskOn(false);
-      setTimeout(() => document.body.classList.remove("circle-mask-is-on"), 1000);
+      document.body.classList.remove("circle-mask-is-on");
     }
 
     const handleAnimationDelay = () => {
@@ -110,6 +112,7 @@ export default function Expander({ className, isScrolled }: ExpanderProps) {
   return (
     <>
       <div
+        
         className={`fixed flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center transition-all pointer-events-none ${isCircleMaskOn ? "z-[99] opacity-100 animate-scale-in" : "animate-scale-out"}`}
       >
         {isCircleMaskOn && (
@@ -188,6 +191,7 @@ export default function Expander({ className, isScrolled }: ExpanderProps) {
         <Footer
           className={`sm:flex z-60 ${isCircleMaskOn ? "mask-is-on" : ""}`}
           onToggleCircleMask={handleToggleCircleMask}
+          triggerWheelEvent={triggerWheelEvent}
         />
       </div>
     </>

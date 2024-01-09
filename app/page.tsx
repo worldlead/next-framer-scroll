@@ -1,15 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, createContext } from "react";
 import Preloader from "./components/Preloader";
 import CameraOrbit from "./components/force-graph";
 import Expander from "./components/Expander";
 import Navbar from "./components/Navbar";
 
+
 export default function Home() {
   const [graphData, setGraphData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetch("/blocks.json")
@@ -26,18 +28,26 @@ export default function Home() {
   };
 
   const handleWheel = (e: any) => {
-    console.log(e);
     if (e.deltaY > 0 ) {
       setIsScrolled(true);
-      
     } else if (e.deltaY < 0 ) {
       setIsScrolled(false);
     }
   }
 
+  const triggerWheelEvent = () => {
+    if (containerRef.current) {
+      const syntheticEvent = new WheelEvent('wheel', {
+        deltaY: 100, // You can customize the delta value as needed
+      });
+      containerRef.current.dispatchEvent(syntheticEvent);
+      setIsScrolled(true);
+    }
+  };
+
   return (
     <>
-      <div className={`main-wrapper w-full h-full`} onWheel={handleWheel}>
+      <div className={`main-wrapper w-full h-full`} ref={containerRef} onWheel={handleWheel}>
         <div
           className={`navbar-wrapper w-full absolute z-70 ${isLoaded ? "" : "hidden"}`}
         >
@@ -52,6 +62,7 @@ export default function Home() {
             <Expander 
               className={`absolute left-1/2 top-[70%] sm:top-1/2 transform  -translate-x-1/2 -translate-y-1/2 sm:flex justify-between w-full text-center sm:text-left float-unset sm:float-left px-8 sm:px-[56px] items-center`} 
               isScrolled={isScrolled}
+              triggerWheelEvent={triggerWheelEvent}
               />
           )}
         </div>

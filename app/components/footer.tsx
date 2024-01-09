@@ -7,11 +7,14 @@ import SwiperCore from "swiper";
 interface FooterProps {
   className?: string;
   onToggleCircleMask: () => void;
-}
+  triggerWheelEvent: () => void;
+} 
 
 export default ({
   className,
   onToggleCircleMask,
+  triggerWheelEvent
+  
 }: FooterProps) => {
   const [isCircleMaskOn, setIsCircleMaskOn] = useState(false);
   const swiperRef = useRef<SwiperCore>();
@@ -23,11 +26,14 @@ export default ({
     "dependency mapping",
   ];
 
+  
 
   const handleScrollWrapperClick = () => {
     setIsCircleMaskOn(!isCircleMaskOn);
     document.body.classList.add("circle-mask-is-on");
     onToggleCircleMask();
+    triggerWheelEvent();
+    
   };
 
   const circleMaskClass = isCircleMaskOn ? "on" : "";
