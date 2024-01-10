@@ -115,9 +115,9 @@ export default function Expander({ className, isScrolled, triggerWheelEvent }: E
         
         className={`fixed flex opacity-0.5 left-1/2 -translate-x-1/2 justify-center transition-all pointer-events-none ${isCircleMaskOn ? "z-[99] opacity-100 animate-scale-in" : "animate-scale-out"}`}
       >
-        {/* {isCircleMaskOn && (
+        {isCircleMaskOn && (
           <FramerEmbed></FramerEmbed>
-        )} */}
+        )}
       </div>
       <div
         ref={bannerText}
